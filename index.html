@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Landon Devlog</title>
+  <li><link rel="icon" href="/static/img/favicon.svg"></li>
+  <li><link rel="stylesheet" href="/static/css/style.css"></li>
+</head>
+<body>
+  <div id="app" class="layout">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <div class="logo">L</div>
+        <div class="title">Landon Devlog</div>
+      </div>
+
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search posts, tags, notes…" />
+      </div>
+
+      <nav class="nav" id="toc">
+        <div class="nav-section">
+          <div class="nav-section-title">Devlog</div>
+          <ul>
+            <a href="/blogs/setup.html">2025-10-07 — Initial setup</a>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Quick Links</div>
+          <ul>
+            <a href="/index.html">Home</a>
+            <a href="#">Blender</a>
+            <a href="#">Unreal</a>
+          </ul>
+        </div>
+      </nav>
+
+      <footer class="sidebar-foot">
+        <small>Static • Editable HTML • GitHub Pages</small>
+      </footer>
+    </aside>
+
+    <main class="main" role="main">
+      <header class="topbar">
+        <h1>Devlog</h1>
+        <p class="subtitle">Notes, lessons, snippets, and project memory — quick to edit, easy to find.</p>
+      </header>
+
+      <section id="posts" class="posts">
+        <article class="post-card" data-title="Initial setup" data-tags="setup,scaffold">
+          <a class="post-link" href="/blogs/setup.html">
+            <div class="post-thumb" aria-hidden="true"></div>
+            <div class="post-meta">
+              <h2 class="post-title">2025-10-07 — Initial setup</h2>
+              <p class="post-excerpt">Scaffolded the AssetLibrary prototype and the static devlog site. Next: indexer, tagging UI, thumbnails.</p>
+              <p class="post-tags"><span class="tag">setup</span><span class="tag">scaffold</span></p>
+            </div>
+          </a>
+        </article>
+      </section>
+
+      <aside class="panel">
+        <h3>Quick actions</h3>
+        <ul>
+          <li><a href="/blog-template.html">Create new post from template</a></li>
+          <li><a href="/index.html">Deployment instructions</a></li>
+        </ul>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

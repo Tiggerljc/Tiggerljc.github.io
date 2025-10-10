@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2025-10-07 — Initial setup</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="single layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="logo">L</div><div class="title">Landon Devlog</div></div>
+      <nav class="nav">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <article class="post">
+        <header class="post-header">
+          <h1>Initial Setup</h1>
+          <p class="meta">2025-10-07 • Tags: <span class="tag">setup</span> <span class="tag">scaffold</span></p>
+        </header>
+
+        <section class="post-body">
+          <p>Scaffolded the AssetLibrary prototype and this static devlog site. Next steps are indexing, thumbnail pipeline, tagging UI, and the initial Blender export plugin.</p>
+
+          <h2>Commands run</h2>
+          <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve</code></pre>
+
+          <h2>Notes</h2>
+          <ul>
+            <li>Keep posts as simple static HTML so editing is trivial on any system.</li>
+            <li>Use a post-template.html to copy for new entries.</li>
+            <li>Push posts to GitHub and enable Pages for hosting.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>
