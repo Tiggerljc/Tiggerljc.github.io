@@ -2,8 +2,8 @@
   --bg:#0f1416;
   --panel:#15181a;
   --muted:#9aa3a6;
-  --accent:#ff6a1a80;
-  --accent-strong:#ff450080;
+  --accent:#ff6a1a;
+  --accent-strong:#ff4500;
   --accent-2:#ff8a33;
   --card:#111314;
   --glass: rgba(255,255,255,0.02);
@@ -82,7 +82,7 @@ pre,code{font-family:var(--mono);background:#0b0d0e;padding:12px;border-radius:8
   background: linear-gradient(180deg, var(--nav-bg), rgba(255,69,0,.08));
   backdrop-filter: blur(6px);
   border-radius: 14px;
-  padding: 8px 14px;
+  padding: 32px 14px; /* original 8, 14 */
   box-shadow: 0 8px 30px rgba(12,12,12,0.45);
   border: 1px solid rgba(255,69,0,0.18);
 }
@@ -116,11 +116,11 @@ pre,code{font-family:var(--mono);background:#0b0d0e;padding:12px;border-radius:8
 }
 .nav-links a{
   display: inline-block;
-  padding: 10px 14px;
-  color: #fff;
+  padding: 14px 18px; /* original 10, 14 */
+  color: #ffffffdd;
   text-decoration: none;
-  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-  border-radius: 999px;
+  background: linear-gradient(180deg, var(--nav-bg), var(--nav-bg-strong));
+  border-radius: 256px;
   transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
   font-weight: 700;
   box-shadow: 0 6px 18px rgba(100,0,0,0.35);
