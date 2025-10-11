@@ -117,10 +117,10 @@ pre,code{font-family:var(--mono);background:#0b0d0e;padding:12px;border-radius:8
 }
 .nav-links a{
   display: inline-flex; /* changed from inline-block */
-  align-items: center; /* new */
-  justify-content: center; /* new */
-  height: 44px; /* new */
-  padding: 0px 18px; /* original 10, 14, then 14, 18 */
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0px 22px; /* original 10, 14, then 14, 18 */
   color: #ffffffdd;
   text-decoration: none;
   background: linear-gradient(180deg, var(--nav-bg), var(--nav-bg-strong));
