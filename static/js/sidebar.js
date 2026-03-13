@@ -13,13 +13,13 @@ toggle.addEventListener('click', () => {
 });
 
 // --- Hover expand (desktop only) ---
-strip.addEventListener('mouseenter', () => {
+sidebar.addEventListener('mouseenter', () => {
   if (!userCollapsed && window.innerWidth > 880) {
     sidebar.classList.remove('collapsed');
   }
 });
 
-strip.addEventListener('mouseleave', () => {
+sidebar.addEventListener('mouseleave', () => {
   if (!userCollapsed && window.innerWidth > 880) {
     sidebar.classList.add('collapsed');
   }

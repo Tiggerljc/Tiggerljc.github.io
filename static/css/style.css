@@ -345,16 +345,16 @@ container
 /* --- Sidebar container --- */
 .sidebar {
   position: relative;
-  /* display: flex; */
-  display: grid;
-  grid-template-columns: 64px 1fr;
+  display: flex;
   flex-direction: row;
   height: 100vh;
   background: var(--bg);
 }
 
 .sidebar-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 8px 12px;
   border-radius: 6px;
   color: #cfe7ea;
@@ -366,23 +366,19 @@ container
     transform 0.15s ease,
     filter 0.15s ease;
 }
-
-/* Hover effect in expanded state */
-.sidebar:not(.collapsed) .sidebar-links a:hover {
-  background: rgba(255,106,0,0.06);
+.sidebar-link:hover {
+  background: rgba(255,106,0,0.08);
   color: var(--accent-strong);
-  transform: translateX(2px) scale(1.03);
-  filter: brightness(1.1);
+  transform: translateX(2px) scale(1.02);
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.35);
 }
-
 
 /* --- Collapsed strip --- */
 .sidebar-strip {
   width: 64px;
   background: #1a1d1f;
   border-right: 1px solid rgba(255,255,255,0.06);
-  /* display: flex; */
-  display: contents;
+  display: flex;
   flex-direction: column;
   padding: 12px 8px;
   gap: 16px;
@@ -393,10 +389,22 @@ container
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 1.2rem;
-  padding: 8px;
+  font-size: 18px;
+  padding: 8px 6px;
   cursor: pointer;
   text-align: left;
+  border-radius: 8px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.strip-toggle:hover {
+  background: rgba(255,106,0,0.12);
+  color: var(--accent-strong);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(255,106,0,0.3);
 }
 
 /* Section groups inside strip */
@@ -423,6 +431,18 @@ container
   padding: 6px 4px;
   text-align: left;
   cursor: pointer;
+  border-radius: 8px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.strip-item-icon:hover {
+  background: rgba(255,106,0,0.12);
+  color: var(--accent-strong);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(255,106,0,0.3);
 }
 
 /* --- Expanded panel --- */
@@ -431,8 +451,7 @@ container
   background: #1c1f21;
   padding: 20px;
   overflow-y: auto;
-  transition: width 0.2s ease;
-  display: contents;
+  transition: width 0.2s ease, padding 0.2s ease;
 }
 
 /* Collapsed state (panel hidden) */
