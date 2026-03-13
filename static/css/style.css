@@ -225,15 +225,16 @@ container */
   color: #cfe7ea;
   text-decoration: none;
   background: transparent;
-  transition:allbackground 0.15s ease,
-  color 0.15s ease,
-  transform 0.15s ease,
-  filter 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    filter 0.15s ease;
 }
 
 /* Hover effect in expanded state */
 .sidebar:not(.collapsed) .sidebar-links a:hover {
-  background: rgba(255,106,0,0,06);
+  background: rgba(255,106,0,0.06);
   color: var(--accent-strong);
   transform: translateX(2px) scale(1.03);
   filter: brightness(1.1);
