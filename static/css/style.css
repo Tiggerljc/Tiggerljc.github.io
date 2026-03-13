@@ -14,7 +14,7 @@
   --nav-bg-strong: rgba(225,69,0,0.22);
 }
 
-/* Old styling code */
+/* Old styling code
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#0b0d0e);color:#e6ecef;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 a{color:var(--accent);text-decoration:none}
@@ -60,6 +60,7 @@ pre,code{font-family:var(--mono);background:#0b0d0e;padding:12px;border-radius:8
   .main{padding:18px;grid-template-columns:1fr}
   .single .sidebar{position:relative;height:auto}
 }
+*/
 
 /* Navbar */
 /* positioning and palette */
@@ -164,16 +165,16 @@ pre,code{font-family:var(--mono);background:#0b0d0e;padding:12px;border-radius:8
 /* screen-reader helper */
 .sr-only{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
 
-/* Sidebar 
-container */
-/* Floating, rounded, scrollable sidebar */
+/* Oldest Sidebar 
+container
+
 .site-sidebar {
   position: fixed;
-  top: 28px;                      /* offset from top */
-  left: 28px;                     /* inset from left edge */
-  height: calc(100vh - 56px);     /* leave space at top and bottom */
+  top: 28px;                      /* offset from top 
+  left: 28px;                     /* inset from left edge 
+  height: calc(100vh - 56px);     /* leave space at top and bottom 
   width: 260px;
-  background: linear-gradient(180deg, #1a1d1f, #1c1f21); /* slightly lighter than --bg */
+  background: linear-gradient(180deg, #1a1d1f, #1c1f21); /* slightly lighter than --bg 
   color: var(--muted);
   padding: 20px 16px;
   border-radius: 16px;
@@ -184,7 +185,7 @@ container */
   transition: width 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Collapsed state */
+/* Collapsed state 
 .site-sidebar.collapsed {
   width: 64px;
   padding: 20px 8px;
@@ -194,7 +195,7 @@ container */
   pointer-events: none;
 }
 
-/* Toggle button */
+/* Toggle button 
 .sidebar-toggle {
   position: absolute;
   top: 16px;
@@ -208,6 +209,7 @@ container */
   box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
   z-index: 1200;
 }
+*/
 
 /* New Sidebar content */
 /* --- Sidebar container --- */
