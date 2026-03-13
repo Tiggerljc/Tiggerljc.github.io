@@ -1,5 +1,5 @@
 // LoadSidebar.js
-fetch('/sidebar.html')
+fetch('/templates/sidebar.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('site-sidebar').innerHTML = html;
