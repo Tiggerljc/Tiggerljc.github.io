@@ -1,61 +1,55 @@
-<aside class="sidebar" aria-label="Sidebar">
+<div class="sidebar-wrapper">
+  <aside class="sidebar" aria-label="Sidebar">
 
-  <!-- Collapsed strip -->
-  <div class="sidebar-strip">
-    <button class="strip-toggle" aria-label="Toggle sidebar">☰</button>
+    <!-- Collapsed strip -->
+    <div class="sidebar-strip">
+      <button class="strip-toggle" aria-label="Toggle sidebar">☰</button>
 
-    <div class="strip-sections">
+      <div class="strip-sections">
 
-      <!-- Section One -->
-      <div class="strip-section">
-        <div class="strip-section-icon">📁</div>
-        <button class="strip-item-icon" data-target="lorem">📝</button>
-        <button class="strip-item-icon" data-target="dolor">📝</button>
+        <div class="strip-section">
+          <div class="strip-section-icon">📁</div>
+          <button class="strip-item-icon" data-target="lorem">📝</button>
+          <button class="strip-item-icon" data-target="dolor">📝</button>
+        </div>
+
+        <div class="strip-section">
+          <div class="strip-section-icon">🔗</div>
+          <button class="strip-item-icon" data-target="consectetur">•</button>
+          <button class="strip-item-icon" data-target="adipiscing">•</button>
+        </div>
+
+        <div class="strip-section">
+          <div class="strip-section-icon">📂</div>
+          <button class="strip-item-icon" data-target="ipsum">•</button>
+          <button class="strip-item-icon" data-target="dolor2">•</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Expanded panel -->
+    <div class="sidebar-panel">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Section One</div>
+        <a class="sidebar-link" id="lorem" href="#">Lorem ipsum</a>
+        <a class="sidebar-link" id="dolor" href="#">Dolor sit amet</a>
       </div>
 
-      <!-- Section Two -->
-      <div class="strip-section">
-        <div class="strip-section-icon">🔗</div>
-       <button class="strip-item-icon" data-target="consectetur">•</button>
-       <button class="strip-item-icon" data-target="adipiscing">•</button>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Section Two</div>
+        <a class="sidebar-link" id="consectetur" href="#">Consectetur</a>
+        <a class="sidebar-link" id="adipiscing" href="#">Adipiscing elit</a>
       </div>
 
-      <!-- Section Three -->
-      <div class="strip-section">
-        <div class="strip-section-icon">📂</div>
-        <button class="strip-item-icon" data-target="ipsum">•</button>
-        <button class="strip-item-icon" data-target="dolor2">•</button>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Lorem</div>
+        <a class="sidebar-link" id="ipsum" href="#">Ipsum</a>
+        <a class="sidebar-link" id="dolor2" href="#">Dolor sit amet</a>
       </div>
-      
-    </div>
-  </div>
-
-  <!-- Expanded panel -->
-  <div class="sidebar-panel">
-
-    <!-- Section One -->
-    <div class="sidebar-section">
-      <div class="sidebar-title">Section One</div>
-      <a class="sidebar-link" id="lorem" href="#">Lorem ipsum</a>
-      <a class="sidebar-link" id="dolor" href="#">Dolor sit amet</a>
     </div>
 
-    <!-- Section Two -->
-    <div class="sidebar-section">
-      <div class="sidebar-title">Section Two</div>
-      <a class="sidebar-link" id="consectetur" href="#">Consectetur</a>
-      <a class="sidebar-link" id="adipiscing" href="#">Adipiscing elit</a>
-    </div>
+  </aside>
 
-    <!-- Section Three -->
-    <div class="sidebar-section">
-      <div class="sidebar-title">Lorem</div>
-      <a class="sidebar-link" id="ipsum" href="#">Ipsum</a>
-      <a class="sidebar-link" id="dolor2" href="#">Dolor sit amet</a>
-    </div>
-
-  </div>
-
-</aside>
-
-<div class="sidebar-dim"></div>
+  <div class="sidebar-dim"></div>
+</div>
