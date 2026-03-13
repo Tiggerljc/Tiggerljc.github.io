@@ -1,29 +1,66 @@
-<aside class="site-sidebar" role="complementary" aria-label="Sidebar">
-  <button id="sidebar-toggle" class="sidebar-toggle" aria-expanded="true" aria-controls="sidebar-content">☰</button>
+<aside class="sidebar" aria-label="Sidebar">
+  <!-- Sidebar Dim on Mobile -->
+  <div class="sidebar-dim"></div>
 
-  <div id="sidebar-content" class="sidebar-content">
-    <div class="sidebar-section">
-      <div class="sidebar-title">Section One</div>
-      <ul class="sidebar-links">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">Dolor sit amet</a></li>
-      </ul>
-    </div>
+  <!-- Collapsed strip (icons only) -->
+  <div class="sidebar-strip">
+    <button class="strip-toggle" aria-label="Toggle sidebar">
+      ☰
+    </button>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Section Two</div>
-      <ul class="sidebar-links">
-        <li><a href="#">Consectetur</a></li>
-        <li><a href="#">Adipiscing elit</a></li>
-      </ul>
-    </div>
+    <nav class="strip-sections">
+      <!-- Section One -->
+      <div class="strip-section">
+        <div class="strip-section-icon">📁</div>
+        <button class="strip-item-icon" data-target="lorem">📝</button>
+        <button class="strip-item-icon" data-target="dolor">📝</button>
+      </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Lorem</div>
-      <ul class="sidebar-links">
-        <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Dolor sit amet</a></li>
-      </ul>
+      <!-- Section Two -->
+      <div class="strip-section">
+        <div class="strip-section-icon">🔗</div>
+        <button class="strip-item-icon" data-target="consectetur">•</button>
+        <button class="strip-item-icon" data-target="adipiscing">•</button>
+      </div>
+
+      <!-- Section Three -->
+      <div class="strip-section">
+        <div class="strip-section-icon">📂</div>
+        <button class="strip-item-icon" data-target="ipsum">•</button>
+        <button class="strip-item-icon" data-target="dolor2">•</button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Expanded panel -->
+  <div class="sidebar-panel" id="sidebar-panel">
+    <div class="sidebar-content">
+
+      <div class="sidebar-section" id="section-one">
+        <div class="sidebar-title">Section One</div>
+        <ul class="sidebar-links">
+          <li><a href="#" id="lorem">Lorem ipsum</a></li>
+          <li><a href="#" id="dolor">Dolor sit amet</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section" id="section-two">
+        <div class="sidebar-title">Section Two</div>
+        <ul class="sidebar-links">
+          <li><a href="#" id="consectetur">Consectetur</a></li>
+          <li><a href="#" id="adipiscing">Adipiscing elit</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section" id="section-three">
+        <div class="sidebar-title">Lorem</div>
+        <ul class="sidebar-links">
+          <li><a href="#" id="ipsum">Ipsum</a></li>
+          <li><a href="#" id="dolor2">Dolor sit amet</a></li>
+        </ul>
+      </div>
+
     </div>
   </div>
+
 </aside>
