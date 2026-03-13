@@ -345,7 +345,9 @@ container
 /* --- Sidebar container --- */
 .sidebar {
   position: relative;
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 64px 1fr;
   flex-direction: row;
   height: 100vh;
   background: var(--bg);
@@ -379,7 +381,8 @@ container
   width: 64px;
   background: #1a1d1f;
   border-right: 1px solid rgba(255,255,255,0.06);
-  display: flex;
+  /* display: flex; */
+  display: contents;
   flex-direction: column;
   padding: 12px 8px;
   gap: 16px;
@@ -429,6 +432,7 @@ container
   padding: 20px;
   overflow-y: auto;
   transition: width 0.2s ease;
+  display: contents;
 }
 
 /* Collapsed state (panel hidden) */
