@@ -3,50 +3,81 @@ const sidebar = document.querySelector('.sidebar');
 const panel = document.querySelector('.sidebar-panel');
 const strip = document.querySelector('.sidebar-strip');
 const toggle = document.querySelector('.strip-toggle');
+const layout = document.querySelector('.layout');
+const dim = document.querySelector('.sidebar-dim');
 
 let userCollapsed = false; // true = intentional collapse
 
-// --- Click toggle ---
+// --------------------------------------------------
+// CLICK TOGGLE (desktop + mobile)
+// --------------------------------------------------
 toggle.addEventListener('click', () => {
+  const isMobile = window.innerWidth <= 880;
+
+  if (isMobile) {
+    // Mobile drawer behavior
+    sidebar.classList.toggle('drawer-open');
+    return;
+  }
+
+  // Desktop collapse behavior
   const isCollapsed = sidebar.classList.toggle('collapsed');
-  userCollapsed = isCollapsed; // user intent
+  userCollapsed = isCollapsed;
+
+  // Update header shift
+  if (isCollapsed) layout.classList.remove('sidebar-expanded');
+  else layout.classList.add('sidebar-expanded');
 });
 
-// --- Hover expand (desktop only) ---
+// --------------------------------------------------
+// HOVER EXPAND/COLLAPSE (desktop only)
+// --------------------------------------------------
 sidebar.addEventListener('mouseenter', () => {
   if (!userCollapsed && window.innerWidth > 880) {
     sidebar.classList.remove('collapsed');
+    layout.classList.add('sidebar-expanded');
   }
 });
 
 sidebar.addEventListener('mouseleave', () => {
   if (!userCollapsed && window.innerWidth > 880) {
     sidebar.classList.add('collapsed');
+    layout.classList.remove('sidebar-expanded');
   }
 });
 
-// --- Breakpoint behavior ---
+// --------------------------------------------------
+// BREAKPOINT BEHAVIOR
+// --------------------------------------------------
 function handleResize() {
-  if (window.innerWidth <= 880) {
+  const isMobile = window.innerWidth <= 880;
+
+  if (isMobile) {
+    // Always collapsed on mobile
     sidebar.classList.add('collapsed');
+    layout.classList.remove('sidebar-expanded');
     userCollapsed = false; // reset to passive
   } else {
-    if (userCollapsed) sidebar.classList.add('collapsed');
-    else sidebar.classList.remove('collapsed');
+    // Restore desktop state
+    if (userCollapsed) {
+      sidebar.classList.add('collapsed');
+      layout.classList.remove('sidebar-expanded');
+    } else {
+      sidebar.classList.remove('collapsed');
+      layout.classList.add('sidebar-expanded');
+    }
   }
 }
 
-// --- Mobile drawer toggle ---
-toggle.addEventListener('click', () => {
-  if (window.innerWidth <= 880) {
-    sidebar.classList.toggle('drawer-open');
-  }
-});
-
-// --- Clicking dim closes drawer ---
-document.querySelector('.sidebar-dim').addEventListener('click', () => {
+// --------------------------------------------------
+// CLICKING DIM LAYER CLOSES DRAWER
+// --------------------------------------------------
+dim.addEventListener('click', () => {
   sidebar.classList.remove('drawer-open');
 });
 
+// --------------------------------------------------
+// INIT
+// --------------------------------------------------
 window.addEventListener('resize', handleResize);
 handleResize();
