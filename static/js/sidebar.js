@@ -1,83 +1,79 @@
 // sidebar.js
 const sidebar = document.querySelector('.sidebar');
-const panel = document.querySelector('.sidebar-panel');
-const strip = document.querySelector('.sidebar-strip');
-const toggle = document.querySelector('.strip-toggle');
+const toggle = document.querySelector('.sidebar-toggle');
 const layout = document.querySelector('.layout');
 const dim = document.querySelector('.sidebar-dim');
 
-let userCollapsed = false; // true = intentional collapse
+let userCollapsed = true; // start collapsed
 
-// --------------------------------------------------
-// CLICK TOGGLE (desktop + mobile)
-// --------------------------------------------------
+function setExpanded(expanded) {
+  if (expanded) {
+    sidebar.classList.remove('collapsed');
+    layout.classList.add('sidebar-expanded');
+    userCollapsed = false;
+  } else {
+    sidebar.classList.add('collapsed');
+    layout.classList.remove('sidebar-expanded');
+    userCollapsed = true;
+  }
+}
+
+// Click toggle (desktop + mobile)
 toggle.addEventListener('click', () => {
   const isMobile = window.innerWidth <= 880;
 
   if (isMobile) {
-    // Mobile drawer behavior
     sidebar.classList.toggle('drawer-open');
+    // drawer-open implies expanded visually
+    if (sidebar.classList.contains('drawer-open')) {
+      setExpanded(true);
+    } else {
+      setExpanded(true); // keep expanded state but hide via drawer
+    }
     return;
   }
 
-  // Desktop collapse behavior
-  const isCollapsed = sidebar.classList.toggle('collapsed');
-  userCollapsed = isCollapsed;
-
-  // Update header shift
-  if (isCollapsed) layout.classList.remove('sidebar-expanded');
-  else layout.classList.add('sidebar-expanded');
+  const willExpand = sidebar.classList.contains('collapsed');
+  setExpanded(willExpand);
 });
 
-// --------------------------------------------------
-// HOVER EXPAND/COLLAPSE (desktop only)
-// --------------------------------------------------
+// Hover expand/collapse (desktop only)
 sidebar.addEventListener('mouseenter', () => {
-  if (!userCollapsed && window.innerWidth > 880) {
-    sidebar.classList.remove('collapsed');
-    layout.classList.add('sidebar-expanded');
+  if (window.innerWidth > 880 && userCollapsed === false) {
+    setExpanded(true);
   }
 });
 
 sidebar.addEventListener('mouseleave', () => {
-  if (!userCollapsed && window.innerWidth > 880) {
-    sidebar.classList.add('collapsed');
-    layout.classList.remove('sidebar-expanded');
+  if (window.innerWidth > 880 && userCollapsed === false) {
+    setExpanded(false);
   }
 });
 
-// --------------------------------------------------
-// BREAKPOINT BEHAVIOR
-// --------------------------------------------------
+// Resize behavior
 function handleResize() {
   const isMobile = window.innerWidth <= 880;
 
   if (isMobile) {
-    // Always collapsed on mobile
     sidebar.classList.add('collapsed');
     layout.classList.remove('sidebar-expanded');
-    userCollapsed = false; // reset to passive
+    sidebar.classList.remove('drawer-open');
   } else {
-    // Restore desktop state
+    // desktop: respect userCollapsed
     if (userCollapsed) {
-      sidebar.classList.add('collapsed');
-      layout.classList.remove('sidebar-expanded');
+      setExpanded(false);
     } else {
-      sidebar.classList.remove('collapsed');
-      layout.classList.add('sidebar-expanded');
+      setExpanded(true);
     }
   }
 }
 
-// --------------------------------------------------
-// CLICKING DIM LAYER CLOSES DRAWER
-// --------------------------------------------------
+// Dim click closes drawer
 dim.addEventListener('click', () => {
   sidebar.classList.remove('drawer-open');
 });
 
-// --------------------------------------------------
-// INIT
-// --------------------------------------------------
-window.addEventListener('resize', handleResize);
+// Init
+sidebar.classList.add('collapsed');
 handleResize();
+window.addEventListener('resize', handleResize);
