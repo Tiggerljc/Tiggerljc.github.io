@@ -4,7 +4,7 @@ const toggle = document.querySelector('.sidebar-toggle');
 const layout = document.querySelector('.layout');
 const dim = document.querySelector('.sidebar-dim');
 
-let userCollapsed = true; // start collapsed
+let userCollapsed = false; // treat as "passive" at start
 
 function setExpanded(expanded) {
   if (expanded) {
@@ -23,12 +23,11 @@ toggle.addEventListener('click', () => {
   const isMobile = window.innerWidth <= 880;
 
   if (isMobile) {
-    sidebar.classList.toggle('drawer-open');
-    // drawer-open implies expanded visually
-    if (sidebar.classList.contains('drawer-open')) {
-      setExpanded(true);
+    const isOpen = sidebar.classList.toggle('drawer-open');
+    if (isOpen) {
+      sidebar.classList.remove('collapsed');
     } else {
-      setExpanded(true); // keep expanded state but hide via drawer
+      sidebar.classList.add('collapsed');
     }
     return;
   }
@@ -39,14 +38,14 @@ toggle.addEventListener('click', () => {
 
 // Hover expand/collapse (desktop only)
 sidebar.addEventListener('mouseenter', () => {
-  if (window.innerWidth > 880 && userCollapsed === false) {
-    setExpanded(true);
+  if (window.innerWidth > 880) {
+    setExpanded(true); // always open on hover
   }
 });
 
 sidebar.addEventListener('mouseleave', () => {
-  if (window.innerWidth > 880 && userCollapsed === false) {
-    setExpanded(false);
+  if (window.innerWidth > 880 && !userCollapsed) {
+    setExpanded(false); // only auto-close when not explicitly collapsed
   }
 });
 
@@ -59,18 +58,15 @@ function handleResize() {
     layout.classList.remove('sidebar-expanded');
     sidebar.classList.remove('drawer-open');
   } else {
-    // desktop: respect userCollapsed
-    if (userCollapsed) {
-      setExpanded(false);
-    } else {
-      setExpanded(true);
-    }
+    sidebar.classList.remove('drawer-open');
+    // keep current collapsed/expanded state; hover/click manage it
   }
 }
 
 // Dim click closes drawer
 dim.addEventListener('click', () => {
   sidebar.classList.remove('drawer-open');
+  sidebar.classList.add('collapsed');
 });
 
 // Init
