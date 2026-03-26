@@ -14,38 +14,38 @@
     <!-- Template Loaders -->
     <div id="site-header"></div>
     <script src="/static/js/LoadHeader.js" defer></script>
+    
     <div id="site-sidebar"></div>
     <script src="/static/js/LoadSidebar.js" defer></script>
 
     <main class="main" role="main">
-      <header class="topbar">
-        <h1>Lorem</h1>
-        <p class="subtitle">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Dicta cumque illo sed eos quo necessitatibus quidem magnam excepturi earum.
-          Quas rerum saepe nulla quia nisi hic cumque iste qui consequatur.</p>
-      </header>
-
-      <section id="posts" class="posts">
-        <article class="post-card" data-title="Initial setup" data-tags="setup,scaffold">
-          <a class="post-link" href="/blogs/setup.html">
-            <div class="post-thumb" aria-hidden="true"></div>
-            <div class="post-meta">
-              <h2 class="post-title">2025-10-07 — Initial setup</h2>
-              <p class="post-excerpt">Scaffolded the AssetLibrary prototype and the static devlog site. Next: indexer, tagging UI, thumbnails.</p>
-              <p class="post-tags"><span class="tag">setup</span><span class="tag">scaffold</span></p>
-            </div>
-          </a>
-        </article>
+      <!-- Hero Section -->
+      <section>
+        <h1 ><strong>Hi, I'm Tigger</strong></h1>
+        <p>This is where I share all of the things I work on--MOCs, Blender renders,
+           Unreal Engine projects, coding, violin progress, and whatever else I'm working on.
+           I use this website to compile all of my miscellanious projects, ideas,
+           and scraps of info into one place so that I can return to them later
+           (and hopefully help someone else out in the process).</p>
       </section>
-
-      <aside class="panel">
-        <h3>Quick actions</h3>
-        <ul>
-          <li><a href="/templates/blog-template.html">Create new post from template</a></li>
-          <li><a href="/index.html">Deployment instructions</a></li>
-        </ul>
-      </aside>
+      
+      <!-- Featured Section -->
+      <section>
+        <h2>Featured Projects</h2>
+        <div class="Featured">
+          <!-- Featured projects will go here, in a grid -->
+        </div>
+      </section>
+      
+      <!-- Recent Section -->
+      <section>
+        <h2>Recent</h2>
+        <div class="Recent">
+          <!-- Recent projects will go here, in a list -->
+        </div>
+      </section>
     </main>
+
   </div>
 
   <script src="/static/js/main.js"></script>
