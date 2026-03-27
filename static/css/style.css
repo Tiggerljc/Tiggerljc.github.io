@@ -37,11 +37,11 @@ html, body {
   display: flex;
   min-height: 100vh;
   max-width: 1440px;
-  margin: 40px auto;
+  margin: 48px auto;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02));
+  /* background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02)); */
   position: relative;
 }
 
@@ -56,7 +56,6 @@ html, body {
 .main {
   flex: 1;
   padding: 28px;
-  /* padding-top: 100px; */
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 22px;
@@ -66,7 +65,10 @@ html, body {
 .hero-section,
 .project-section,
 .recent-section {
-  grid-column: 1 / -1;
+  grid-column: 1 / 2;
+}
+.featured-section {
+  grid-column: 2 / 3;
 }
 
 .topbar h1 { margin: 0; font-size: 28px; }
@@ -230,7 +232,6 @@ html, body {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 64px; /* collapsed width */
   border-right: 1px solid rgba(255,255,255,0.06);
   transition: width 0.2s ease;
