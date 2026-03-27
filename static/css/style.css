@@ -34,7 +34,8 @@ html, body {
    Main app layout
 -------------------------------------------------- */
 .layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   min-height: 100vh;
   max-width: 1400px;
   margin: 28px auto;
@@ -56,9 +57,11 @@ html, body {
 .main {
   flex: 1;
   padding: 28px;
+  padding-top: 100px;
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 22px;
+  min-width: 0;
 }
 
 .hero-section,
