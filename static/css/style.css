@@ -60,7 +60,6 @@ html, body {
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 22px;
-  min-width: 0;
 }
 
 .hero-section,
