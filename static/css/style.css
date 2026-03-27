@@ -41,7 +41,7 @@ html, body {
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  /* background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02)); */
+  background: var(--bg);
   position: relative;
   align-items: stretch;
 }
