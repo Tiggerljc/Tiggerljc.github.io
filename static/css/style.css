@@ -37,12 +37,13 @@ html, body {
   display: flex;
   min-height: 100vh;
   max-width: 1440px;
-  margin: 48px auto;
+  margin: 64px auto;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   /* background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02)); */
   position: relative;
+  align-items: stretch;
 }
 
 /* Header shift when sidebar expands */
@@ -60,6 +61,7 @@ html, body {
   grid-template-columns: 1fr 320px;
   gap: 22px;
   min-height: 2400px;
+  background: var(--bg);
 }
 
 .hero-section,
