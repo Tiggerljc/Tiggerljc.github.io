@@ -35,7 +35,6 @@ html, body {
 -------------------------------------------------- */
 .layout {
   display: flex;
-  min-height: 100vh;
   max-width: 1440px;
   margin: 64px auto;
   border-radius: 14px;
