@@ -61,6 +61,12 @@ html, body {
   gap: 22px;
 }
 
+.hero-section,
+.project-section,
+.recent-section {
+  grid-column: 1 / -1;
+}
+
 .topbar h1 { margin: 0; font-size: 28px; }
 .subtitle { color: var(--muted); margin-top: 6px; }
 
