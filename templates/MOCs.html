@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MOCs – Tigger.dev</title>
+  <link rel="icon" href="/static/img/favicon.svg">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div id="site-header"></div>
+  <script src="/static/js/LoadHeader.js" defer></script>
+
+  <div id="app" class="layout">
+
+    <!-- Sidebar -->
+    <div id="site-sidebar"></div>
+    <script src="/static/js/LoadSidebar.js" defer></script>
+
+    <!-- Main content -->
+    <main class="main" role="main">
+
+      <!-- Your MOCs page content goes here -->
+      <section class="mocs-page">
+
+        <h1>MOCs</h1>
+        <p class="page-intro">
+          MOCs, or My Own Creations, are custom LEGO creations that I design and build myself.
+          Here, you will find a collection of my builds, mostly Star Wars-themed,
+          all of which link to their respective pages on Rebrickable.
+          You will also find some blog posts and extra info about my building process,
+          inspiration, techniques, and more. Have fun, and Happy Building!
+        </p>
+
+        <div class="moc-grid">
+          <a class="moc-card" href="#">
+            <div class="moc-image">
+              <img src="/static/img/favicon.svg" alt="MOC Image">
+            </div>
+            <div class="moc-content">
+              <h3>MOC Name</h3>
+              <p>Short description goes here.</p>
+            </div>
+          </a>
+        </div>
+
+        <section class="related-posts">
+          <h2>Related Posts</h2>
+          <div class="post-list">
+            <a class="post-tile" href="#">
+              <h4>Placeholder Blog Post</h4>
+              <p>YY/MM/DD Post Description</p>
+            </a>
+          </div>
+        </section>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
