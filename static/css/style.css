@@ -1,6 +1,8 @@
 /* --------------------------------------------------
-   Root variables
+   Global & Params
 -------------------------------------------------- */
+
+/* ---------- Root Variables ---------- */
 :root{
   --bg:#0f1416;
   --panel:#15181a;
@@ -17,9 +19,7 @@
   --nav-bg-strong: rgba(225,69,0,0.22);
 }
 
-/* --------------------------------------------------
-   Base layout + content
--------------------------------------------------- */
+/* ---------- Base Reset & Typography ---------- */
 * { box-sizing: border-box; }
 
 html, body {
@@ -30,9 +30,15 @@ html, body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+
+
+
+
 /* --------------------------------------------------
-   Main app layout
+   Global Containers (Layout, Header, Sidebar, Main)
 -------------------------------------------------- */
+
+/* ---------- Layout Wrapper (#app.layout) ---------- */
 .layout {
   display: grid; /* flex; */
   grid-template-columns: auto 1fr;
@@ -52,193 +58,9 @@ html, body {
   margin-left: 12px;
 }
 
-/* --------------------------------------------------
-   Main content
--------------------------------------------------- */
-.main {
-  flex: 1;
-  padding: 28px;
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 22px;
-  min-height: 2400px;
-  background: var(--bg);
-  grid-column: 2 / 2;
-}
-
-.hero-section,
-.project-section,
-.recent-section {
-  grid-column: 1 / 2;
-}
-.featured-section {
-  grid-column: 2 / 3;
-}
-
-.topbar h1 { margin: 0; font-size: 28px; }
-.subtitle { color: var(--muted); margin-top: 6px; }
-
-/* Posts grid */
-.posts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-.post-card {
-  background: linear-gradient(180deg, var(--card), #0c0e0f);
-  border-radius: 12px;
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.02);
-  transition: transform .14s ease, box-shadow .14s ease;
-}
-.post-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.post-link { display: flex; gap: 0; color: inherit; text-decoration: none; }
-.post-thumb { width: 160px; background: linear-gradient(135deg, rgba(255,106,0,0.12), rgba(255,138,51,0.06)); min-height: 120px; }
-.post-meta { padding: 14px; flex: 1; }
-.post-title { margin: 0; color: #ffffff; font-size: 16px; }
-.post-excerpt { color: var(--muted); margin-top: 8px; font-size: 13px; }
-
-.tag {
-  display: inline-block;
-  background: rgba(255,255,255,0.03);
-  padding: 6px;
-  border-radius: 6px;
-  margin-right: 6px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* Right-hand panel */
-.panel {
-  background: linear-gradient(180deg, var(--panel), #0d0f10);
-  padding: 16px;
-  border-radius: 12px;
-  height: max-content;
-  border: 1px solid rgba(255,255,255,0.02);
-}
-
-/* Category cards */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  margin-top: 24px;
-}
-
-.category-card {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, var(--card), #0c0e0f);
-  border-radius: 14px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid rgba(255,255,255,0.04);
-  transition: transform .14s ease, box-shadow .14s ease;
-}
-
-.category-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.card-image img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 16px;
-}
-
-.card-content h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #fff;
-}
-
-.card-content p {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* --------------------------------------------------
-   MOCs page
--------------------------------------------------- */
-
-.moc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  margin-top: 24px;
-}
-
-.moc-card {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, var(--card), #0c0e0f);
-  border-radius: 14px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid rgba(255,255,255,0.04);
-  transition: transform .14s ease, box-shadow .14s ease;
-}
-
-.moc-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.moc-image img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.moc-content {
-  padding: 16px;
-}
-
-.moc-content h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #fff;
-}
-
-.moc-content p {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* --------------------------------------------------
-   Responsive layout
--------------------------------------------------- */
-@media (max-width: 900px) {
-  .layout {
-    flex-direction: column;
-    max-width: 100%;
-    margin: 0;
-    border-radius: 0;
-  }
-  .main {
-    padding: 18px;
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --------------------------------------------------
+/* ==================================================
    Navbar
--------------------------------------------------- */
+================================================== */
 .site-nav {
   position: fixed;
   top: 18px;
@@ -326,9 +148,9 @@ html, body {
   .site-nav { width: calc(100% - 24px); left: 50%; transform: translateX(-50%); }
 }
 
-/* --------------------------------------------------
+/* ==================================================
    Sidebar
--------------------------------------------------- */
+================================================== */
 .sidebar {
   position: relative;
   display: flex;
@@ -451,8 +273,9 @@ html, body {
 }
 
 /* --------------------------------------------------
-   Mobile drawer behavior
+   Mobile Drawer Behavior
 -------------------------------------------------- */
+
 @media (max-width: 880px) {
 
   .sidebar {
@@ -468,3 +291,265 @@ html, body {
     width: 212px;
   }
 }
+
+/* ---------- Main Content Area (.main) ---------- */
+.main {
+  flex: 1;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 22px;
+  min-height: 2400px;
+  background: var(--bg);
+  grid-column: 2 / 2;
+}
+
+.hero-section,
+.project-section,
+.recent-section {
+  grid-column: 1 / 2;
+}
+.featured-section {
+  grid-column: 2 / 3;
+}
+
+.topbar h1 { margin: 0; font-size: 28px; }
+.subtitle { color: var(--muted); margin-top: 6px; }
+
+
+/* ---------- Responsive Layout ---------- */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .main {
+    padding: 18px;
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+/* --------------------------------------------------
+   Global Components (Reusable UI Elements)
+-------------------------------------------------- */
+
+/* ---------- Posts Grid / Cards ---------- */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.post-card {
+  background: linear-gradient(180deg, var(--card), #0c0e0f);
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.02);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.post-link { display: flex; gap: 0; color: inherit; text-decoration: none; }
+.post-thumb { width: 160px; background: linear-gradient(135deg, rgba(255,106,0,0.12), rgba(255,138,51,0.06)); min-height: 120px; }
+.post-meta { padding: 14px; flex: 1; }
+.post-title { margin: 0; color: #ffffff; font-size: 16px; }
+.post-excerpt { color: var(--muted); margin-top: 8px; font-size: 13px; }
+
+.tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.03);
+  padding: 6px;
+  border-radius: 6px;
+  margin-right: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- Right-hand Panel ---------- */
+.panel {
+  background: linear-gradient(180deg, var(--panel), #0d0f10);
+  padding: 16px;
+  border-radius: 12px;
+  height: max-content;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* ---------- Category Cards ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--card), #0c0e0f);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.card-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.card-content p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- Related Posts ---------- */
+.related-posts {
+  margin-top: 40px;
+}
+
+.related-posts h2 {
+  margin-bottom: 16px;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.post-tile {
+  display: block;
+  padding: 16px;
+  background: var(--card);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+
+.post-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+.post-tile h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.post-tile p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+
+
+
+/* --------------------------------------------------
+   Page-Specific Sections
+-------------------------------------------------- */
+
+/* ==================================================
+   Homepage
+================================================== */
+
+/* (You will paste homepage-specific styles here) */
+
+
+
+
+
+/* ==================================================
+   MOCs Page
+================================================== */
+
+/* ---------- MOC Grid ---------- */
+.moc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+/* ---------- MOC Cards ---------- */
+.moc-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--card), #0c0e0f);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+
+.moc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.moc-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.moc-content {
+  padding: 16px;
+}
+
+.moc-content h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.moc-content p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+
+
+
+/* --------------------------------------------------
+   Utility Classes
+-------------------------------------------------- */
+
+/* (Add spacing/text helpers here if needed) */
