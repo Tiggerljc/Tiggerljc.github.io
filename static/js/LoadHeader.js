@@ -2,7 +2,7 @@
   const placeholder = document.getElementById('site-header');
   if (!placeholder) return;
   try {
-    const res = await fetch('/templates/header.html', {cache:'no-store'});
+    const res = await fetch('/partials/header.html', {cache:'no-store'});
     if (!res.ok) throw new Error('Failed to load header');
     const html = await res.text();
     placeholder.innerHTML = html;

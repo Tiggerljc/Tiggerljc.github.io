@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{title}} – Tigger.dev</title>
+
+  <link rel="icon" href="/static/img/favicon.svg">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <!-- Metadata block -->
+  <script id="moc-meta" type="application/json">
+  {
+    "title": "My MOC Title",
+    "image": "/static/img/mocs/default.jpg",
+    "description": "Short description here.",
+    "slug": "moc-1"
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Header + Sidebar loaders -->
+  <div id="site-header"></div>
+  <script src="/static/js/LoadHeader.js" defer></script>
+
+  <div id="app" class="layout">
+    <div id="site-sidebar"></div>
+    <script src="/static/js/LoadSidebar.js" defer></script>
+
+    <main class="main">
+      <section class="moc-page">
+        <h1>{{title}}</h1>
+        <img src="{{image}}" alt="{{title}}">
+        <p>{{description}}</p>
+
+        <!-- You can add build notes, parts list, gallery, etc. -->
+      </section>
+    </main>
+  </div>
+</body>
+</html>
