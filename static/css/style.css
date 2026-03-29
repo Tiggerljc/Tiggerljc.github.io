@@ -44,7 +44,8 @@ html, body {
   grid-template-columns: auto 1fr;
   max-width: 1440px;
   margin: 64px auto;
-  border-top: 64px solid transparent;
+  margin-top: 64px;
+  padding-top: 64px;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
@@ -486,10 +487,6 @@ html, body {
 /* ==================================================
    Homepage
 ================================================== */
-
-/* (You will paste homepage-specific styles here) */
-
-
 
 
 
