@@ -9,7 +9,21 @@ async function loadMOCs() {
     '/Main/MOCs/moc-3.html',
     '/Main/MOCs/moc-4.html',
     '/Main/MOCs/moc-5.html',
-    '/Main/MOCs/moc-6.html'
+    '/Main/MOCs/moc-6.html',
+    '/Main/MOCs/moc-7.html',
+    '/Main/MOCs/moc-8.html',
+    '/Main/MOCs/moc-9.html',
+    '/Main/MOCs/moc-10.html',
+    '/Main/MOCs/moc-11.html',
+    '/Main/MOCs/moc-12.html',
+    '/Main/MOCs/moc-13.html',
+    '/Main/MOCs/moc-14.html',
+    '/Main/MOCs/moc-15.html',
+    '/Main/MOCs/moc-16.html',
+    '/Main/MOCs/moc-17.html',
+    '/Main/MOCs/moc-18.html',
+    '/Main/MOCs/moc-19.html',
+    '/Main/MOCs/moc-20.html'
   ];
 
   for (const file of mocFiles) {
