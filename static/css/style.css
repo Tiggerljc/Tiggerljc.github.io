@@ -339,6 +339,16 @@ html, body {
    Global Components (Reusable UI Elements)
 -------------------------------------------------- */
 
+/* Global Styles for Sections */
+.section-header {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ff4500;
+}
+
 /* ---------- Posts Grid / Cards ---------- */
 .posts {
   display: grid;
@@ -567,8 +577,15 @@ html, body {
   font-size: 14px;
 }
 
+/* ==================================================
+   Violin Page
+================================================== */
 
-
+.violin-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
 
 /* --------------------------------------------------
