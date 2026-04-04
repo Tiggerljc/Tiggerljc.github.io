@@ -339,7 +339,16 @@ html, body {
    Global Components (Reusable UI Elements)
 -------------------------------------------------- */
 
-/* Global Styles for Sections */
+/* Global Styles for Titles, Sections, etc. */
+.page-header {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+}
+
 .section-header {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
