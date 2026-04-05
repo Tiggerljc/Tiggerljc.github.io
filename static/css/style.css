@@ -292,6 +292,16 @@ html, body {
   }
 }
 
+/* ==================================================
+   Titlebar
+================================================== */
+.page-titlebar {
+  padding: 2px 0px;
+  grid-column: 1 / -1;
+  background: var(--accent);
+  border: 1px solid rgba(255,106,0,0.18);
+}
+
 /* ---------- Main Content Area (.main) ---------- */
 .main {
   flex: 1;
@@ -307,10 +317,10 @@ html, body {
 .hero-section,
 .project-section,
 .recent-section {
-  grid-column: 1 / 2;
+  grid-column: 2 / 2;
 }
 .featured-section {
-  grid-column: 2 / 3;
+  grid-column: 3 / 3;
 }
 
 .topbar h1 { margin: 0; font-size: 28px; }
@@ -341,8 +351,8 @@ html, body {
 
 /* Global Styles for Titles, Sections, etc. */
 .page-header {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   font-size: 64px;
   font-weight: 600;
   letter-spacing: 0.6px;
