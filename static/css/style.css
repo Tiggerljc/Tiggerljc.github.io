@@ -318,10 +318,10 @@ html, body {
 .hero-section,
 .project-section,
 .recent-section {
-  grid-column: 2 / 2;
+  grid-column: 1 / 2;
 }
 .featured-section {
-  grid-column: 3 / 3;
+  grid-column: 2 / 3;
 }
 
 .topbar h1 { margin: 0; font-size: 28px; }
