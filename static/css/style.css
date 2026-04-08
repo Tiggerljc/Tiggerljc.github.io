@@ -332,14 +332,14 @@ html, body {
   min-height: 2400px;
   background: var(--bg);
   grid-column: 2 / 2;
-  grid-auto-rows: min-content;
+  /* grid-auto-rows: min-content; */
   grid-template-rows: auto 1fr auto;
 }
 
 .hero-section,
 .project-section,
 .recent-section {
-  grid-row: 2;
+  grid-row: auto;
   grid-column: 1 / 2;
 }
 .featured-section {
