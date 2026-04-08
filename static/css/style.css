@@ -5,7 +5,7 @@
 /* ---------- Root Variables ---------- */
 :root{
   --bg:#0f1416;
-  --panel:#15181a;
+  --highlight:#15181a;
   --muted:#9aa3a6;
   --accent:#ff6a1a;
   --accent-strong:#ff4500;
@@ -297,12 +297,28 @@ html, body {
 ================================================== */
 .page-titlebar {
   padding: 2px 2px;
-  background: var(--bg);
+  background: var(--highlight);
   border-top: 1px solid rgba(255,106,0,0.18);
   border-bottom: 1px solid rgba(255,106,0,0.18);
   grid-column: 1 / -1;
   grid-row: 1;
   align-self: start;
+}
+
+/* ==================================================
+   Footer
+================================================== */
+.footer {
+  background: var(--highlight);
+  color: var(--muted);
+  text-align: left;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  min-height: 128px;
+  grid-column: 1 / -1;
+  grid-row: -1;
+  align-self: end;
 }
 
 
@@ -411,7 +427,7 @@ html, body {
 
 /* ---------- Right-hand Panel ---------- */
 .panel {
-  background: linear-gradient(180deg, var(--panel), #0d0f10);
+  background: linear-gradient(180deg, var(--highlight), #0d0f10);
   padding: 16px;
   border-radius: 12px;
   height: max-content;
