@@ -378,7 +378,7 @@ html, body {
 }
 
 .content-aside {
-  background: var(--surface-2);
+  background: var(--highlight);
   border-radius: 12px;
   padding: 18px 20px;
   margin-bottom: 22px;
