@@ -378,6 +378,10 @@ html, body {
 }
 
 .content-aside {
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
   grid-row: auto;
   grid-column: 2 / 3;
 }

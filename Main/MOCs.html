@@ -31,35 +31,50 @@
       <!-- Page Title -->
       <div id="site-titlebar"></div>
       <script src="/static/js/LoadTitlebar.js" defer></script>
-      
-      <section class="mocs-page">
 
-        <!-- Title -->
-        <p class="page-intro">
-          MOCs, or My Own Creations, are custom LEGO creations that I design and build myself.
-          Here, you will find a collection of my builds, mostly Star Wars-themed,
-          all of which link to their respective pages on Rebrickable.
-          You will also find some blog posts and extra info about my building process,
-          inspiration, techniques, and more. Have fun, and Happy Building!
-        </p>
+      <div class="content">
+        <div class="content-primary">
+          <section class="mocs-page">
 
-        <!-- MOC Grid -->
-        <div class="moc-grid"></div>
-        <!-- MOC tiles loaded by LoadMOCs.js -->
-        <script src="/static/js/LoadMOCs.js" defer></script>
+            <!-- Title -->
+            <p class="page-intro">
+              MOCs, or My Own Creations, are custom LEGO creations that I design and build myself.
+              Here, you will find a collection of my builds, mostly Star Wars-themed,
+              all of which link to their respective pages on Rebrickable.
+              You will also find some blog posts and extra info about my building process,
+              inspiration, techniques, and more. Have fun, and Happy Building!
+            </p>
 
-        <!-- Related Posts -->
-        <section class="related-posts">
-          <h2 class="section-header">Related Posts</h2>
-          <div class="post-list">
-            <a class="post-tile" href="#">
-              <h4>Placeholder Blog Post</h4>
-              <p>YY/MM/DD Post Description</p>
-            </a>
+            <!-- MOC Grid -->
+            <div class="moc-grid"></div>
+            <!-- MOC tiles loaded by LoadMOCs.js -->
+            <script src="/static/js/LoadMOCs.js" defer></script>
+
+            <!-- Related Posts -->
+            <section class="related-posts">
+              <h2 class="section-header">Related Posts</h2>
+              <div class="post-list">
+                <a class="post-tile" href="#">
+                  <h4>Placeholder Blog Post</h4>
+                  <p>YY/MM/DD Post Description</p>
+                </a>
+              </div>
+            </section>
+
+          </section>
           </div>
-        </section>
+          <aside class="content-aside">
+            <section class="section featured">
+              <h2 class="section-header">Featured MOCs</h2>
+              <div>
+                <!-- Featured MOCs will go here, in a list of tiles -->
+              </div>
+            </section>
+          </aside>
+      </div>
 
-      </section>
+      <div id="site-footer" class="footer"></div>
+      <script src="/static/js/LoadFooter.js" defer></script>
 
     </main>
 
