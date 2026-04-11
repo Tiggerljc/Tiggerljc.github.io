@@ -342,18 +342,7 @@ html, body {
   grid-column: 1 / -1;
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: 1fr 12.5%;
-}
-
-.hero-section,
-.project-section,
-.recent-section {
-  grid-row: auto;
-  grid-column: 1 / 2;
-}
-.featured-section {
-  grid-row: 2;
-  grid-column: 2 / 3;
+  grid-template-columns: 1fr 20%;
 }
 
 .topbar h1 { margin: 0; font-size: 28px; }
@@ -383,6 +372,16 @@ html, body {
 -------------------------------------------------- */
 
 /* Global Styles for Titles, Sections, etc. */
+.content-primary {
+  grid-row: auto;
+  grid-column: 1 / 2;
+}
+
+.content-aside {
+  grid-row: auto;
+  grid-column: 2 / 3;
+}
+
 .page-header {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -399,6 +398,10 @@ html, body {
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #ff4500;
+}
+
+.section {
+  margin-bottom: 32px;
 }
 
 /* ---------- Posts Grid / Cards ---------- */
@@ -557,7 +560,16 @@ html, body {
    Homepage
 ================================================== */
 
-
+.hero,
+.project-section,
+.recent {
+  /* grid-row: auto;
+  grid-column: 1 / 2; */
+}
+.featured {
+  /* grid-row: 1;
+  grid-column: 2 / 3; */
+}
 
 /* ==================================================
    MOCs Page
