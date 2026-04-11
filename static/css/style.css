@@ -333,7 +333,7 @@ html, body {
   background: var(--bg);
   grid-column: 2 / 2;
   /* grid-auto-rows: min-content; */
-  grid-template-rows: auto 1fr auto;
+  /* grid-template-rows: auto; */
 }
 
 .hero-section,
