@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Violin – Tigger.dev</title>
+  <link rel="icon" href="/static/img/favicon.svg">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script id="page-meta" type="application/json">
+    {
+      "title": "Violin"
+    }
+  </script>
+</head>
+<body>
+
+    <!-- Header Loader -->
+    <div id="site-header"></div>
+    <script src="/static/js/LoadHeader.js" defer></script>
+    
+    <!-- Main Content -->
+    <div id="app" class="layout">
+
+        <!-- Sidebar Loader -->
+        <div id="site-sidebar"></div>
+        <script src="/static/js/LoadSidebar.js" defer></script>
+
+        <main class="main" role="main">
+
+            <!-- Title Bar -->
+            <div id="site-titlebar"></div>
+            <script src="/static/js/LoadTitlebar.js" defer></script>
+
+            <div class="content">
+                <div class="content-primary">
+                    <h1>Settings</h1>
+                    <p>This is the settings page. It is currently under development,
+                        and allows for theme customization.</p>
+
+                    <h2>Theme Selection</h2>
+                    <button onclick="applyTheme('orange')">Orange</button>
+                    <button onclick="applyTheme('turquoise')">Turquoise</button>
+                    <button onclick="applyTheme('purple')">Purple</button>
+                    <button onclick="applyTheme('green')">Green</button>
+                    <button onclick="localStorage.removeItem('site-theme'); location.reload();">Reset Theme</button>
+                </div>
+                <aside class="content-aside">
+                    <!-- Featured Section -->
+                    <section class="section featured">
+                        <h2 class="section-header">Settings!</h2>
+                        <div>
+                            <!-- Featured posts will go here, in a list of tiles -->
+                        </div>
+                    </section>
+                </aside>
+            </div>
+
+            <div id="site-footer" class="footer"></div>
+            <script src="/static/js/LoadFooter.js" defer></script>
+
+        </main>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/themes.js"></script>
+</body>
+</html>
