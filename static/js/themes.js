@@ -26,8 +26,8 @@ function applyTheme(name) {
   if (!theme) return;
 
   document.documentElement.style.setProperty("--theme-accent", theme.accent);
-  document.documentElement.style.setProperty("--theme-accent-strong", theme.strong);
-  document.documentElement.style.setProperty("--theme-accent-soft", theme.soft);
+  document.documentElement.style.setProperty("--theme-strong", theme.strong);
+  document.documentElement.style.setProperty("--theme-soft", theme.soft);
 
   localStorage.setItem("site-theme", name);
 }

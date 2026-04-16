@@ -63,7 +63,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
 
   /* Navigation */
-  --nav-bg: var(--bg);
+  --nav-bg: rgba(255,106,26,0.18);
   --nav-bg-strong: rgba(255,69,0,0.08);
 
   /* Borders */
@@ -218,6 +218,7 @@ html, body {
   grid-row: 1 / -1;
   align-self: stretch;
   height: 100%;
+  overflow: hidden;
 }
 
 .sidebar:not(.collapsed) {
@@ -235,6 +236,9 @@ html, body {
   text-align: left;
   border-radius: var(--radius-1);
   margin: var(--spacing-sm) var(--spacing-sm);
+  overflow-y: auto;
+  max-height: 100vh;
+  padding-right: var(--spacing-xs);
   transition:
     background 0.15s ease,
     color 0.15s ease,
@@ -390,15 +394,6 @@ html, body {
   grid-template-rows: auto auto auto;
 }
 
-.content {
-  background: var(--bg);
-  grid-row: 2/3;
-  grid-column: 1 / -1;
-  display: grid;
-  grid-auto-rows: auto;
-  grid-template-columns: 1fr 25%;
-}
-
 .topbar h1 { margin: 0; font-size: var(--text-3xl); }
 .subtitle { color: var(--muted); margin-top: var(--spacing-sm); }
 
@@ -426,6 +421,16 @@ html, body {
 -------------------------------------------------- */
 
 /* Global Styles for Titles, Sections, etc. */
+
+.content {
+  background: var(--bg);
+  grid-row: 2/3;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr 25%;
+}
+
 .content-primary {
   grid-row: auto;
   grid-column: 1 / 2;
@@ -458,23 +463,25 @@ html, body {
   letter-spacing: 0.5px;
   color: var(--subtitle);
   border-bottom: 1px solid var(--theme-accent);
-  border-right: 1px solid var(--theme-soft);
-  border-left: 1px solid var(--theme-strong);
 }
 
 .aside-header {
   margin-top: var(--spacing-md);
   margin-bottom: var(--spacing-sm);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--subtitle);
-  border-bottom: 1px solid var(--muted);
+  border-bottom: 0.5px solid var(--muted);
   text-align: center;
 }
 
 .section {
   margin-bottom: var(--spacing-xl);
+}
+
+.text {
+  max-width: calc(100% - 212px); /* Account for sidebar width, to keep text from wrapping on drawer open */
 }
 
 /* ---------- Posts Grid / Cards ---------- */
