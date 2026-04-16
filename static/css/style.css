@@ -481,7 +481,7 @@ html, body {
 }
 
 .text {
-  max-width: calc(100% - 212px); /* Account for sidebar width, to keep text from wrapping on drawer open */
+  max-width: calc(min(1080px, 75vw) - 112px); /* Account for sidebar width, to keep text from wrapping on drawer open */
 }
 
 /* ---------- Posts Grid / Cards ---------- */
