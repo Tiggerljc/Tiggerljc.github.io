@@ -3,51 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tigger.dev</title>
+  <title>Projects – Tigger.dev</title>
   <link rel="icon" href="/static/img/favicon.svg">
   <link rel="stylesheet" href="/static/css/style.css">
   <script id="page-meta" type="application/json">
     {
-      "title": "Home"
+      "title": "Projects"
     }
   </script>
 </head>
 <body>
-  
-  <!-- Header Loader -->
-  <div id="site-header"></div>
-  <script src="/static/js/LoadHeader.js" defer></script>
 
-  <div id="app" class="layout">
+    <!-- Header Loader -->
+    <div id="site-header"></div>
+    <script src="/static/js/LoadHeader.js" defer></script>
+    
+    <!-- Main Content -->
+    <div id="app" class="layout">
 
-    <!-- Sidebar Loader -->
-    <div id="site-sidebar" class="sidebar"></div>
-    <script src="/static/js/LoadSidebar.js" defer></script>
+        <!-- Sidebar Loader -->
+        <div id="site-sidebar"></div>
+        <script src="/static/js/LoadSidebar.js" defer></script>
 
-    <main class="main" role="main">
+        <main class="main" role="main">
 
-      <!-- Page Title -->
-      <div id="site-titlebar"></div>
-      <script src="/static/js/LoadTitlebar.js" defer></script>
+            <!-- Title Bar -->
+            <div id="site-titlebar"></div>
+            <script src="/static/js/LoadTitlebar.js" defer></script>
 
-      <div class="content">
-        <div class="content-primary">
-          <!-- Hero Section -->
-          <section class="section hero">
-            <div>
-              <h2 class="section-header">Hi, I'm Tigger</h2>
-              <p class="text">This is where I share all of the things I work on--MOCs, Blender renders,
-                 Unreal Engine projects, coding, violin progress, and everything else.
-                 I use this website to compile all of my miscellanious projects, ideas,
-                 and scraps of info into one place so that I can return to them later
-                 (and hopefully help someone else out in the process).</p>
-            </div>
-          </section>
-        
-
-
-          <!-- Projects Section -->
-          <section class="section project-section">
+            <div class="content">
+                <div class="content-primary">
+                    <section class="section project-section">
             <h2 class="section-header">Project Categories</h2>
 
             <div class="category-grid">
@@ -108,35 +94,25 @@
 
             </div>
           </section>
-
-          <section class="section recent">
-            <h2 class="section-header">Recent</h2>
-            <div>
-              <!-- Recent projects, blogs, etc. will go here, in a list -->
+                </div>
+                <aside class="content-aside">
+                    <!-- Featured Section -->
+                    <section class="section featured">
+                        <h2 class="aside-header">Featured Posts</h2>
+                        <div>
+                            <!-- Featured posts will go here, in a list of tiles -->
+                        </div>
+                    </section>
+                </aside>
             </div>
-          </section>
-         </div>
-          <aside class="content-aside">
-            <!-- Featured Section -->
-            <section class="section featured">
-              <h2 class="aside-header">Featured Projects</h2>
-              <div>
-                <!-- Featured projects will go here, in a list of tiles -->
-              </div>
-            </section>
-          </aside>
-        </div>
-      
-      <!-- Page Footer -->
-      <div id="site-footer" class="footer"></div>
-      <script src="/static/js/LoadFooter.js" defer></script>
-    </main>
 
-  </div>
+            <div id="site-footer" class="footer"></div>
+            <script src="/static/js/LoadFooter.js" defer></script>
 
-  <script src="/static/js/main.js"></script>
-  <script src="/static/img/filler-img.js"></script>
-  <script src="/static/js/themes.js"></script>
-
+        </main>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/img/filler-img.js"></script>
+    <script src="/static/js/themes.js"></script>
 </body>
 </html>

@@ -31,12 +31,15 @@
     <main class="main">
       <section class="moc-page">
         <h1>{{title}}</h1>
-        <div class="filler-img"></div>
+        <img src="{{image}}" alt="{{title}}" class="moc-image" onerror="this.style.display='none'; this.nextSibling.style.display='block';" /><div class="filler-img" style="display:none;"></div>
         <p>{{description}}</p>
 
         <!-- You can add build notes, parts list, gallery, etc. -->
       </section>
     </main>
   </div>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/img/filler-img.js"></script>
+  <script src="/static/js/themes.js"></script>
 </body>
 </html>
