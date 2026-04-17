@@ -43,7 +43,7 @@ async function loadMOCs() {
 
     card.innerHTML = `
       <div class="moc-image">
-        <img src="${meta.image}" alt="${meta.title}">
+        <div class="filler-img" data-alt="${meta.title}"></div>
       </div>
       <div class="moc-content">
         <h3>${meta.title}</h3>
