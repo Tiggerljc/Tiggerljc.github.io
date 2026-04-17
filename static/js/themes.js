@@ -37,8 +37,11 @@ function applyTheme(name) {
   document.documentElement.style.setProperty("--theme-accent", theme.accent);
   document.documentElement.style.setProperty("--theme-strong", theme.strong);
   document.documentElement.style.setProperty("--theme-soft", theme.soft);
-  document.documentElement.style.setProperty("--theme-nav-bg", theme.NavBg);
-  document.documentElement.style.setProperty("--theme-nav-bg-strong", theme.NavBgStrong);
+  document.documentElement.style.setProperty("--nav-bg", theme.NavBg);
+  document.documentElement.style.setProperty("--nav-bg-strong", theme.NavBgStrong);
+
+  // Update filler images with new theme colors
+  updateFillerImages(theme);
 
   localStorage.setItem("site-theme", name);
 }
@@ -46,4 +49,6 @@ function applyTheme(name) {
 const saved = localStorage.getItem("site-theme");
 if (saved && themes[saved]) {
   applyTheme(saved);
+} else {
+  updateFillerImages(themes.orange);
 }

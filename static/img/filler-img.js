@@ -1,0 +1,25 @@
+function generateFillerSVG(theme) {
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="18" fill="${theme.strong}"/>
+      <text x="50" y="60"
+            font-family="Inter, sans-serif"
+            font-weight="700"
+            font-size="32"
+            text-anchor="middle"
+            fill="${theme.bg || '#071014'}">
+        T.dev
+      </text>
+    </svg>
+  `;
+}
+
+function updateFillerImages(theme) {
+  const svg = generateFillerSVG(theme);
+  const blob = new Blob([svg], { type: "image/svg+xml" });
+  const url = URL.createObjectURL(blob);
+
+  document.querySelectorAll(".filler-img").forEach(el => {
+    el.style.backgroundImage = `url("${url}")`;
+  });
+}
