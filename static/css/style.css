@@ -490,6 +490,9 @@ button:focus-visible, .button:focus-visible {
   grid-auto-rows: auto;
   grid-template-columns: 1fr 22.5%;
 }
+.content.full {
+  grid-template-columns: 1fr;
+}
 
 .content-primary {
   grid-row: auto;
@@ -509,6 +512,7 @@ button:focus-visible, .button:focus-visible {
 .page-header {
   margin-top: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
+  margin-left: var(--spacing-sm);
   font-size: var(--text-6xl);
   font-weight: 600;
   letter-spacing: 0.6px;
