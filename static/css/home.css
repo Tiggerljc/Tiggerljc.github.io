@@ -1,0 +1,43 @@
+/* ==================================================
+   Homepage
+================================================== */
+
+/* All styles for Hero section */
+.hero {
+  /* background: url('../img/hero-bg.jpg') no-repeat center center; */
+  min-height: 80vh;
+}
+
+/* All styles for the center section of alternating content */
+.alt {
+    min-height: 160vh;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sub-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Grid structure for alternating content */
+.sub-section:nth-child(even) .theme-img {
+    order: 2;
+}
+.sub-section:nth-child(even) .text {
+    order: 1;
+    text-align: right;
+}
+
+/* Styles for individual elements in the alternating content */
+.theme-img {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: var(--radius-2);
+}
