@@ -44,7 +44,7 @@
 /* Styles for individual elements in the alternating content */
 .theme-img {
     width: 100%;
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 2 / 1.5;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

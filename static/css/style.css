@@ -92,9 +92,57 @@ html, body {
   font-family: var(--font-primary);
 }
 
+/* --------------------------------------------------
+   Background Identity: Hex Pattern + Spotlight
+-------------------------------------------------- */
 
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
 
+/* Sparse hex pattern */
+body::before {
+  background-image: url("/static/img/hex-pattern.svg");
+  background-size: 220px;
+  background-repeat: repeat;
+  opacity: 0.06; /* tweak between 0.03–0.10 */
+}
 
+/* Spotlight / ripple gradient */
+body::after {
+  background:
+    radial-gradient(
+      circle at 25% 30%,
+      var(--theme-soft) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 75% 70%,
+      rgba(255,255,255,0.04) 0%,
+      transparent 60%
+    );
+  opacity: 0.16; /* tweak to taste */
+  mix-blend-mode: screen; /* optional, can remove if too strong */
+  animation: bg-drift 40s ease-in-out infinite alternate;
+}
+
+/* Slow drifting motion for the spotlight */
+@keyframes bg-drift {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+  50% {
+    background-position: 30% 20%, 80% 60%;
+  }
+  100% {
+    background-position: 10% 40%, 90% 80%;
+  }
+}
 
 /* --------------------------------------------------
    Global Containers (Layout, Header, Sidebar, Main)
