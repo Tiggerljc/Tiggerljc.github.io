@@ -81,7 +81,6 @@
   --border-card-strong: rgba(255,255,255,0.05);
 
   /* bg-hex elements */
-  --highlight: #2dd4bf;      /* default highlight color (example) */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
   --ripple-strength: 0.28;  /* how bright the ripple area becomes */
   --ripple-duration: 8s;    /* time for one pass + pause */
@@ -125,12 +124,12 @@ html, body {
   z-index: 0;
 
   /* mask so only hex strokes are visible */
-  -webkit-mask-image: url("/static/img/hex-pattern-mask.svg");
+  -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
   -webkit-mask-position: 0 0;
 
-  mask-image: url("/static/img/hex-pattern-mask.svg");
+  mask-image: url("/static/img/hex-pattern.svg");
   mask-size: var(--hex-tile-size);
   mask-repeat: repeat;
   mask-position: 0 0;
@@ -152,12 +151,12 @@ html, body {
   pointer-events: none;
   z-index: 1;
 
-  -webkit-mask-image: url("/static/img/hex-pattern-mask.svg");
+  -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
   -webkit-mask-position: 0 0;
 
-  mask-image: url("/static/img/hex-pattern-mask.svg");
+  mask-image: url("/static/img/hex-pattern.svg");
   mask-size: var(--hex-tile-size);
   mask-repeat: repeat;
   mask-position: 0 0;
