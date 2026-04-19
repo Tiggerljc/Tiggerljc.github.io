@@ -93,55 +93,69 @@ html, body {
 }
 
 /* --------------------------------------------------
-   Background Identity: Hex Pattern + Spotlight
+   Hex Pattern Background Element & Spotlight Effect
 -------------------------------------------------- */
 
-body::before,
-body::after {
+.bg-hex {
+  position: relative;
+  overflow: hidden;
+  color: var(--theme-accent);
+}
+
+/* Hex pattern pulse animation */
+.bg-hex.pulse {
+  animation: pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { color: var(--theme-accent); }
+  100% { color: var(--theme-strong); }
+}
+
+.bg-hex::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
+  background-image: url("/static/img/hex-pattern.svg");
+  background-size: 180px;
+  background-repeat: repeat;
+  opacity: 0.12; /* stronger */
   pointer-events: none;
   z-index: -1;
 }
 
-/* Sparse hex pattern */
-body::before {
-  background-image: url("/static/img/hex-pattern.svg");
-  background-size: 220px;
-  background-repeat: repeat;
-  opacity: 0.06; /* tweak between 0.03–0.10 */
+/* Spotlight / ripple gradient */
+.bg-spotlight {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Spotlight / ripple gradient */
-body::after {
+.bg-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background:
     radial-gradient(
-      circle at 25% 30%,
+      circle at 30% 40%,
       var(--theme-soft) 0%,
-      transparent 55%
+      transparent 60%
     ),
     radial-gradient(
-      circle at 75% 70%,
-      rgba(255,255,255,0.04) 0%,
-      transparent 60%
+      circle at 70% 80%,
+      rgba(255,255,255,0.06) 0%,
+      transparent 70%
     );
-  opacity: 0.16; /* tweak to taste */
-  mix-blend-mode: screen; /* optional, can remove if too strong */
-  animation: bg-drift 40s ease-in-out infinite alternate;
+  opacity: 0.22; /* stronger */
+  mix-blend-mode: screen;
+  animation: spotlight-drift 60s ease-in-out infinite alternate;
+  z-index: -1;
 }
 
-/* Slow drifting motion for the spotlight */
-@keyframes bg-drift {
-  0% {
-    background-position: 0% 0%, 100% 100%;
-  }
-  50% {
-    background-position: 30% 20%, 80% 60%;
-  }
-  100% {
-    background-position: 10% 40%, 90% 80%;
-  }
+@keyframes spotlight-drift {
+  0%   { background-position: 0% 0%, 100% 100%; }
+  50%  { background-position: 40% 20%, 80% 60%; }
+  100% { background-position: 10% 50%, 90% 80%; }
 }
 
 /* --------------------------------------------------

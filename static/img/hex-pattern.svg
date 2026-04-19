@@ -5,12 +5,12 @@
     <style>
       .hex {
         fill: none;
-        stroke: #ff6a1a;
+        stroke: currentColor;
         stroke-width: 0.8;
         stroke-opacity: 0.25;
       }
       .line {
-        stroke: #ff6a1a;
+        stroke: currentColor;
         stroke-width: 0.6;
         stroke-opacity: 0.18;
         stroke-linecap: round;
