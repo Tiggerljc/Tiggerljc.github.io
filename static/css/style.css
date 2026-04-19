@@ -99,7 +99,6 @@ html, body {
 .bg-hex {
   position: relative;
   overflow: hidden;
-  color: var(--theme-accent);
 }
 
 /* Hex pattern pulse animation */
@@ -116,12 +115,17 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/static/img/hex-pattern.svg");
-  background-size: 180px;
-  background-repeat: repeat;
-  opacity: 0.12; /* stronger */
   pointer-events: none;
   z-index: -1;
+
+  /* The mask */
+  mask-image: url("/static/img/hex-pattern.svg");
+  mask-size: 180px;
+  mask-repeat: repeat;
+
+  /* The color you want the hex to be */
+  background-color: var(--theme-accent);
+  opacity: 0.15;
 }
 
 /* Spotlight / ripple gradient */
