@@ -106,42 +106,35 @@ html, body {
 
 /* Base: any element with .bg-hex */
 .bg-hex {
-  position: relative;           /* create stacking context for content */
-  z-index: 1;                   /* element sits above its fixed pseudo layers */
-  --hex-color: var(--highlight);        /* default hex color (per your request) */
-  --hex-opacity: var(--hex-opacity-default);
-  --ripple-color: var(--theme-soft); /* default ripple base tint */
-  --ripple-beam-color: var(--theme-accent); /* default ripple bright spot */
+  position: relative;           /* positioned ancestor for its pseudos */
+  isolation: isolate;           /* keeps stacking predictable */
+  --hex-color: var(--highlight);
+  --hex-opacity: var(--hex-opacity);
+  --ripple-color: var(--theme-soft);
+  --ripple-beam-color: var(--theme-accent);
+  --bg-hex-layer: 0;            /* stacking priority (higher = on top) */
 }
 
-/* Ensure element content sits above the pseudo layers */
-.bg-hex > * {
-  position: relative;
-  z-index: 2;
-}
+/* element content above its own pseudos */
+.bg-hex > * { position: relative; z-index: calc(20 + var(--bg-hex-layer)); }
 
-/* -------------------------
-   Fixed pseudo elements (full-page)
-   Both ::before and ::after are fixed so they span the entire viewport.
-   They still read CSS variables from the element they belong to.
-   ------------------------- */
+/* PSEUDOS: use absolute so they scroll with the document when ancestor spans page */
 .bg-hex::before,
 .bg-hex::after {
   content: "";
-  position: fixed;      /* fixed so it covers full viewport (no 100vh clipping) */
+  position: absolute;   /* absolute so it is anchored to the element (and scrolls) */
   inset: 0;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;           /* behind element content (element z-index:1, children z-index:2) */
+  z-index: calc(var(--bg-hex-layer)); /* lower than element content */
   will-change: opacity, transform;
 }
 
-/* Static hex layer (never animates) */
+/* STATIC HEX LAYER (never moves) */
 .bg-hex::before {
-  /* mask so only hex strokes are visible */
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
@@ -155,9 +148,8 @@ html, body {
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.06));
 }
 
-/* Beam layer (inactive by default) */
+/* BEAM LAYER (inactive by default) */
 .bg-hex::after {
-  /* same mask so beam only affects hex shapes */
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
@@ -170,22 +162,18 @@ html, body {
   transition: opacity 240ms ease;
 }
 
-/* Activate beam: add .ripple (or .beam) to any element with .bg-hex */
+/* Activate beam: add .ripple */
 .bg-hex.ripple {
-  /* per-element beam colors (override inline if needed) */
   --ripple-color: var(--theme-soft);
   --ripple-beam-color: var(--theme-accent);
 }
 
-/* Beam implementation: a wide band moved with transform for performance */
+/* Beam: a wide band that sweeps using transform (GPU-accelerated).
+   Because pseudos are absolute, the band is anchored to the element's box and scrolls with the page.
+*/
 .bg-hex.ripple::after {
   opacity: 1;
 
-  /* two-layer background:
-     - bottom: subtle base tint
-     - top: the colored bright band (uses beam spot color)
-     Using color-mix for modern browsers; fallback to rgba if needed.
-  */
   background:
     linear-gradient(90deg, color-mix(in srgb, var(--ripple-color) 10%, transparent), transparent),
     linear-gradient(90deg,
@@ -196,7 +184,6 @@ html, body {
       rgba(0,0,0,0) 100%
     );
 
-  /* make the pseudo-element very wide so the band sweeps across */
   width: 300%;
   height: 100%;
   left: -100%;
@@ -205,19 +192,26 @@ html, body {
   background-repeat: no-repeat;
   background-position: 0 50%, 0 50%;
 
-  /* transform-based sweep (GPU accelerated) */
   transform: translate3d(-100%, 0, 0);
-  animation: beam-sweep var(--ripple-duration) ease-in-out infinite;
-  mix-blend-mode: screen; /* optional: brightens underlying hex color */
+  animation: beam-sweep var(--beam-duration) ease-in-out infinite;
+  mix-blend-mode: screen;
   will-change: transform, opacity;
 }
 
-/* Deterministic sweep timing */
+/* Sweep timing */
 @keyframes beam-sweep {
   0%   { transform: translate3d(-100%, 0, 0); }
-  60%  { transform: translate3d(100%, 0, 0); }  /* pass completes here */
-  85%  { transform: translate3d(100%, 0, 0); }  /* hold */
-  100% { transform: translate3d(-100%, 0, 0); }  /* reset */
+  60%  { transform: translate3d(100%, 0, 0); }
+  85%  { transform: translate3d(100%, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Make hex more visible in main by default */
+.main.bg-hex { --hex-color: rgba(255,255,255,0.06); --hex-opacity: 1; }
+
+/* Navbar must be above everything */
+.navbar, header, .site-header {
+  position: relative; z-index: 99999;
 }
 
 /* Reduced motion */
