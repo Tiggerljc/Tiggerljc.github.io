@@ -82,10 +82,11 @@
 
   /* bg-hex elements */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
-  --ripple-strength: 0.28;  /* how bright the ripple area becomes */
-  --ripple-duration: 8s;    /* time for one pass + pause */
-  --ripple-pass-percent: 60%; /* percent of animation used for the pass */
   --hex-tile-size: 180px;   /* tile size for the repeating mask */
+  --ripple-duration: 8s;           /* full cycle: pass + hold + reset */
+  --ripple-pass-percent: 60;       /* percent of cycle used for pass */
+  --ripple-hold-percent: 85;       /* percent where it holds at right */
+  --ripple-strength: 0.28;         /* how strong the ripple brightens */
 }
 
 /* ---------- Base Reset & Typography ---------- */
@@ -103,151 +104,99 @@ html, body {
    Hex Pattern Background Element & Spotlight Effect
 -------------------------------------------------- */
 
+/* Base: any element with .bg-hex */
 .bg-hex {
-  position: relative;               /* stacking context for pseudo elements */
-  overflow: visible;
-  --hex-color: var(--highlight);    /* DEFAULT color for hex lines (your request) */
+  position: relative;           /* create stacking context for content */
+  z-index: 1;                   /* element sits above its fixed pseudo layers */
+  --hex-color: var(--highlight);        /* default hex color (per your request) */
+  --hex-opacity: var(--hex-opacity-default);
+  --ripple-color: var(--theme-soft); /* default ripple base tint */
+  --ripple-beam-color: var(--theme-accent); /* default ripple bright spot */
 }
 
-/* Ensure element content sits above the hex layers */
+/* Ensure element content sits above the pseudo layers */
 .bg-hex > * {
   position: relative;
   z-index: 2;
 }
 
-/* Base hex layer: above element background, below content */
-.bg-hex::before {
+/* -------------------------
+   Fixed pseudo elements (full-page)
+   Both ::before and ::after are fixed so they span the entire viewport.
+   They still read CSS variables from the element they belong to.
+   ------------------------- */
+.bg-hex::before,
+.bg-hex::after {
   content: "";
-  position: absolute;
+  position: fixed;      /* fixed so it covers full viewport (no 100vh clipping) */
   inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 0;           /* behind element content (element z-index:1, children z-index:2) */
+  will-change: opacity, transform;
+}
 
+/* Static hex layer (never animates) */
+.bg-hex::before {
   /* mask so only hex strokes are visible */
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
-  -webkit-mask-position: 0 0;
-
   mask-image: url("/static/img/hex-pattern.svg");
   mask-size: var(--hex-tile-size);
   mask-repeat: repeat;
-  mask-position: 0 0;
 
-  /* color the visible mask area using the per-element variable */
   background-color: var(--hex-color);
   opacity: var(--hex-opacity);
   transition: background-color 240ms ease, opacity 240ms ease;
-
-  /* subtle pop on dark backgrounds */
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.06));
 }
 
-/* Ripple overlay: sits above base hex layer, below content */
+/* Beam layer (inactive by default) */
 .bg-hex::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-
+  /* same mask so beam only affects hex shapes */
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
-  -webkit-mask-position: 0 0;
-
   mask-image: url("/static/img/hex-pattern.svg");
   mask-size: var(--hex-tile-size);
   mask-repeat: repeat;
-  mask-position: 0 0;
 
-  /* default: transparent (no ripple) */
   background: transparent;
   opacity: 0;
   transition: opacity 240ms ease;
 }
 
-/* Activate ripple mode: .bg-hex.ripple
-   - --ripple-base-color: the base color under the ripple (theme-aware)
-   - --ripple-spot-color: the bright spot color (theme-accent)
-*/
+/* Activate beam: add .ripple (or .beam) to any element with .bg-hex */
 .bg-hex.ripple {
-  /* default base color for ripple area (theme-aware) */
-  --ripple-base-color: var(--theme-soft);
-  /* bright spot color used only for the moving center */
-  --ripple-spot-color: var(--theme-accent);
+  /* per-element beam colors (override inline if needed) */
+  --ripple-color: var(--theme-soft);
+  --ripple-beam-color: var(--theme-accent);
 }
 
-/* When ripple is active, the ::after layer becomes a moving bright band.
-   The band uses a gradient that mixes the base color and a bright spot color.
-   mix-blend-mode: screen brightens the underlying hex color where the band passes.
-*/
-.bg-hex.ripple-orig::after {
+/* Beam implementation: a wide band moved with transform for performance */
+.bg-hex.ripple::after {
   opacity: 1;
 
-  /* gradient: transparent edges, base tint, bright spot in the center */
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.02) 30%,
-      rgba(255,255,255,var(--ripple-strength)) 45%,
-      rgba(255,255,255,var(--ripple-strength)) 55%,
-      rgba(255,255,255,0.02) 70%,
-      rgba(255,255,255,0) 100%
-    );
-
-  /* colorize the band by compositing a colored layer underneath the white band.
-     We use multiple backgrounds: the color layer (base) and the white band (above).
-     The mask ensures only hex shapes are affected.
+  /* two-layer background:
+     - bottom: subtle base tint
+     - top: the colored bright band (uses beam spot color)
+     Using color-mix for modern browsers; fallback to rgba if needed.
   */
-  background-blend-mode: normal;
-  mix-blend-mode: screen;
-
-  /* make the band wide so it covers the viewport during the pass */
-  background-size: 300% 100%;
-  background-position: -100% 50%;
-  animation: hex-ripple var(--ripple-duration) ease-in-out infinite;
-}
-
-/* Optimized ripple: transform-based sweep for performance */
-@keyframes hex-ripple-transform {
-  0%   { transform: translate3d(-100%, 0, 0); }
-  60%  { transform: translate3d(100%, 0, 0); } /* pass completes here */
-  85%  { transform: translate3d(100%, 0, 0); } /* hold */
-  100% { transform: translate3d(-100%, 0, 0); } /* reset */
-}
-
-/* The moving band element (uses transform instead of animating background-position) */
-.bg-hex.ripple::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-
-  /* static mask so only hex shapes are affected */
-  -webkit-mask-image: url("/static/img/hex-pattern.svg");
-  -webkit-mask-size: var(--hex-tile-size);
-  -webkit-mask-repeat: repeat;
-  mask-image: url("/static/img/hex-pattern.svg");
-  mask-size: var(--hex-tile-size);
-  mask-repeat: repeat;
-
-  /* create a very wide band element that will be translated across the element */
   background:
-    /* base tint layer (subtle) */
-    linear-gradient(90deg, color-mix(in srgb, var(--ripple-base-color) 10%, transparent), transparent),
-    /* top: the colored bright band (use rgba fallback or color-mix) */
+    linear-gradient(90deg, color-mix(in srgb, var(--ripple-color) 10%, transparent), transparent),
     linear-gradient(90deg,
       rgba(0,0,0,0) 0%,
-      color-mix(in srgb, var(--ripple-spot-color) 18%, transparent) 30%,
-      color-mix(in srgb, var(--ripple-spot-color) 28%, transparent) 50%,
-      color-mix(in srgb, var(--ripple-spot-color) 18%, transparent) 70%,
+      color-mix(in srgb, var(--ripple-beam-color) 18%, transparent) 30%,
+      color-mix(in srgb, var(--ripple-beam-color) 28%, transparent) 50%,
+      color-mix(in srgb, var(--ripple-beam-color) 18%, transparent) 70%,
       rgba(0,0,0,0) 100%
     );
 
-  /* make the pseudo-element 300% width so the band can sweep across */
+  /* make the pseudo-element very wide so the band sweeps across */
   width: 300%;
   height: 100%;
   left: -100%;
@@ -256,15 +205,22 @@ html, body {
   background-repeat: no-repeat;
   background-position: 0 50%, 0 50%;
 
-  /* animation uses transform (GPU-accelerated) */
+  /* transform-based sweep (GPU accelerated) */
   transform: translate3d(-100%, 0, 0);
-  animation: hex-ripple-transform var(--ripple-duration) ease-in-out infinite;
+  animation: beam-sweep var(--ripple-duration) ease-in-out infinite;
+  mix-blend-mode: screen; /* optional: brightens underlying hex color */
   will-change: transform, opacity;
-  opacity: 1;
-  mix-blend-mode: screen; /* optional; remove if you prefer direct tinting */
 }
 
-/* Reduced motion fallback */
+/* Deterministic sweep timing */
+@keyframes beam-sweep {
+  0%   { transform: translate3d(-100%, 0, 0); }
+  60%  { transform: translate3d(100%, 0, 0); }  /* pass completes here */
+  85%  { transform: translate3d(100%, 0, 0); }  /* hold */
+  100% { transform: translate3d(-100%, 0, 0); }  /* reset */
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .bg-hex.ripple::after { animation: none; opacity: 0.6; transform: none; }
 }
