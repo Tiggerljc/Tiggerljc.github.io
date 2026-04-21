@@ -112,7 +112,7 @@ html, body {
   --hex-opacity: var(--hex-opacity);
   --ripple-color: var(--theme-soft);
   --ripple-beam-color: var(--theme-accent);
-  --bg-hex-layer: 0;            /* stacking priority (higher = on top) */
+  z-index: 0;            /* stacking priority (higher = on top) */
 }
 
 /* element content above its own pseudos */
@@ -193,7 +193,7 @@ html, body {
   background-position: 0 50%, 0 50%;
 
   transform: translate3d(-100%, 0, 0);
-  animation: beam-sweep var(--beam-duration) ease-in-out infinite;
+  animation: beam-sweep var(--ripple-duration) ease-in-out infinite;
   mix-blend-mode: screen;
   will-change: transform, opacity;
 }
@@ -245,10 +245,14 @@ html, body {
   transform: translateX(-50%);
   width: calc(100% - var(--spacing-2xl));
   max-width: 1100px;
-  z-index: 99999;
+  z-index: 999999;
   pointer-events: auto;
   margin-left: 0px;
   transition: margin-left 0.2s ease;
+}
+#site-header {
+  position: fixed;
+  z-index: 999999;
 }
 
 .site-nav-inner {
@@ -598,7 +602,7 @@ button:focus-visible, .button:focus-visible {
 /* Global Styles for Titles, Sections, etc. */
 
 .content {
-  background: var(--bg);
+  background: transparent;
   grid-row: 2/3;
   grid-column: 1 / -1;
   display: grid;
