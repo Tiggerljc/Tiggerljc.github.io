@@ -108,9 +108,10 @@ html, body {
 .bg-hex {
   position: relative;           /* positioned ancestor for its pseudos */
   isolation: isolate;           /* keeps stacking predictable */
-  --hex-color: var(--muted);
+  --hex-color:#2d3439;
   --hex-opacity: var(--hex-opacity);
   z-index: 0;
+  overflow: hidden;
 }
 
 /* element content above its own pseudos */
@@ -165,53 +166,32 @@ html, body {
    /* The band: a narrow bright center with soft falloff.
      We use two layers so modern browsers get color-mix and older ones can fallback.
   */
-  background:
-    /* fallback: semi-transparent tint (kept last so color-mix takes precedence when supported) */
-    linear-gradient(90deg,
-      rgba(0,0,0,0) 0%,
-      rgba(255,106,26,0.00) 20%,
-      rgba(255,106,26,var(--ripple-strength)) 50%,
-      rgba(255,106,26,0.00) 80%,
-      rgba(0,0,0,0) 100%
-    ),
-    /* preferred: color-mix using theme accent for the bright spot */
-    linear-gradient(90deg,
-      rgba(0,0,0,0) 0%,
-      color-mix(in srgb, var(--ripple-beam-color) 18%, transparent) 30%,
-      color-mix(in srgb, var(--ripple-beam-color) 28%, transparent) 50%,
-      color-mix(in srgb, var(--ripple-beam-color) 18%, transparent) 70%,
-      rgba(0,0,0,0) 100%
-    );
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ripple-beam-color) 40%, transparent) 48%,
+    color-mix(in srgb, var(--ripple-beam-color) 60%, transparent) 50%,
+    color-mix(in srgb, var(--ripple-beam-color) 40%, transparent) 52%,
+    transparent 100%
+  );
 
-  /* wide band that will be translated across the element */
-  width: 300%;
-  height: 100%;
-  left: -100%;
-  top: 0;
-  background-size: 100% 100%, 100% 100%;
-  background-repeat: no-repeat;
-  background-position: 0 50%, 0 50%;
 
-  /* transform-based sweep (GPU-accelerated) */
-  transform: translate3d(-100%, 0, 0);
+  /* Make the band wide, but keep the element itself 100% width */
+  background-size: 300% 100%;
+  background-position: -100% 0;
 
-  /* animation: pass across in --ripple-pass-time, then hide for the remainder of the cycle */
-  animation: ripple-pass var(--ripple-cycle) linear infinite;
-  mix-blend-mode: screen; /* brightens underlying hex color where band passes */
-  will-change: transform, opacity;
-  opacity: 1;
+  /* Animate background-position (NOT the element) */
+  animation: hex-shimmer var(--ripple-cycle, 8s) linear infinite;
+
+  mix-blend-mode: screen; /* brightens hex lines */
 }
 
-/* Keyframes: left→right pass during first 50% of cycle, then hidden for second 50% */
-@keyframes ripple-pass {
-  /* 0% start off-left and visible */
-  0%   { transform: translate3d(-100%, 0, 0); opacity: 1; }
-  /* 50% end off-right and visible (pass complete at 50% of cycle) */
-  50%  { transform: translate3d(100%, 0, 0); opacity: 1; }
-  /* 50.01% immediately hide the band */
+/* Pass (first half), pause (second half) */
+@keyframes hex-shimmer {
+  0%   { background-position: -100% 0; opacity: 1; }
+  50%  { background-position: 100% 0; opacity: 1; }
   50.01% { opacity: 0; }
-  /* 100% keep hidden and reset transform to start position */
-  100% { transform: translate3d(-100%, 0, 0); opacity: 0; }
+  100% { background-position: -100% 0; opacity: 0; }
 }
 
 /* Reduced motion */
