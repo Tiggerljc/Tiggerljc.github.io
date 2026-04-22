@@ -83,9 +83,9 @@
   /* bg-hex elements */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
   --hex-tile-size: 180px;   /* tile size for the repeating mask */
-  --ripple-duration: 8s;           /* full cycle: pass + hold + reset */
-  --ripple-pass-percent: 60;       /* percent of cycle used for pass */
-  --ripple-hold-percent: 85;       /* percent where it holds at right */
+  /* Ripple effect */
+  --ripple-duration: 4s;           /* beam travel time */
+  --ripple-cycle: calc(var(--ripple-duration) + 4s); /* pass + pause */
   --ripple-strength: 0.28;         /* how strong the ripple brightens */
 }
 
@@ -108,33 +108,22 @@ html, body {
 .bg-hex {
   position: relative;           /* positioned ancestor for its pseudos */
   isolation: isolate;           /* keeps stacking predictable */
-  --hex-color: var(--highlight);
+  --hex-color: var(--muted);
   --hex-opacity: var(--hex-opacity);
-  --ripple-color: var(--theme-soft);
-  --ripple-beam-color: var(--theme-accent);
-  z-index: 0;            /* stacking priority (higher = on top) */
+  z-index: 0;
 }
 
 /* element content above its own pseudos */
 .bg-hex > * { position: relative; z-index: 2; }
 
-/* PSEUDOS: use absolute so they scroll with the document when ancestor spans page */
-.bg-hex::before,
-.bg-hex::after {
+/* static hex mask */
+.bg-hex::before{
   content: "";
-  position: absolute;   /* absolute so it is anchored to the element (and scrolls) */
+  position: absolute;
   inset: 0;
-  left: 0;
-  top: 0;
-  /* width: 100%; */
-  /* height: 100%; */
   pointer-events: none;
-  z-index: 1; /* lower than element content */
-  will-change: opacity, transform;
-}
+  z-index: 1; /* above content, below beam */
 
-/* STATIC HEX LAYER (never moves) */
-.bg-hex::before {
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
@@ -148,8 +137,24 @@ html, body {
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.06));
 }
 
-/* BEAM LAYER (inactive by default) */
-.bg-hex::after {
+/* ---------- Ripple variant: change default hex color + add shimmer beam ---------- */
+/* When .ripple is present we want the base hex color to be the soft theme color */
+.bg-hex.ripple {
+  --hex-color: var(--theme-soft);
+  --ripple-beam-color: var(--theme-accent);
+}
+
+/* ::after is the shimmer band. It is MASKED by the same hex mask so only hex lines are affected.
+   The band itself is a wide colored gradient that is translated across the element.
+   IMPORTANT: the mask is static; we only move the colored band (transform), not the mask.
+*/
+.bg-hex.ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* above content, same as hex lines */
+
   -webkit-mask-image: url("/static/img/hex-pattern.svg");
   -webkit-mask-size: var(--hex-tile-size);
   -webkit-mask-repeat: repeat;
@@ -157,25 +162,19 @@ html, body {
   mask-size: var(--hex-tile-size);
   mask-repeat: repeat;
 
-  background: transparent;
-  opacity: 0;
-  transition: opacity 240ms ease;
-}
-
-/* Activate beam: add .ripple */
-.bg-hex.ripple {
-  --ripple-color: var(--theme-soft);
-  --ripple-beam-color: var(--theme-accent);
-}
-
-/* Beam: a wide band that sweeps using transform (GPU-accelerated).
-   Because pseudos are absolute, the band is anchored to the element's box and scrolls with the page.
-*/
-.bg-hex.ripple::after {
-  opacity: 1;
-
+   /* The band: a narrow bright center with soft falloff.
+     We use two layers so modern browsers get color-mix and older ones can fallback.
+  */
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--ripple-color) 10%, transparent), transparent),
+    /* fallback: semi-transparent tint (kept last so color-mix takes precedence when supported) */
+    linear-gradient(90deg,
+      rgba(0,0,0,0) 0%,
+      rgba(255,106,26,0.00) 20%,
+      rgba(255,106,26,var(--ripple-strength)) 50%,
+      rgba(255,106,26,0.00) 80%,
+      rgba(0,0,0,0) 100%
+    ),
+    /* preferred: color-mix using theme accent for the bright spot */
     linear-gradient(90deg,
       rgba(0,0,0,0) 0%,
       color-mix(in srgb, var(--ripple-beam-color) 18%, transparent) 30%,
@@ -184,6 +183,7 @@ html, body {
       rgba(0,0,0,0) 100%
     );
 
+  /* wide band that will be translated across the element */
   width: 300%;
   height: 100%;
   left: -100%;
@@ -192,24 +192,32 @@ html, body {
   background-repeat: no-repeat;
   background-position: 0 50%, 0 50%;
 
+  /* transform-based sweep (GPU-accelerated) */
   transform: translate3d(-100%, 0, 0);
-  animation: beam-sweep var(--ripple-duration) ease-in-out infinite;
-  mix-blend-mode: screen;
+
+  /* animation: pass across in --ripple-pass-time, then hide for the remainder of the cycle */
+  animation: ripple-pass var(--ripple-cycle) linear infinite;
+  mix-blend-mode: screen; /* brightens underlying hex color where band passes */
   will-change: transform, opacity;
+  opacity: 1;
 }
 
-/* Sweep timing */
-@keyframes beam-sweep {
-  0%   { transform: translate3d(-100%, 0, 0); }
-  60%  { transform: translate3d(100%, 0, 0); }
-  85%  { transform: translate3d(100%, 0, 0); }
-  100% { transform: translate3d(-100%, 0, 0); }
+/* Keyframes: left→right pass during first 50% of cycle, then hidden for second 50% */
+@keyframes ripple-pass {
+  /* 0% start off-left and visible */
+  0%   { transform: translate3d(-100%, 0, 0); opacity: 1; }
+  /* 50% end off-right and visible (pass complete at 50% of cycle) */
+  50%  { transform: translate3d(100%, 0, 0); opacity: 1; }
+  /* 50.01% immediately hide the band */
+  50.01% { opacity: 0; }
+  /* 100% keep hidden and reset transform to start position */
+  100% { transform: translate3d(-100%, 0, 0); opacity: 0; }
 }
 
-/* Reduced motion 
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .bg-hex.ripple::after { animation: none; opacity: 0.6; transform: none; }
-} */
+  .bg-hex.ripple::after { animation: none; opacity: 0; transform: none; }
+}
 
 /* --------------------------------------------------
    Global Containers (Layout, Header, Sidebar, Main)
