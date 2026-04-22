@@ -82,7 +82,7 @@
 
   /* bg-hex elements */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
-  --hex-tile-size: 2048px;   /* tile size for the repeating mask */
+  --hex-tile-size: 1536px;   /* tile size for the repeating mask */
   /* Ripple effect */
   --ripple-duration: 4s;           /* beam travel time */
   --ripple-cycle: calc(var(--ripple-duration) + 4s); /* pass + pause */
@@ -169,12 +169,15 @@ html, body {
     -2deg,
     transparent 0%,
     transparent 48%,
-    color-mix(in srgb, var(--hex-color) 100%, transparent) 49%,
-    color-mix(in srgb, var(--ripple-beam-color) 80%, transparent) 50%,
-    color-mix(in srgb, var(--hex-color) 100%, transparent) 51%,
+    color-mix(in srgb, var(--ripple-beam-color) 20%, transparent) 48.1%,
+    color-mix(in srgb, var(--ripple-beam-color) 60%, transparent) 49%,
+    color-mix(in srgb, var(--ripple-beam-color) 90%, transparent) 50%,
+    color-mix(in srgb, var(--ripple-beam-color) 60%, transparent) 51%,
+    color-mix(in srgb, var(--ripple-beam-color) 20%, transparent) 51.9%,
     transparent 52%,
     transparent 100%
   );
+
 
 
 
