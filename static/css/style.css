@@ -111,7 +111,6 @@ html, body {
   --hex-color:#2d3439;
   --hex-opacity: var(--hex-opacity);
   z-index: 0;
-  overflow: hidden;
 }
 
 /* element content above its own pseudos */
@@ -169,29 +168,30 @@ html, body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--ripple-beam-color) 40%, transparent) 48%,
-    color-mix(in srgb, var(--ripple-beam-color) 60%, transparent) 50%,
-    color-mix(in srgb, var(--ripple-beam-color) 40%, transparent) 52%,
+    color-mix(in srgb, var(--hex-color) 60%, transparent) 49.5%,
+    color-mix(in srgb, var(--ripple-beam-color) 80%, transparent) 50%,
+    color-mix(in srgb, var(--hex-color) 60%, transparent) 50.5%,
     transparent 100%
   );
 
 
+
   /* Make the band wide, but keep the element itself 100% width */
-  background-size: 300% 100%;
-  background-position: -100% 0;
+  background-size: 400% 100%;
+  background-position: -200% 0;
 
   /* Animate background-position (NOT the element) */
-  animation: hex-shimmer var(--ripple-cycle, 8s) linear infinite;
+  animation: hex-shimmer var(--ripple-cycle) linear infinite;
 
   mix-blend-mode: screen; /* brightens hex lines */
 }
 
 /* Pass (first half), pause (second half) */
 @keyframes hex-shimmer {
-  0%   { background-position: -100% 0; opacity: 1; }
-  50%  { background-position: 100% 0; opacity: 1; }
-  50.01% { opacity: 0; }
-  100% { background-position: -100% 0; opacity: 0; }
+  0%   { background-position: -200% 0; opacity: 1; }
+  50%  { background-position: 200% 0; opacity: 1; } /* one full pass */
+  50.01% { opacity: 0; } /* hide immediately */
+  100% { background-position: -200% 0; opacity: 0; } /* reset hidden */
 }
 
 /* Reduced motion */
