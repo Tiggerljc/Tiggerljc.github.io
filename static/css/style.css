@@ -106,7 +106,7 @@ html, body {
 
 /* Base: any element with .bg-hex */
 .bg-hex {
-  position: relative;           /* positioned ancestor for its pseudos */
+  position: absolute;           /* positioned ancestor for its pseudos */
   isolation: isolate;           /* keeps stacking predictable */
   --hex-color:#2d3439;
   --hex-opacity: var(--hex-opacity);
@@ -142,6 +142,7 @@ html, body {
 .bg-hex.ripple {
   --hex-color: var(--theme-soft);
   --ripple-beam-color: var(--theme-accent);
+  --hex-tile-size: 512px; /* smaller tiles for more movement detail */
 }
 
 /* ::after is the shimmer band. It is MASKED by the same hex mask so only hex lines are affected.
@@ -563,6 +564,8 @@ button:focus-visible, .button:focus-visible {
   grid-column: 2 / 2;
   grid-auto-rows: auto;
   grid-template-rows: auto auto auto;
+  position: relative;
+  z-index: 1;
 }
 
 .topbar h1 { margin: 0; font-size: var(--text-3xl); }
