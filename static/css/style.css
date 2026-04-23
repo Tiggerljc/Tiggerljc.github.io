@@ -111,7 +111,7 @@ html, body {
 
 /* Base: any element with .bg-hex */
 .bg-hex {
-  position: absolute;           /* positioned ancestor for its pseudos */
+  position: relative;           /* positioned ancestor for its pseudos */
   isolation: isolate;           /* keeps stacking predictable */
   --hex-color:#2d3439;
   --hex-opacity: var(--hex-opacity);
@@ -203,7 +203,7 @@ html, body {
   /* 50.01% { opacity: 0; } /* /* hide immediately */
   /* 100% { background-position: -150% 0; opacity: 0; } */ /* reset hidden */
 /* } */
-@keyframes hex-shimmer-transform {
+@keyframes hex-shimmer {
   0%   { transform: translateX(-50%); opacity: 1; }
   50%  { transform: translateX(50%);  opacity: 1; }
   50.01% { opacity: 0; }
