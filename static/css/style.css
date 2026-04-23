@@ -82,7 +82,7 @@
 
   /* bg-hex elements */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
-  --hex-tile-size: 1024px;   /* tile size for the repeating mask */
+  --hex-tile-size: 512px;   /* tile size for the repeating mask */
   /* Ripple effect */
   --ripple-duration: 4s;           /* beam travel time */
   --ripple-cycle: calc(var(--ripple-duration) + 4s); /* pass + pause */
@@ -140,7 +140,7 @@ html, body {
 .bg-hex.ripple {
   --hex-color: var(--theme-soft);
   --ripple-beam-color: var(--theme-accent);
-  --hex-tile-size: 512px; /* Reduced tile size to make ripple effect more visible */
+  --hex-tile-size: 256px; /* Reduced tile size to make ripple effect more visible */
   --beam-weak: color-mix(in srgb, var(--ripple-beam-color) 20%, transparent);
   --beam-mid:  color-mix(in srgb, var(--ripple-beam-color) 60%, transparent);
   --beam-strong: color-mix(in srgb, var(--ripple-beam-color) 100%, transparent);
@@ -186,7 +186,7 @@ html, body {
   background-position: -150% 0;
 
   /* Animate background-position (NOT the element) */
-  animation: hex-shimmer var(--ripple-cycle, 8s) linear infinite;
+  animation: hex-shimmer var(--ripple-cycle) linear infinite;
 
 }
 
