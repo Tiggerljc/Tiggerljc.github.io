@@ -82,16 +82,10 @@
 
   /* bg-hex elements */
   --hex-opacity: 0.14;      /* base opacity of hex lines */
-  --hex-tile-size: 1536px;   /* tile size for the repeating mask */
+  --hex-tile-size: 1024px;   /* tile size for the repeating mask */
   /* Ripple effect */
   --ripple-duration: 4s;           /* beam travel time */
   --ripple-cycle: calc(var(--ripple-duration) + 4s); /* pass + pause */
-  --ripple-strength: 0.28;         /* how strong the ripple brightens */
-
-  --beam-weak: rgba(255, 255, 255, 0.2);
-  --beam-mid: rgba(255, 255, 255, 0.6);
-  --beam-strong: rgba(255, 255, 255, 0.9);
-
 }
 
 /* ---------- Base Reset & Typography ---------- */
@@ -146,7 +140,10 @@ html, body {
 .bg-hex.ripple {
   --hex-color: var(--theme-soft);
   --ripple-beam-color: var(--theme-accent);
-  --hex-tile-size: 512px; /* smaller tiles for more movement detail */
+  --hex-tile-size: 512px; /* Reduced tile size to make ripple effect more visible */
+  --beam-weak: color-mix(in srgb, var(--ripple-beam-color) 20%, transparent);
+  --beam-mid:  color-mix(in srgb, var(--ripple-beam-color) 60%, transparent);
+  --beam-strong: color-mix(in srgb, var(--ripple-beam-color) 100%, transparent);
 }
 
 /* ::after is the shimmer band. It is MASKED by the same hex mask so only hex lines are affected.
@@ -172,7 +169,7 @@ html, body {
      We use two layers so modern browsers get color-mix and older ones can fallback.
   */
   background: linear-gradient(
-    -2deg,
+    90deg,
     transparent 0%,
     transparent 48%,
     var(--beam-weak) 48.1%,
