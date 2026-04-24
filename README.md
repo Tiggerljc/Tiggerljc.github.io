@@ -1,8 +1,14 @@
 # Tiggerljc.github.io
-Tigger.dev
 
-Lorem ipsum — Static HTML/CSS site
+Tigger.dev — Static HTML/CSS site
 -----------------------------------
+
+##Hi, I'm Tigger
+This is where I share all of the things I work on--MOCs, Blender renders,
+Unreal Engine projects, coding, violin progress, and everything else.
+I use this website to compile all of my miscellanious projects, ideas,
+and scraps of info into one place so that I can return to them later
+(and hopefully help someone else out in the process).
 
 Local preview
 1. Open a terminal in this folder.
@@ -10,16 +16,3 @@ Local preview
    - Windows: `python -m http.server 8000`
    - macOS/Linux: `python3 -m http.server 8000`
 3. Open http://127.0.0.1:8000 in your browser.
-
-Deploy to GitHub Pages
-1. Create a GitHub repo (e.g., `lorem/ipsum`).
-2. Commit this folder to the repo root (or put contents under `docs/`).
-3. In repo settings > Pages, select the branch and root or /docs folder as the publishing source.
-4. Wait a minute and visit the provided URL.
-
-Editing posts
-- Copy `post-template.html` to `posts/YYYY-MM-DD-title.html`.
-- Edit content in any text editor, commit, and push.
-
-Theme
-- Colors are in `assets/css/styles.css`. Modify `--accent` for a different neon color.
