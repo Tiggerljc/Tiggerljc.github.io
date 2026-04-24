@@ -2,93 +2,130 @@
      xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .hex { fill:none; stroke:white; stroke-width:2.2; }
+      .hex { fill:none; stroke:white; stroke-width:2.2; stroke-opacity:0.26; }
+      .hex-faint { fill:none; stroke:white; stroke-width:2.2; stroke-opacity:0.2; }
       .line { fill:none; stroke:white; stroke-width:2.2; stroke-linecap:round; }
     </style>
+    <polyline id="fairy-dust" class="hex-faint" points="0,0 20,0" />
   </defs>
 
+  <!-- Hex vertex order: top-left, top-right, right, bottom-right, bottom-left, left -->
+
+
   <!-- ========================= -->
-  <!-- Cluster 1 (upper-left)    -->
+  <!--       Hex Clusters        -->
   <!-- ========================= -->
-  <g transform="translate(100,200)">
+  <g id="top-left" transform="translate(200,200)">
+    <!-- Center -->
     <polygon class="hex" points="-10,-17.32 10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <!-- Top -->
     <polygon class="hex" points="-10,-51.96 10,-51.96 20,-34.64 10,-17.32 -10,-17.32 -20,-34.64" />
+    <!-- Bottom -->
     <polygon class="hex" points="-10,17.32 10,17.32 20,34.64 10,51.96 -10,51.96 -20,34.64" />
+    <!-- Top-right -->
     <polygon class="hex" points="20,-34.64 40,-34.64 50,-17.32 40,0 20,0 10,-17.32" />
+    <!-- Bottom-right -->
     <polygon class="hex" points="20,0 40,0 50,17.32 40,34.64 20,34.64 10,17.32" />
-    <polygon class="hex" points="-40,0 -20,0 -10,17.32 -20,34.64 -40,34.64 -50,17.32" />
+    <!-- Top-left -->
     <polygon class="hex" points="-40,-34.64 -20,-34.64 -10,-17.32 -20,0 -40,0 -50,-17.32" />
+    <!-- Bottom-left -->
+    <polygon class="hex" points="-40,0 -20,0 -10,17.32 -20,34.64 -40,34.64 -50,17.32" />
+  </g>
+  <g id="bottom-left" transform="translate(400,1600)">
+    <!-- Center -->
+    <polygon class="hex" points="-10,-17.32 10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <!-- Top -->
+    <polygon class="hex" points="-10,-51.96 10,-51.96 20,-34.64 10,-17.32 -10,-17.32 -20,-34.64" />
+    <!-- Bottom -->
+    <polygon class="hex" points="-10,17.32 10,17.32 20,34.64 10,51.96 -10,51.96 -20,34.64" />
+    <!-- Top-right -->
+    <polygon class="hex" points="20,-34.64 40,-34.64 50,-17.32 40,0 20,0 10,-17.32" />
+    <!-- Bottom-right -->
+    <polygon class="hex" points="20,0 40,0 50,17.32 40,34.64 20,34.64 10,17.32" />
+    <!-- Top-left -->
+    <polygon class="hex" points="-40,-34.64 -20,-34.64 -10,-17.32 -20,0 -40,0 -50,-17.32" />
+    <!-- Bottom-left -->
+    <polygon class="hex" points="-40,0 -20,0 -10,17.32 -20,34.64 -40,34.64 -50,17.32" />
+  </g>
+  <g id="center" transform="translate(1000,800) rotate(120)">
+    <!-- Center -->
+    <polygon class="hex" points="-10,-17.32 10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <!-- Top -->
+    <polyline class="hex" points="10,-51.96 20,-34.64 10,-17.32" />
+    <!-- Bottom-right -->
+    <polyline class="hex" points="20,34.64 10,17.32 20,0 40,0 50,17.32" />
+    <!-- Top-left -->
+    <polyline class="hex" points="-20,-34.64 -10,-17.32 -20,0 -40,0" />
+    <!-- Bottom-left -->
+    <polyline class="hex" points="-20,0 -10,17.32 -20,34.64 -40,34.64" />
+  </g>
+  <g id="bottom-right" transform="translate(1700,1500) rotate(-30)">
+    <!-- Center -->
+    <polygon class="hex" points="-10,-17.32 10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <!-- Top -->
+    <polygon class="hex" points="-10,-51.96 10,-51.96 20,-34.64 10,-17.32 -10,-17.32 -20,-34.64" />
+    <!-- Bottom -->
+    <polyline class="hex" points="-10,17.32 10,17.32 20,34.64" />
+    <!-- Top-right -->
+    <polyline class="hex" points="20,-34.64 40,-34.64 50,-17.32" />
+    <!-- Bottom-right -->
+    <polygon class="hex" points="20,0 40,0 50,17.32 40,34.64 20,34.64 10,17.32" />
+    <!-- Top-left -->
+    <polyline class="hex" points="-40,-34.64 -20,-34.64 -10,-17.32" />
+    <!-- Bottom-left -->
+    <polygon class="hex" points="-40,0 -20,0 -10,17.32 -20,34.64 -40,34.64 -50,17.32" />
+  </g>
+  <g id="top-right" transform="translate(1500,450)">
+    <!-- Center -->
+    <polygon class="hex" points="-10,-17.32 10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <!-- Top-right -->
+    <polygon class="hex" points="20,-34.64 40,-34.64 50,-17.32 40,0 20,0 10,-17.32" />
+    <!-- Bottom-right -->
+    <polyline class="hex" points="20,34.64 10,17.32 20,0 40,0 50,17.32" />
+    <!-- Bottom-left -->
+    <polygon class="hex" points="-40,0 -20,0 -10,17.32 -20,34.64 -40,34.64 -50,17.32"/>
   </g>
 
   <!-- ========================= -->
-  <!-- Cluster 2 (upper-right)   -->
+  <!--      Small Clusters       -->
   <!-- ========================= -->
-  <g transform="translate(1500,300) rotate(2)">
-    <polygon class="hex" points="0,0 32,0 48,28 32,56 0,56 -16,28" />
-    <polygon class="hex" points="32,56 64,56 80,84 64,112 32,112 16,84" />
-    <line class="line" x1="48" y1="28" x2="78" y2="10" />
-    <line class="line" x1="0" y1="56" x2="-26" y2="80" />
-    <line class="line" x1="16" y1="84" x2="0" y2="110" />
+  <g id="left" transform="translate(300,900) rotate(90)">
+    <polyline class="hex" points="10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <polyline class="hex" points="20,34.64 10,17.32 20,0 40,0 50,17.32" />
+  </g>
+  <g id="top" transform="translate(912,300)">
+    <polyline class="hex" points="-20,0 0,0 10,-17.32 0,-34.64" />
+  </g>
+  <g id="bottom" transform="translate(1100,1800) rotate(40)">
+    <polyline class="hex" points="0,0 10,17.32" />
+    <polyline class="hex" points="10,17.32 0,34.64" />
+  </g>
+  <g id="right" transform="translate(1600,800) rotate(-60)">
+    <polyline class="hex" points="20,-34.64 40,-34.64 50,-17.32" />
+  </g>
+  <g id="low-bottom-right" transform="translate(1200,1400)">
+    <polyline class="hex" points="10,-17.32 20,0 10,17.32 -10,17.32 -20,0" />
+    <polyline class="hex" points="20,34.64 10,17.32 20,0 40,0 50,17.32" />
+    <polyline class="hex" points="-10,-17.32 -20,0 -40,0" />
   </g>
 
   <!-- ========================= -->
-  <!-- Cluster 3 (center-left)   -->
+  <!--        Fairy Dust         -->
   <!-- ========================= -->
-  <g transform="translate(420,1020) rotate(1)">
-    <polygon class="hex" points="0,0 32,0 48,28 32,56 0,56 -16,28" />
-    <polygon class="hex" points="32,56 64,56 80,84 64,112 32,112 16,84" />
-    <polygon class="hex" points="64,112 96,112 112,140 96,168 64,168 48,140" />
-    <line class="line" x1="0" y1="56" x2="-20" y2="90" />
-    <line class="line" x1="80" y1="84" x2="110" y2="70" />
-    <line class="line" x1="48" y1="140" x2="30" y2="170" />
+  <g transform="translate(600,500) rotate(15)">
+    <use href="#fairy-dust" />
+  </g>
+  <g transform="translate(1300,300) rotate(75)">
+    <use href="#fairy-dust" />
+  </g>
+  <g transform="translate(1700,1100) rotate(-40)">
+    <use href="#fairy-dust" />
+  </g>
+  <g transform="translate(800,1500) rotate(120)">
+    <use href="#fairy-dust" />
+  </g>
+  <g transform="translate(1100,1100) rotate(120)">
+    <use href="#fairy-dust" />
   </g>
 
-  <!-- ========================= -->
-  <!-- Cluster 4 (center-right)  -->
-  <!-- ========================= -->
-  <g transform="translate(1380,1080) rotate(-4)">
-    <polygon class="hex" points="0,0 32,0 48,28 32,56 0,56 -16,28" />
-    <polygon class="hex" points="32,56 64,56 80,84 64,112 32,112 16,84" />
-    <line class="line" x1="48" y1="28" x2="70" y2="0" />
-    <line class="line" x1="32" y1="112" x2="48" y2="144" />
-    <line class="line" x1="-16" y1="28" x2="-40" y2="10" />
-  </g>
-
-  <!-- ========================= -->
-  <!-- Cluster 5 (lower-left)    -->
-  <!-- ========================= -->
-  <g transform="translate(300,1700) rotate(3)">
-    <polygon class="hex" points="0,0 28,0 42,24 28,48 0,48 -14,24" />
-    <polygon class="hex" points="28,48 56,48 70,72 56,96 28,96 14,72" />
-    <line class="line" x1="0" y1="48" x2="-20" y2="70" />
-    <line class="line" x1="56" y1="96" x2="70" y2="120" />
-  </g>
-
-  <!-- ========================= -->
-  <!-- Cluster 6 (lower-right)   -->
-  <!-- ========================= -->
-  <g transform="translate(1600,1760) rotate(-2)">
-    <polygon class="hex" points="0,0 28,0 42,24 28,48 0,48 -14,24" />
-    <polygon class="hex" points="28,48 56,48 70,72 56,96 28,96 14,72" />
-    <polygon class="hex" points="56,96 84,96 98,120 84,144 56,144 42,120" />
-    <line class="line" x1="42" y1="120" x2="20" y2="150" />
-    <line class="line" x1="-14" y1="24" x2="-30" y2="10" />
-  </g>
-
-  <!-- ========================= -->
-  <!-- Cluster 7 (center-mid)    -->
-  <!-- ========================= -->
-  <g transform="translate(1020,760) rotate(1)">
-    <polygon class="hex" points="0,0 32,0 48,28 32,56 0,56 -16,28" />
-    <polygon class="hex" points="32,56 64,56 80,84 64,112 32,112 16,84" />
-    <line class="line" x1="48" y1="28" x2="70" y2="10" />
-    <line class="line" x1="0" y1="56" x2="-20" y2="80" />
-  </g>
-
-  <!-- ========================= -->
-  <!-- Stray tech lines          -->
-  <!-- ========================= -->
-  <line class="line" x1="900" y1="400" x2="960" y2="460" />
-  <line class="line" x1="1100" y1="1400" x2="1180" y2="1480" />
-  <line class="line" x1="600" y1="800" x2="660" y2="860" />
 </svg>

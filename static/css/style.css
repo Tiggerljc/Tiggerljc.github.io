@@ -1,3 +1,6 @@
+/* Stylesheet loaders */
+@import url('/static/css/ambient.css');
+
 /* --------------------------------------------------
    Global & Params
 -------------------------------------------------- */
@@ -91,42 +94,6 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-primary);
-}
-
-/* --------------------------------------------------
-   Hex Pattern Background Element & Spotlight Effect
--------------------------------------------------- */
-
-/* Base: any element with .bg-hex */
-.bg-hex {
-  position: relative;           /* positioned ancestor for its pseudos */
-  isolation: isolate;           /* keeps stacking predictable */
-  --hex-color:#2d3439;
-  --hex-opacity: 0.14;      /* base opacity of hex lines */
-  z-index: 0;
-  --hex-tile-size: 1024px;   /* tile size for the repeating mask */
-}
-
-/* element content above its own pseudos */
-.bg-hex > * { position: relative; z-index: 2; }
-
-/* static hex mask */
-.bg-hex::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1; /* above content, below beam */
-
-  -webkit-mask-image: url("/static/img/hex-pattern.svg");
-  -webkit-mask-size: var(--hex-tile-size);
-  -webkit-mask-repeat: repeat;
-  mask-image: url("/static/img/hex-pattern.svg");
-  mask-size: var(--hex-tile-size);
-  mask-repeat: repeat;
-
-  background-color: var(--hex-color);
-  opacity: var(--hex-opacity);
 }
 
 /* --------------------------------------------------

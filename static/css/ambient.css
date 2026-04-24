@@ -1,6 +1,40 @@
-/* Ambient.css
-___________________________________________
-Modular, aesthetic class sets that modify
-element backgrounds to add flair to a page.
-___________________________________________
-/*
+/* --------------------------------------------------
+    Ambient.css
+
+    Modular, aesthetic class sets that modify
+    element backgrounds to add flair to a page.
+-------------------------------------------------- */
+
+/* --------------------------------------------------
+   Hex Pattern
+-------------------------------------------------- */
+.bg-hex {
+  position: relative;           /* positioned ancestor for its pseudos */
+  isolation: isolate;           /* keeps stacking predictable */
+  --hex-color:#4d4d4d;
+  --hex-opacity: 0.14;      /* base opacity of hex lines */
+  z-index: 0;
+  --hex-tile-size: 2048px;   /* tile size for the repeating mask */
+}
+
+/* element content above its own pseudos */
+.bg-hex > * { position: relative; z-index: 2; }
+
+/* static hex mask */
+.bg-hex::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* above content, below beam */
+
+  -webkit-mask-image: url("/static/img/hex-pattern.svg");
+  -webkit-mask-size: var(--hex-tile-size);
+  -webkit-mask-repeat: repeat;
+  mask-image: url("/static/img/hex-pattern.svg");
+  mask-size: var(--hex-tile-size);
+  mask-repeat: repeat;
+
+  background-color: var(--hex-color);
+  /* opacity: var(--hex-opacity); */ /* Determined in-file; add system to tweak here */
+}
