@@ -89,8 +89,6 @@
 * { box-sizing: border-box; }
 
 html, body {
-  min-height: 100%;
-  height: 100%;
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -100,15 +98,20 @@ html, body {
 /* --------------------------------------------------
    Global Containers (Layout, Header, Sidebar, Main)
 -------------------------------------------------- */
+/* Global layout wrapper */
+.page {
+min-height: 100%;
+padding: 100px 0;
+}
 
 /* ---------- Layout Wrapper (#app.layout) ---------- */
 .layout {
   display: grid; /* flex; */
   grid-template-columns: auto 1fr;
   max-width: 1440px;
-  margin: 100px auto;
+  margin: 0 auto;
   border-radius: var(--radius-3);
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow-strong);
   background: var(--bg);
   position: relative;
@@ -152,7 +155,7 @@ html, body {
   border-radius: var(--radius-3);
   padding: var(--spacing-md) var(--spacing-lg);
   min-height: var(--spacing-3xl);
-  box-shadow: 0 8px 30px rgba(12,12,12,0.45);
+  box-shadow: 0 8px 30px rgba(12, 12, 12, 0.75);
   border: 1px solid var(--theme-soft);
 }
 
@@ -267,18 +270,18 @@ button:focus-visible, .button:focus-visible {
    Sidebar
 ================================================== */
 .sidebar {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   width: var(--spacing-3xl); /* collapsed width */
   border-right: 1px solid var(--border-light);
-  transition: width 0.2s ease;
+  transition: width 0.2s ease, transform 0.2s ease;
   background: var(--bg);
-  z-index: 1000;
-  grid-column: 1 / 2;
-  grid-row: 1 / -1;
-  align-self: stretch;
-  height: 100%;
+  z-index: 3;
+  align-self: start;
+  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -297,8 +300,6 @@ button:focus-visible, .button:focus-visible {
   text-align: left;
   border-radius: var(--radius-1);
   margin: var(--spacing-sm) var(--spacing-sm);
-  overflow-y: auto;
-  max-height: 100vh;
   padding-right: var(--spacing-xs);
   transition:
     background 0.15s ease,
@@ -312,6 +313,49 @@ button:focus-visible, .button:focus-visible {
   color: var(--theme-strong);
   transform: translateY(-1px) scale(1.05);
   box-shadow: 0 4px 10px var(--button-shadow);
+}
+
+/* Scroll Container */
+.sidebar-scroll {
+  position: relative;
+  overflow-y: auto;
+  padding-right: var(--spacing-xs);
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 72px);
+  padding-bottom: var(--spacing-md);
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.sidebar-scroll:hover {
+  scrollbar-color: rgba(255,255,255,0.14) transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.14);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  opacity: 0;
+  transition: opacity 240ms ease, background 240ms ease;
+}
+
+.sidebar-scroll:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.22);
 }
 
 /* Items container */

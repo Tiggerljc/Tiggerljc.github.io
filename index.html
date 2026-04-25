@@ -13,108 +13,115 @@
     }
   </script>
 </head>
-<body class="fx-gradient">
+<body class="fx-grid">
   
-  <!-- Header Loader -->
-  <div id="site-header"></div>
-  <script src="/static/js/LoadHeader.js" defer></script>
+  <div class="page">
+    
+    <!-- Header Loader -->
+    <div id="site-header"></div>
+    <script src="/static/js/LoadHeader.js" defer></script>
 
-  <div id="app" class="layout">
+    <!-- Main layout -->
+    <div id="app" class="layout">
 
-    <!-- Sidebar Loader -->
-    <div id="site-sidebar" class="sidebar"></div>
-    <script src="/static/js/LoadSidebar.js" defer></script>
+      <!-- Sidebar Loader -->
+      <div id="site-sidebar" class="sidebar"></div>
+      <script src="/static/js/LoadSidebar.js" defer></script>
 
-    <main class="main fx-hex" role="main">
+      <main class="main fx-hex" role="main">
 
-      <!-- Page Title -->
-      <div id="site-titlebar"></div>
-      <script src="/static/js/LoadTitlebar.js" defer></script>
+        <!-- Titlebar Loader -->
+        <div id="site-titlebar"></div>
+        <script src="/static/js/LoadTitlebar.js" defer></script>
 
-      <div class="content full">
-        <div class="content-primary">
-          <!-- Hero Section -->
-          <section id="hero" class="section hero">
-            <div class="header-img filler-img"></div>
-            <div>
-              <h2 class="section-header">Hi, I'm Tigger</h2>
-              <p class="text">This is where I share all of the things I work on--MOCs, Blender renders,
-                 Unreal Engine projects, coding, violin progress, and everything else.
-                 I use this website to compile all of my miscellanious projects, ideas,
-                 and scraps of info into one place so that I can return to them later
-                 (and hopefully help someone else out in the process).</p>
-            </div>
-            <div class="header-img filler-img"></div>
-          </section>
-
-          <!-- Fade Sections -->
-          <section id="projects" class="section alt">
-            <div class="sub-section">
-              <div class="col-left">
-                <div class="theme-img filler-img"></div>
+        <div class="content full">
+          <div class="content-primary">
+            <!-- Hero Section -->
+            <section id="hero" class="section hero">
+              <div class="header-img filler-img"></div>
+              <div>
+                <h2 class="section-header">Hi, I'm Tigger</h2>
+                <p class="text">This is where I share all of the things I work on--MOCs, Blender renders,
+                  Unreal Engine projects, coding, violin progress, and everything else.
+                  I use this website to compile all of my miscellanious projects, ideas,
+                  and scraps of info into one place so that I can return to them later
+                  (and hopefully help someone else out in the process).</p>
               </div>
-              <div class="col-right">
-                <h2 class="section-header">I Made this Website!</h2>
-                <p>This website is currently under development. It is used to showcase all of my passions and projects, in one unified place.</p>
-                <a class="button" href="/Main/Projects.html">Projects</a>
-              </div>
-            </div>
+              <div class="header-img filler-img"></div>
+            </section>
 
-            <div class="sub-section">
-              <div class="col-left">
-                <div class="theme-img filler-img"></div>
+            <!-- Fade Sections -->
+            <section id="projects" class="section alt">
+              <div class="sub-section">
+                <div class="col-left">
+                  <div class="theme-img filler-img"></div>
+                </div>
+                <div class="col-right">
+                  <h2 class="section-header">I Made this Website!</h2>
+                  <p>This website is currently under development. It is used to showcase all of my passions and projects, in one unified place.</p>
+                  <a class="button" href="/Main/Projects.html">Projects</a>
+                </div>
               </div>
-              <div class="col-right">
-                <h2 class="section-header">LEGO Designer</h2>
-                <p>I have a bunch of MOCs that I have built over the years, and I am in the process of documenting them all on this website.</p>
-                <a class="button" href="/Main/Projects/MOCs.html">Browse MOCs</a>
-              </div>
-            </div>
 
-            <div class="sub-section">
-              <div class="col-left">
-                <div class="theme-img filler-img"></div>
+              <div class="sub-section">
+                <div class="col-left">
+                  <div class="theme-img filler-img"></div>
+                </div>
+                <div class="col-right">
+                  <h2 class="section-header">LEGO Designer</h2>
+                  <p>I have a bunch of MOCs that I have built over the years, and I am in the process of documenting them all on this website.</p>
+                  <a class="button" href="/Main/Projects/MOCs.html">Browse MOCs</a>
+                </div>
               </div>
-              <div class="col-right">
-                <h2 class="section-header">Developer</h2>
-                <p>I am a developer who enjoys building cool things and sharing my knowledge with others.</p>
-                <a class="button" href="/Main/Projects/Coding.html">Browse Code</a>
-              </div>
-            </div>
 
-            <div class="sub-section">
-              <div class="col-left">
-                <div class="theme-img filler-img"></div>
+              <div class="sub-section">
+                <div class="col-left">
+                  <div class="theme-img filler-img"></div>
+                </div>
+                <div class="col-right">
+                  <h2 class="section-header">Developer</h2>
+                  <p>I am a developer who enjoys building cool things and sharing my knowledge with others.</p>
+                  <a class="button" href="/Main/Projects/Coding.html">Browse Code</a>
+                </div>
               </div>
-              <div class="col-right">
-                <h2 class="section-header">Violinist</h2>
-                <p>I am a violinist who enjoys classical music and orchestral performance. I seek to one day perform in a major orchestra, and am always looking to better my playing skills.</p>
-                <a class="button" href="/Main/Music.html">Music</a>
-              </div>
-            </div>
-          </section>
 
-          <!-- Horozontal Tiles -->
-          <section class="section recent">
-            <h2 class="section-header">Recent</h2>
-            <div>
-              <!-- Recent projects, blogs, etc. will go here, in a list -->
-            </div>
-          </section>
-         </div>
+              <div class="sub-section">
+                <div class="col-left">
+                  <div class="theme-img filler-img"></div>
+                </div>
+                <div class="col-right">
+                  <h2 class="section-header">Violinist</h2>
+                  <p>I am a violinist who enjoys classical music and orchestral performance. I seek to one day perform in a major orchestra, and am always looking to better my playing skills.</p>
+                  <a class="button" href="/Main/Music.html">Music</a>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- Horozontal Tiles -->
+            <section class="section recent">
+              <h2 class="section-header">Recent</h2>
+              <div>
+                <!-- Recent projects, blogs, etc. will go here, in a list -->
+              </div>
+            </section>
+          
+          </div>
 
         </div>
       
-      <!-- Page Footer -->
-      <div id="site-footer" class="footer"></div>
-      <script src="/static/js/LoadFooter.js" defer></script>
-    </main>
+        <!-- Footer Loader -->
+        <div id="site-footer" class="footer"></div>
+        <script src="/static/js/LoadFooter.js" defer></script>
+      </main>
 
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/img/filler-img.js"></script>
+    <script src="/static/js/themes.js"></script>
+  
   </div>
-
-  <script src="/static/js/main.js"></script>
-  <script src="/static/img/filler-img.js"></script>
-  <script src="/static/js/themes.js"></script>
 
 </body>
 </html>

@@ -37,13 +37,12 @@
 
 .fx-gradient {
   background: linear-gradient(-45deg,
-    color-mix(in srgb, var(--theme-accent) 30%, transparent),
-    color-mix(in srgb, var(--theme-strong) 20%, transparent),
-    color-mix(in srgb, var(--theme-soft) 50%, transparent)
+    color-mix(in srgb, var(--theme-accent) 20%, #000),
+    color-mix(in srgb, var(--theme-strong) 40%, #000),
+    color-mix(in srgb, var(--theme-soft) 20%, #000)
   );
-  background-size: 400% 400%;
+  background-size: 400% 200%;
   animation: gradient 15s ease infinite;
-  min-height: 100%;
 }
 
 @keyframes gradient {
