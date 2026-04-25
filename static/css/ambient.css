@@ -53,12 +53,14 @@
 }
 
 /* --------------------------------------------------
-   Grids
+   Grid
 -------------------------------------------------- */
-.fx-grid-pulse {
+.fx-grid {
+  --grid-first: rgba(225,230,255,0.12);
+  --grid-second: rgba(255,255,255,0.12);
   background:
-    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-first) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-second) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: gridPulse 6s ease-in-out infinite alternate;
 }
@@ -66,31 +68,4 @@
 @keyframes gridPulse {
   0% { opacity: 0.15; }
   100% { opacity: 0.3; }
-}
-
-.fx-grid-nodes {
-  background:
-    radial-gradient(circle, rgba(255,255,255,0.25) 2px, transparent 2px),
-    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: nodes 4s ease-in-out infinite alternate;
-}
-
-@keyframes nodes {
-  0% { opacity: 0.15; }
-  100% { opacity: 0.3; }
-}
-
-.fx-grid-drift {
-  background:
-    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: drift 20s ease-in-out infinite alternate;
-}
-
-@keyframes drift {
-  0% { background-position: 0px 0px; }
-  100% { background-position: 4px 6px; }
 }
