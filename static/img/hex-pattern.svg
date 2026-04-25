@@ -2,9 +2,8 @@
      xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .hex { fill:none; stroke:white; stroke-width:2.2; stroke-opacity:0.26; }
-      .hex-faint { fill:none; stroke:white; stroke-width:2.2; stroke-opacity:0.2; }
-      .line { fill:none; stroke:white; stroke-width:2.2; stroke-linecap:round; }
+      .hex { fill:none; stroke:#4d4d4d; stroke-width:2.2; stroke-opacity:0.26; }
+      .hex-faint { fill:none; stroke:#4d4d4d; stroke-width:2.2; stroke-opacity:0.2; }
     </style>
     <polyline id="fairy-dust" class="hex-faint" points="0,0 20,0" />
   </defs>
