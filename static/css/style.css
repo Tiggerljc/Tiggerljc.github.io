@@ -91,6 +91,7 @@
 html, body {
   min-height: 100%;
   margin: 0;
+  padding: 100px 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-primary);
@@ -105,8 +106,6 @@ html, body {
   display: grid; /* flex; */
   grid-template-columns: auto 1fr;
   max-width: 1440px;
-  margin: 0 auto;
-  padding: 100px 0;
   border-radius: var(--radius-3);
   overflow: hidden;
   box-shadow: var(--shadow-strong);
