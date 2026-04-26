@@ -118,6 +118,9 @@ padding: 100px 0;
   align-items: stretch;
   align-content: stretch;
 }
+.layout.full { max-width: none; }
+.layout.wide { max-width: 1600px; }
+.layout.compact { max-width: 900px; }
 
 /* Header shift when sidebar expands */
 .layout.sidebar-expanded .site-nav {

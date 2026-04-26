@@ -123,6 +123,24 @@
                     </section>
                     
                     <button class="button" onclick="localStorage.removeItem('site-theme'); location.reload();">Reset Theme</button>
+
+                    <label>Layout Mode</label>
+                    <select id="layout-mode">
+                      <option value="normal">Normal</option>
+                      <option value="full">Full</option>
+                      <option value="wide">Wide</option>
+                      <option value="compact">Compact</option>
+                    </select>
+
+                    <label>Sidebar Mode</label>
+                    <select id="sidebar-mode">
+                      <option value="default">Default</option>
+                      <option value="static-open">Static Open</option>
+                      <option value="static-closed">Static Closed</option>
+                      <option value="hover">Hover Only</option>
+                      <option value="toggle">Toggle Only</option>
+                    </select>
+
                 </div>
                 <aside class="content-aside">
                     <!-- Featured Section -->
