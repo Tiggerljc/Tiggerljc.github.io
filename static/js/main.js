@@ -99,3 +99,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadSettings();
 });
+
+function applyFadeIns() {
+  const fadeEls = document.querySelectorAll('.fade');
+
+  // Reset all fade elements
+  fadeEls.forEach(el => el.classList.remove('visible'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+         observer.unobserve(entry.target); // optional: stop observing once visible
+      }
+    });
+  }, { threshold: 0.15 });
+
+  fadeEls.forEach(el => observer.observe(el));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyFadeIns();
+});
+
+// Listen for SPA navigation
+document.addEventListener("spa-page-loaded", () => {
+  applyFadeIns();
+  const saved = localStorage.getItem("site-theme");
+  if (saved && themes[saved]) {
+    updateFillerImages(themes[saved]);
+  }
+});

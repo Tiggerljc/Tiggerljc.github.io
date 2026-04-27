@@ -104,6 +104,18 @@ min-height: 100%;
 padding: 100px 0;
 }
 
+/* Element fade-in */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ---------- Layout Wrapper (#app.layout) ---------- */
 .layout {
   display: grid; /* flex; */
@@ -497,7 +509,7 @@ button:focus-visible, .button:focus-visible {
   flex: 1;
   padding: 28px;
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr;
   gap: 22px;
   min-height: 1200px;
   background: var(--bg);
@@ -538,7 +550,7 @@ button:focus-visible, .button:focus-visible {
 
 .content {
   background: transparent;
-  grid-row: 2/3;
+  grid-row: 2;
   grid-column: 1 / -1;
   display: grid;
   grid-auto-rows: auto;
