@@ -130,3 +130,11 @@ document.addEventListener("spa-page-loaded", () => {
     updateFillerImages(themes[saved]);
   }
 });
+
+// Update the page title dynamically
+document.addEventListener("page-title-changed", (e) => {
+  const title = e.detail.title || "Tigger.dev";
+  document.title = `${title} - Tigger.dev`;
+  const titleElement = document.getElementById("page-title");
+  if (titleElement) titleElement.textContent = title;
+});

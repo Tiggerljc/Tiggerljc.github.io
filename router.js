@@ -1,42 +1,65 @@
 // router.js
 
-async function loadPage(url, push = true) {
-  const content = document.getElementById('content');
+async function loadPage(url) {
+  let content = document.getElementById('content');
+  if (!content) return;
+
+  // Normalize URL
+  if (!url.startsWith('/')) url = '/' + url;
 
   // Fade out
-  content.classList.add('fade-out');
+  content.classList.add('fade');
 
-  // Fetch page
-  const html = await fetch(url).then(r => r.text());
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-
-  // Extract new content
-  const newContent = doc.querySelector('#content');
-  const meta = doc.querySelector('#page-meta');
-
-  setTimeout(() => {
-    // Replace content
-    content.replaceWith(newContent);
+  try {
+    // Fetch page
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     
-    // Update titlebar
-    if (meta) {
-      const data = JSON.parse(meta.textContent);
-      document.dispatchEvent(new CustomEvent("page-title-changed", { detail: data }));
-    }
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    // Scroll to top
-    smoothScrollToTop();
+    // Extract new content
+    const newContent = doc.querySelector('#content');
+    const meta = doc.querySelector('#page-meta');
 
-    // Fade in
-    newContent.classList.add('fade-in');
+    setTimeout(() => {
+      if (!newContent) {
+        content.classList.remove('fade');
+        console.warn(`No #content found in ${url}`);
+        return;
+      }
 
-    // Tell main.js that new content has loaded
-    document.dispatchEvent(new Event("spa-page-loaded"));
+      // Re-query in case content changed
+      content = document.getElementById('content');
+      if (!content) return;
 
-    // Update URL
-    if (push) history.pushState({}, "", url);
+      // Replace content
+      content.replaceWith(newContent);
+      
+      // Update titlebar
+      if (meta) {
+        try {
+          const data = JSON.parse(meta.textContent);
+          document.dispatchEvent(new CustomEvent("page-title-changed", { detail: data }));
+        } catch (e) {
+          console.warn('Invalid page-meta JSON', e);
+        }
+      }
 
-  }, 250);
+      // Scroll to top
+      smoothScrollToTop();
+
+      // Fade in
+      newContent.classList.add('fade', 'visible');
+
+      // Tell main.js that new content has loaded
+      document.dispatchEvent(new Event("spa-page-loaded"));
+    }, 250);
+  } catch (err) {
+    console.error(`Failed to load ${url}:`, err);
+    content = document.getElementById('content');
+    if (content) content.classList.remove('fade');
+  }
 }
 
 // Intercept link clicks
@@ -45,15 +68,11 @@ document.addEventListener('click', (e) => {
   if (!link || link.target === "_blank") return;
 
   const url = link.getAttribute('href');
-  if (!url.startsWith('/')) return;
+  if (!url.startsWith('#/')) return;
 
   e.preventDefault();
-  loadPage(url);
-});
-
-// Back/forward
-window.addEventListener('popstate', () => {
-  loadPage(location.pathname, false);
+  location.hash = url;
+  // loadPage(url.replace('#', ''));
 });
 
 // Smooth scroll
@@ -72,10 +91,19 @@ function smoothScrollToTop() {
   requestAnimationFrame(animate);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (location.pathname === "/" || location.pathname === "/index.html") {
-    loadPage("/home.html", false);
-  } else {
-    loadPage(location.pathname, false);
+function handleRoute() {
+  let hash = location.hash;
+
+  if (!hash || hash === '#') {
+    loadPage('/home.html');
+    return;
   }
-});
+
+  // Remove "#" or "#/"
+  const path = hash.startsWith('#/') ? hash.slice(2) : hash.slice(1);
+
+  loadPage("/" + path);
+}
+
+document.addEventListener("DOMContentLoaded", handleRoute);
+window.addEventListener("hashchange", handleRoute);

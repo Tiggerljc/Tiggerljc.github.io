@@ -1,168 +1,216 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Settings – Tigger.dev</title>
-  <link rel="icon" href="/static/img/favicon.svg">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <script id="page-meta" type="application/json">
-    {
-      "title": "Settings"
-    }
-  </script>
-</head>
-<body>
-  <div class="page">
+<script id="page-meta" type="application/json">
+{
+  "title": "Settings"
+}
+</script>
 
-    <!-- Header Loader -->
-    <div id="site-header"></div>
-    <script src="/static/js/LoadHeader.js" defer></script>
-    
-    <!-- Main Content -->
-    <div id="app" class="layout">
+<div id="content" class="content">
+  <div class="content-primary">
 
-        <!-- Sidebar Loader -->
-        <div id="site-sidebar"></div>
-        <script src="/static/js/LoadSidebar.js" defer></script>
+    <h1>Settings</h1>
+    <p class="text">
+      This is the settings page. It is currently under development,
+      and allows for theme customization.
+    </p>
 
-        <main class="main" role="main">
+    <h2>Theme Selection</h2>
 
-            <!-- Titlebar loader -->
-            <div id="site-titlebar"></div>
-            <script src="/static/js/LoadTitlebar.js" defer></script>
+    <!-- Reds -->
+    <section class="theme-family">
+      <h3>Reds</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(220,20,60,0.18); --button-shadow: rgba(220,20,60,0.15); --button-border: rgba(220,20,60,0.18);"
+          onclick="applyTheme('crimson')">Crimson</button>
 
-            <div class="content">
-                <div class="content-primary">
-                    <h1>Settings</h1>
-                    <p class="text">This is the settings page. It is currently under development,
-                        and allows for theme customization.</p>
+        <button class="button"
+          style="--button-bg-hover: rgba(255,36,0,0.18); --button-shadow: rgba(255,36,0,0.15); --button-border: rgba(255,36,0,0.18);"
+          onclick="applyTheme('scarlet')">Scarlet</button>
 
-                    <h2>Theme Selection</h2>
-                    
-                    <section class="theme-family">
-                      <h3>Reds</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(220,20,60,0.18); --button-shadow: rgba(220,20,60,0.15); --button-border: rgba(220,20,60,0.18);" onclick="applyTheme('crimson')">Crimson</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,36,0,0.18); --button-shadow: rgba(255,36,0,0.15); --button-border: rgba(255,36,0,0.18);" onclick="applyTheme('scarlet')">Scarlet</button>
-                        <button class="button" style="--button-bg-hover: rgba(227,66,52,0.18); --button-shadow: rgba(227,66,52,0.15); --button-border: rgba(227,66,52,0.18);" onclick="applyTheme('vermilion')">Vermilion</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Oranges</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(255,106,26,0.18); --button-shadow: rgba(255,106,26,0.22); --button-border: rgba(255,106,26,0.18);" onclick="applyTheme('orange')">Orange</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,127,80,0.18); --button-shadow: rgba(255,127,80,0.15); --button-border: rgba(255,127,80,0.18);" onclick="applyTheme('coral')">Coral</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,191,0,0.18); --button-shadow: rgba(255,191,0,0.15); --button-border: rgba(255,191,0,0.18);" onclick="applyTheme('amber')">Amber</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,215,0,0.18); --button-shadow: rgba(255,215,0,0.15); --button-border: rgba(255,215,0,0.18);" onclick="applyTheme('gold')">Gold</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Yellows</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(255,247,0,0.18); --button-shadow: rgba(255,247,0,0.15); --button-border: rgba(255,247,0,0.18);" onclick="applyTheme('lemon')">Lemon</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,219,88,0.18); --button-shadow: rgba(255,219,88,0.15); --button-border: rgba(255,219,88,0.18);" onclick="applyTheme('mustard')">Mustard</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Greens</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(57,255,20,0.18); --button-shadow: rgba(57,255,20,0.22); --button-border: rgba(57,255,20,0.18);" onclick="applyTheme('green')">Green</button>
-                        <button class="button" style="--button-bg-hover: rgba(50,205,50,0.18); --button-shadow: rgba(50,205,50,0.15); --button-border: rgba(50,205,50,0.18);" onclick="applyTheme('lime')">Lime</button>
-                        <button class="button" style="--button-bg-hover: rgba(80,200,120,0.18); --button-shadow: rgba(80,200,120,0.15); --button-border: rgba(80,200,120,0.18);" onclick="applyTheme('emerald')">Emerald</button>
-                        <button class="button" style="--button-bg-hover: rgba(0,128,128,0.18); --button-shadow: rgba(0,128,128,0.15); --button-border: rgba(0,128,128,0.18);" onclick="applyTheme('teal')">Teal</button>
-                        <button class="button" style="--button-bg-hover: rgba(128,128,0,0.18); --button-shadow: rgba(128,128,0,0.15); --button-border: rgba(128,128,0,0.18);" onclick="applyTheme('olive')">Olive</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Cyans</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(0,255,255,0.18); --button-shadow: rgba(0,255,255,0.15); --button-border: rgba(0,255,255,0.18);" onclick="applyTheme('cyan')">Cyan</button>
-                        <button class="button" style="--button-bg-hover: rgba(0,127,255,0.18); --button-shadow: rgba(0,127,255,0.15); --button-border: rgba(0,127,255,0.18);" onclick="applyTheme('azure')">Azure</button>
-                        <button class="button" style="--button-bg-hover: rgba(0,247,255,0.18); --button-shadow: rgba(0,247,255,0.22); --button-border: rgba(0,247,255,0.18);" onclick="applyTheme('turquoise')">Turquoise</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Blues</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(15,82,186,0.18); --button-shadow: rgba(15,82,186,0.15); --button-border: rgba(15,82,186,0.18);" onclick="applyTheme('sapphire')">Sapphire</button>
-                        <button class="button" style="--button-bg-hover: rgba(75,0,130,0.18); --button-shadow: rgba(75,0,130,0.15); --button-border: rgba(75,0,130,0.18);" onclick="applyTheme('indigo')">Indigo</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Purples</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(199,125,255,0.18); --button-shadow: rgba(199,125,255,0.22); --button-border: rgba(199,125,255,0.18);" onclick="applyTheme('purple')">Purple</button>
-                        <button class="button" style="--button-bg-hover: rgba(138,43,226,0.18); --button-shadow: rgba(138,43,226,0.15); --button-border: rgba(138,43,226,0.18);" onclick="applyTheme('violet')">Violet</button>
-                        <button class="button" style="--button-bg-hover: rgba(230,230,250,0.18); --button-shadow: rgba(230,230,250,0.15); --button-border: rgba(230,230,250,0.18);" onclick="applyTheme('lavender')">Lavender</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Pinks & Magentas</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(255,0,255,0.18); --button-shadow: rgba(255,0,255,0.15); --button-border: rgba(255,0,255,0.18);" onclick="applyTheme('magenta')">Magenta</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,0,255,0.18); --button-shadow: rgba(255,0,255,0.15); --button-border: rgba(255,0,255,0.18);" onclick="applyTheme('fuchsia')">Fuchsia</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,0,127,0.18); --button-shadow: rgba(255,0,127,0.15); --button-border: rgba(255,0,127,0.18);" onclick="applyTheme('rose')">Rose</button>
-                        <button class="button" style="--button-bg-hover: rgba(255,192,203,0.18); --button-shadow: rgba(255,192,203,0.15); --button-border: rgba(255,192,203,0.18);" onclick="applyTheme('pink')">Pink</button>
-                      </div>
-                    </section>
-                    
-                    <section class="theme-family">
-                      <h3>Peaches</h3>
-                      <div class="theme-buttons">
-                        <button class="button" style="--button-bg-hover: rgba(255,218,185,0.18); --button-shadow: rgba(255,218,185,0.15); --button-border: rgba(255,218,185,0.18);" onclick="applyTheme('peach')">Peach</button>
-                        <button class="button" style="--button-bg-hover: rgba(251,206,177,0.18); --button-shadow: rgba(251,206,177,0.15); --button-border: rgba(251,206,177,0.18);" onclick="applyTheme('apricot')">Apricot</button>
-                      </div>
-                    </section>
-                    
-                    <button class="button" onclick="localStorage.removeItem('site-theme'); location.reload();">Reset Theme</button>
+        <button class="button"
+          style="--button-bg-hover: rgba(227,66,52,0.18); --button-shadow: rgba(227,66,52,0.15); --button-border: rgba(227,66,52,0.18);"
+          onclick="applyTheme('vermilion')">Vermilion</button>
+      </div>
+    </section>
 
-                    <label>Layout Mode</label>
-                    <select id="layout-mode">
-                      <option value="normal">Normal</option>
-                      <option value="full">Full</option>
-                      <option value="wide">Wide</option>
-                      <option value="compact">Compact</option>
-                    </select>
+    <!-- Oranges -->
+    <section class="theme-family">
+      <h3>Oranges</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(255,106,26,0.18); --button-shadow: rgba(255,106,26,0.22); --button-border: rgba(255,106,26,0.18);"
+          onclick="applyTheme('orange')">Orange</button>
 
-                    <label>Sidebar Mode</label>
-                    <select id="sidebar-mode">
-                      <option value="default">Default</option>
-                      <option value="static-open">Static Open</option>
-                      <option value="static-closed">Static Closed</option>
-                      <option value="hover">Hover Only</option>
-                      <option value="toggle">Toggle Only</option>
-                    </select>
+        <button class="button"
+          style="--button-bg-hover: rgba(255,127,80,0.18); --button-shadow: rgba(255,127,80,0.15); --button-border: rgba(255,127,80,0.18);"
+          onclick="applyTheme('coral')">Coral</button>
 
-                </div>
-                <aside class="content-aside">
-                    <!-- Featured Section -->
-                    <section class="section featured">
-                        <h2 class="aside-header">Settings!</h2>
-                        <div>
-                            <!-- Featured posts will go here, in a list of tiles -->
-                        </div>
-                    </section>
-                </aside>
-            </div>
+        <button class="button"
+          style="--button-bg-hover: rgba(255,191,0,0.18); --button-shadow: rgba(255,191,0,0.15); --button-border: rgba(255,191,0,0.18);"
+          onclick="applyTheme('amber')">Amber</button>
 
-            <!-- Footer Loader -->
-            <div id="site-footer" class="footer"></div>
-            <script src="/static/js/LoadFooter.js" defer></script>
+        <button class="button"
+          style="--button-bg-hover: rgba(255,215,0,0.18); --button-shadow: rgba(255,215,0,0.15); --button-border: rgba(255,215,0,0.18);"
+          onclick="applyTheme('gold')">Gold</button>
+      </div>
+    </section>
 
-        </main>
-    </div>
-    <script src="/static/js/main.js"></script>
-    <script src="/static/img/filler-img.js"></script>
-    <script src="/static/js/themes.js"></script>
+    <!-- Yellows -->
+    <section class="theme-family">
+      <h3>Yellows</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(255,247,0,0.18); --button-shadow: rgba(255,247,0,0.15); --button-border: rgba(255,247,0,0.18);"
+          onclick="applyTheme('lemon')">Lemon</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(255,219,88,0.18); --button-shadow: rgba(255,219,88,0.15); --button-border: rgba(255,219,88,0.18);"
+          onclick="applyTheme('mustard')">Mustard</button>
+      </div>
+    </section>
+
+    <!-- Greens -->
+    <section class="theme-family">
+      <h3>Greens</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(57,255,20,0.18); --button-shadow: rgba(57,255,20,0.22); --button-border: rgba(57,255,20,0.18);"
+          onclick="applyTheme('green')">Green</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(50,205,50,0.18); --button-shadow: rgba(50,205,50,0.15); --button-border: rgba(50,205,50,0.18);"
+          onclick="applyTheme('lime')">Lime</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(80,200,120,0.18); --button-shadow: rgba(80,200,120,0.15); --button-border: rgba(80,200,120,0.18);"
+          onclick="applyTheme('emerald')">Emerald</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(0,128,128,0.18); --button-shadow: rgba(0,128,128,0.15); --button-border: rgba(0,128,128,0.18);"
+          onclick="applyTheme('teal')">Teal</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(128,128,0,0.18); --button-shadow: rgba(128,128,0,0.15); --button-border: rgba(128,128,0,0.18);"
+          onclick="applyTheme('olive')">Olive</button>
+      </div>
+    </section>
+
+    <!-- Cyans -->
+    <section class="theme-family">
+      <h3>Cyans</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(0,255,255,0.18); --button-shadow: rgba(0,255,255,0.15); --button-border: rgba(0,255,255,0.18);"
+          onclick="applyTheme('cyan')">Cyan</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(0,127,255,0.18); --button-shadow: rgba(0,127,255,0.15); --button-border: rgba(0,127,255,0.18);"
+          onclick="applyTheme('azure')">Azure</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(0,247,255,0.18); --button-shadow: rgba(0,247,255,0.22); --button-border: rgba(0,247,255,0.18);"
+          onclick="applyTheme('turquoise')">Turquoise</button>
+      </div>
+    </section>
+
+    <!-- Blues -->
+    <section class="theme-family">
+      <h3>Blues</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(15,82,186,0.18); --button-shadow: rgba(15,82,186,0.15); --button-border: rgba(15,82,186,0.18);"
+          onclick="applyTheme('sapphire')">Sapphire</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(75,0,130,0.18); --button-shadow: rgba(75,0,130,0.15); --button-border: rgba(75,0,130,0.18);"
+          onclick="applyTheme('indigo')">Indigo</button>
+      </div>
+    </section>
+
+    <!-- Purples -->
+    <section class="theme-family">
+      <h3>Purples</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(199,125,255,0.18); --button-shadow: rgba(199,125,255,0.22); --button-border: rgba(199,125,255,0.18);"
+          onclick="applyTheme('purple')">Purple</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(138,43,226,0.18); --button-shadow: rgba(138,43,226,0.15); --button-border: rgba(138,43,226,0.18);"
+          onclick="applyTheme('violet')">Violet</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(230,230,250,0.18); --button-shadow: rgba(230,230,250,0.15); --button-border: rgba(230,230,250,0.18);"
+          onclick="applyTheme('lavender')">Lavender</button>
+      </div>
+    </section>
+
+    <!-- Pinks -->
+    <section class="theme-family">
+      <h3>Pinks & Magentas</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(255,0,255,0.18); --button-shadow: rgba(255,0,255,0.15); --button-border: rgba(255,0,255,0.18);"
+          onclick="applyTheme('magenta')">Magenta</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(255,0,255,0.18); --button-shadow: rgba(255,0,255,0.15); --button-border: rgba(255,0,255,0.18);"
+          onclick="applyTheme('fuchsia')">Fuchsia</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(255,0,127,0.18); --button-shadow: rgba(255,0,127,0.15); --button-border: rgba(255,0,127,0.18);"
+          onclick="applyTheme('rose')">Rose</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(255,192,203,0.18); --button-shadow: rgba(255,192,203,0.15); --button-border: rgba(255,192,203,0.18);"
+          onclick="applyTheme('pink')">Pink</button>
+      </div>
+    </section>
+
+    <!-- Peaches -->
+    <section class="theme-family">
+      <h3>Peaches</h3>
+      <div class="theme-buttons">
+        <button class="button"
+          style="--button-bg-hover: rgba(255,218,185,0.18); --button-shadow: rgba(255,218,185,0.15); --button-border: rgba(255,218,185,0.18);"
+          onclick="applyTheme('peach')">Peach</button>
+
+        <button class="button"
+          style="--button-bg-hover: rgba(251,206,177,0.18); --button-shadow: rgba(251,206,177,0.15); --button-border: rgba(251,206,177,0.18);"
+          onclick="applyTheme('apricot')">Apricot</button>
+      </div>
+    </section>
+
+    <button class="button"
+      onclick="localStorage.removeItem('site-theme'); location.reload();">
+      Reset Theme
+    </button>
+
+    <label>Layout Mode</label>
+    <select id="layout-mode">
+      <option value="normal">Normal</option>
+      <option value="full">Full</option>
+      <option value="wide">Wide</option>
+      <option value="compact">Compact</option>
+    </select>
+
+    <label>Sidebar Mode</label>
+    <select id="sidebar-mode">
+      <option value="default">Default</option>
+      <option value="static-open">Static Open</option>
+      <option value="static-closed">Static Closed</option>
+      <option value="hover">Hover Only</option>
+      <option value="toggle">Toggle Only</option>
+    </select>
 
   </div>
-</body>
-</html>
+
+  <aside class="content-aside">
+    <section class="section featured">
+      <h2 class="aside-header">Settings!</h2>
+      <div>
+        <!-- Featured posts go here -->
+      </div>
+    </section>
+  </aside>
+</div>

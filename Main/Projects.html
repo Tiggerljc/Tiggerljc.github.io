@@ -1,45 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projects – Tigger.dev</title>
-  <link rel="icon" href="/static/img/favicon.svg">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <script id="page-meta" type="application/json">
+<script id="page-meta" type="application/json">
     {
       "title": "Projects"
     }
-  </script>
-</head>
-<body>
+</script>
 
-    <!-- Header Loader -->
-    <div id="site-header"></div>
-    <script src="/static/js/LoadHeader.js" defer></script>
-    
-    <!-- Main Content -->
-    <div id="app" class="layout">
-
-        <!-- Sidebar Loader -->
-        <div id="site-sidebar"></div>
-        <script src="/static/js/LoadSidebar.js" defer></script>
-
-        <main class="main" role="main">
-
-            <!-- Title Bar -->
-            <div id="site-titlebar"></div>
-            <script src="/static/js/LoadTitlebar.js" defer></script>
-
-            <div class="content">
-                <div class="content-primary">
-                    <section class="section project-section">
+<div id="content" class="content">
+    <div class="content-primary">
+        <section class="section project-section">
             <h2 class="section-header">Project Categories</h2>
 
             <div class="category-grid">
 
               <!-- MOCs -->
-              <a class="category-card" href="/Main/Projects/MOCs.html">
+              <a class="category-card" href="#/Main/Projects/MOCs.html">
                 <div class="card-image filler-img"></div>
                 <div class="card-content">
                   <h3>MOCs</h3>
@@ -48,7 +21,7 @@
               </a>
 
               <!-- Coding -->
-              <a class="category-card" href="/Main/Projects/Coding.html">
+              <a class="category-card" href="#/Main/Projects/Coding.html">
                 <div class="card-image filler-img"></div>
                <div class="card-content">
                   <h3>Coding</h3>
@@ -57,7 +30,7 @@
               </a>
 
               <!-- Blender / 3D Design -->
-              <a class="category-card" href="/Main/Projects/Blender.html">
+              <a class="category-card" href="#/Main/Projects/Blender.html">
                 <div class="card-image filler-img"></div>
                 <div class="card-content">
                   <h3>Blender / 3D Design</h3>
@@ -66,7 +39,7 @@
               </a>
 
               <!-- Unreal Engine -->
-              <a class="category-card" href="/Main/Projects/UnrealEngine.html">
+              <a class="category-card" href="#/Main/Projects/UnrealEngine.html">
                 <div class="card-image filler-img"></div>
                 <div class="card-content">
                   <h3>Unreal Engine</h3>
@@ -75,7 +48,7 @@
               </a>
 
               <!-- Violin -->
-              <a class="category-card" href="/Main/Projects/Violin.html">
+              <a class="category-card" href="#/Main/Projects/Violin.html">
                 <div class="card-image filler-img"></div>
                 <div class="card-content">
                   <h3>Violin</h3>
@@ -84,7 +57,7 @@
               </a>
 
               <!-- Notes / School -->
-              <a class="category-card" href="/Main/Projects/School.html">
+              <a class="category-card" href="#/Main/Projects/School.html">
                 <div class="card-image filler-img"></div>
                 <div class="card-content">
                   <h3>Notes / School</h3>
@@ -94,25 +67,14 @@
 
             </div>
           </section>
-                </div>
-                <aside class="content-aside">
-                    <!-- Featured Section -->
-                    <section class="section featured">
-                        <h2 class="aside-header">Featured Posts</h2>
-                        <div>
-                            <!-- Featured posts will go here, in a list of tiles -->
-                        </div>
-                    </section>
-                </aside>
-            </div>
-
-            <div id="site-footer" class="footer"></div>
-            <script src="/static/js/LoadFooter.js" defer></script>
-
-        </main>
     </div>
-    <script src="/static/js/main.js"></script>
-    <script src="/static/img/filler-img.js"></script>
-    <script src="/static/js/themes.js"></script>
-</body>
-</html>
+    <aside class="content-aside">
+        <!-- Featured Section -->
+        <section class="section featured">
+            <h2 class="aside-header">Featured Posts</h2>
+            <div>
+                <!-- Featured posts will go here, in a list of tiles -->
+            </div>
+        </section>
+    </aside>
+</div>

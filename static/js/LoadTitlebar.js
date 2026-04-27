@@ -14,10 +14,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to load titlebar:", err);
   }
 });
-
-// Update the title dynamically
-document.addEventListener("page-title-changed", (e) => {
-  const title = e.detail.title || "Untitled";
-  const titleElement = document.getElementById("page-title");
-  if (titleElement) titleElement.textContent = title;
-});
