@@ -62,3 +62,26 @@
     linear-gradient(to bottom, rgba(225,230,255,0.12) 1px, transparent 1px);
   background-size: 60px 60px;
 }
+
+/* --------------------------------------------------
+   Glass (semi-transparent glassmorphism effect)
+-------------------------------------------------- */
+.glass {
+  background: linear-gradient(
+      145deg,
+      rgba(var(--theme-accent), 0.10) 0%,
+      rgba(var(--theme-accent), 0.06) 40%,
+      rgba(var(--theme-accent), 0.04) 60%,
+      rgba(var(--theme-accent), 0.10) 100%
+  );
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+
+  border-radius: var(--radius-3);
+  border: 1px solid rgba(var(--theme-accent), 0.22);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.45),
+    inset 0 0 1px rgba(255,255,255,0.25),
+    inset 0 0 12px rgba(var(--theme-accent), 0.08);
+}

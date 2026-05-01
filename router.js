@@ -71,8 +71,9 @@ document.addEventListener('click', (e) => {
   if (!url.startsWith('#/')) return;
 
   e.preventDefault();
+  // Remove focus from links to prevent focus styles from sticking
+  link.blur();
   location.hash = url;
-  // loadPage(url.replace('#', ''));
 });
 
 // Smooth scroll
@@ -95,7 +96,7 @@ function handleRoute() {
   let hash = location.hash;
 
   if (!hash || hash === '#') {
-    loadPage('/home.html');
+    loadPage('/pages/home.html');
     return;
   }
 

@@ -5,45 +5,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tigger.dev</title>
   <link rel="icon" href="/static/img/favicon.svg">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/styles/style.css">
   <script src="/router.js" defer></script>
   <script src="/static/img/filler-img.js" defer></script>
-  <script src="/static/js/themes.js" defer></script>
-  <script src="/static/js/main.js" defer></script>
+  <script src="/static/scripts/themes.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script type="module" src="/static/scripts/loader.js" defer></script>
 </head>
 <body class="fx-grid">
-  
   <div class="page">
-    
-    <!-- Header Loader -->
+
+    <!-- Header -->
     <div id="site-header"></div>
-    <script src="/static/js/LoadHeader.js" defer></script>
 
     <!-- Main layout -->
     <div id="app" class="layout">
 
-      <!-- Sidebar Loader -->
+      <!-- Sidebar -->
       <div id="site-sidebar" class="sidebar"></div>
-      <script src="/static/js/LoadSidebar.js" defer></script>
 
+      <!-- Main content -->
       <main class="main fx-hex" role="main">
 
-        <!-- Titlebar Loader -->
+        <!-- Titlebar -->
         <div id="site-titlebar"></div>
-        <script src="/static/js/LoadTitlebar.js" defer></script>
 
         <!-- Dynamic content slot -->
         <div id="content"></div>
 
         <!-- Footer Loader -->
         <div id="site-footer" class="footer"></div>
-        <script src="/static/js/LoadFooter.js" defer></script>
 
       </main>
 
     </div>
 
   </div>
-
 </body>
 </html>

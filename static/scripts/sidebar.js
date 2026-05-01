@@ -9,6 +9,12 @@ let sidebarMode = localStorage.getItem('sidebar-mode') || 'default';
 // Mode flags
 let isStaticOpen, isStaticClosed, isHoverOnly, isToggleOnly;
 
+// Hover intent timer
+let hoverTimer = null;
+
+// Tracks whether user explicitly collapsed via toggle
+let userCollapsed = false;
+
 function updateModeFlags(mode) {
   sidebarMode = mode;
   isStaticOpen   = mode === 'static-open';
@@ -20,18 +26,18 @@ function updateModeFlags(mode) {
 }
 
 function applySidebarBehavior() {
-  // Reset everything
+  // Reset
   toggle.style.display = "";
   sidebar.classList.remove('collapsed');
   layout.classList.remove('sidebar-expanded');
 
   // Always re-enable hover listeners (we may disable them later)
-  sidebar.addEventListener('mouseenter', hoverOpen);
-  sidebar.addEventListener('mouseleave', hoverClose);
+  sidebar.addEventListener('mouseenter', onHoverEnter);
+  sidebar.addEventListener('mouseleave', onHoverLeave);
 
   // DEFAULT MODE
   if (sidebarMode === 'default') {
-    sidebar.classList.add('collapsed'); // default starts collapsed
+    sidebar.classList.add('collapsed');
     return;
   }
 
@@ -60,13 +66,11 @@ function applySidebarBehavior() {
   // TOGGLE ONLY
   if (isToggleOnly) {
     sidebar.classList.add('collapsed');
-    sidebar.removeEventListener('mouseenter', hoverOpen);
-    sidebar.removeEventListener('mouseleave', hoverClose);
+    sidebar.removeEventListener('mouseenter', onHoverEnter);
+    sidebar.removeEventListener('mouseleave', onHoverLeave);
     return;
   }
 }
-
-let userCollapsed = false;
 
 function setExpanded(expanded) {
   if (expanded) {
@@ -80,24 +84,36 @@ function setExpanded(expanded) {
   }
 }
 
-// Named hover handlers
-function hoverOpen() {
-  if (isStaticOpen || isStaticClosed || isToggleOnly) return;
-
-  // Prevent auto-open on page load
-  if (!sidebar.matches(':hover')) return;
-
-  if (window.innerWidth > 880) setExpanded(true);
+function autoCollapse() {
+  sidebar.classList.add('collapsed');
+  layout.classList.remove('sidebar-expanded');
+  // DO NOT set userCollapsed = true
 }
 
-function hoverClose() {
+// HOVER INTENT HANDLERS
+function onHoverEnter() {
   if (isStaticOpen || isStaticClosed || isToggleOnly) return;
-  if (window.innerWidth > 880 && !userCollapsed) setExpanded(false);
+  if (window.innerWidth <= 880) return;
+
+  clearTimeout(hoverTimer);
+
+  if (!userCollapsed) {
+    hoverTimer = setTimeout(() => {
+      setExpanded(true);   // <-- correct
+    }, 250);
+  }
 }
 
-// Attach hover listeners
-sidebar.addEventListener('mouseenter', hoverOpen);
-sidebar.addEventListener('mouseleave', hoverClose);
+function onHoverLeave() {
+  if (isStaticOpen || isStaticClosed || isToggleOnly) return;
+  if (window.innerWidth <= 880) return;
+
+  clearTimeout(hoverTimer);
+
+  if (!userCollapsed) {
+    autoCollapse();   // <-- correct
+  }
+}
 
 // Toggle button
 toggle.addEventListener('click', () => {
@@ -113,7 +129,7 @@ toggle.addEventListener('click', () => {
   }
 
   const willExpand = sidebar.classList.contains('collapsed');
-  setExpanded(willExpand);
+  setExpanded(willExpand); // this sets userCollapsed correctly
 });
 
 // Resize
@@ -135,7 +151,7 @@ dim.addEventListener('click', () => {
 });
 
 // Init
-updateModeFlags(sidebarMode); // handles collapsed/open state
+updateModeFlags(sidebarMode);
 handleResize();
 window.addEventListener('resize', handleResize);
 
