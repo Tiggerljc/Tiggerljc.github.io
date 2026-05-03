@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of partials and template folders
+Disallow: /templates
+Disallow: /templates/components
+Disallow: /static/components
+Disallow: /static/styles/scss
+
+# Sitemap: https://Tiggerljc.github.io/sitemap.xml (currently nonexistant; uncomment if used)

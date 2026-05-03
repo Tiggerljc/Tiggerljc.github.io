@@ -1,45 +1,40 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tigger.dev</title>
-  <link rel="icon" href="/static/img/favicon.svg">
-  <link rel="stylesheet" href="/static/styles/style.css">
-  <script src="/router.js" defer></script>
-  <script src="/static/img/filler-img.js" defer></script>
-  <script src="/static/scripts/themes.js" defer></script>
-  <script src="/main.js" defer></script>
-  <script type="module" src="/static/scripts/loader.js" defer></script>
-</head>
-<body class="fx-grid">
-  <div class="page">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Tigger.dev</title>
+		<link rel="icon" href="/static/img/favicon.svg" />
+		<link rel="stylesheet" href="/static/styles/css/main.css" />
+		<script src="/router.js" defer></script>
+		<script src="/static/img/filler-img.js" defer></script>
+		<script src="/static/scripts/themes.js" defer></script>
+		<script src="/main.js" defer></script>
+		<script type="module" src="/static/scripts/loader.js" defer></script>
+		<script src="/static/components/liquid-glass.js" defer></script>
+	</head>
+	<body class="fx-grid">
+		<div class="page">
+			<!-- Header -->
+			<div id="site-header"></div>
 
-    <!-- Header -->
-    <div id="site-header"></div>
+			<!-- Main layout -->
+			<div id="app" class="layout">
+				<!-- Sidebar -->
+				<div id="site-sidebar" class="sidebar"></div>
 
-    <!-- Main layout -->
-    <div id="app" class="layout">
+				<!-- Main content -->
+				<main class="main fx-hex" role="main">
+					<!-- Titlebar -->
+					<div id="site-titlebar"></div>
 
-      <!-- Sidebar -->
-      <div id="site-sidebar" class="sidebar"></div>
+					<!-- Dynamic content slot -->
+					<div id="content"></div>
 
-      <!-- Main content -->
-      <main class="main fx-hex" role="main">
-
-        <!-- Titlebar -->
-        <div id="site-titlebar"></div>
-
-        <!-- Dynamic content slot -->
-        <div id="content"></div>
-
-        <!-- Footer Loader -->
-        <div id="site-footer" class="footer"></div>
-
-      </main>
-
-    </div>
-
-  </div>
-</body>
+					<!-- Footer Loader -->
+					<div id="site-footer" class="footer"></div>
+				</main>
+			</div>
+		</div>
+	</body>
 </html>

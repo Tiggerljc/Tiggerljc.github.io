@@ -1,0 +1,67 @@
+/* ==================================================
+   Homepage
+================================================== */
+/* All styles for Hero section */
+.hero {
+  /* background: url('../img/hero-bg.jpg') no-repeat center center; */
+  min-height: 80vh;
+}
+
+/* All styles for the center section of alternating content */
+.alt {
+  min-height: 160vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sub-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "left right";
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-3xl);
+  min-height: 60vh;
+}
+
+.sub-section .col-left {
+  grid-area: left;
+}
+
+.sub-section .col-right {
+  grid-area: right;
+}
+
+.sub-section:nth-of-type(even) {
+  grid-template-areas: "right left";
+}
+
+.sub-section:nth-of-type(even) .col-right {
+  text-align: right;
+}
+
+.sub-section > .col-left,
+.sub-section > .col-right {
+  align-self: center;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .sub-section {
+    grid-template-columns: 1fr;
+  }
+  .sub-section .col-left,
+  .sub-section .col-right {
+    grid-column: auto;
+    text-align: left;
+  }
+}
+/* Styles for individual elements in the alternating content */
+.theme-img {
+  width: 100%;
+  aspect-ratio: 2/1.5;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: var(--radius-2);
+}/*# sourceMappingURL=home.css.map */

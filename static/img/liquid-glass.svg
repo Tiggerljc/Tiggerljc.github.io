@@ -1,0 +1,29 @@
+<svg width="0" height="0" style="position:absolute">
+  <filter id="liquid-glass-filter">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+
+    <feImage id="liquid-noise" result="noise" />
+
+    <feDisplacementMap
+      in="blur"
+      in2="noise"
+      scale="25"
+      xChannelSelector="R"
+      yChannelSelector="G"
+      result="distorted"
+    />
+
+    <feSpecularLighting
+      in="distorted"
+      surfaceScale="3"
+      specularConstant="0.75"
+      specularExponent="20"
+      lighting-color="white"
+      result="spec"
+    >
+      <fePointLight x="-5000" y="-5000" z="20000" />
+    </feSpecularLighting>
+
+    <feBlend in="distorted" in2="spec" mode="screen" />
+  </filter>
+</svg>

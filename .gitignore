@@ -1,0 +1,10 @@
+# Source (in case of future compilers)
+/src
+
+# Sass code and compiler map files
+/static/styles/scss
+/static/styles/css/*.map
+
+# Local development files
+app.py
+/static/resources/local
