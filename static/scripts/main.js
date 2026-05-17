@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   search.addEventListener("input", (e) => {
     const q = e.target.value;
-    cards.forEach(c => {
+    cards.forEach((c) => {
       c.style.display = matchCard(c, q) ? "" : "none";
     });
   });
@@ -31,16 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // --------------------------
   // Layout & Sidebar Settings
   // --------------------------
-  const layout = document.querySelector('.layout');
-  const sidebar = document.querySelector('.sidebar');
+  const layout = document.querySelector(".layout");
+  const sidebar = document.querySelector(".sidebar");
 
   // --------------------------
   // Apply Layout Mode
   // --------------------------
   function applyLayoutMode(mode) {
     if (!layout) return;
-    layout.classList.remove('full', 'wide', 'compact');
-    if (mode !== 'normal') layout.classList.add(mode);
+    layout.classList.remove("full", "wide", "compact");
+    if (mode !== "normal") layout.classList.add(mode);
+    updateNavWidth();
   }
 
   // --------------------------
@@ -49,11 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function applySidebarMode(mode) {
     if (!sidebar) return;
     sidebar.classList.remove(
-      'default',
-      'static-open',
-      'static-closed',
-      'hover',
-      'toggle'
+      "default",
+      "static-open",
+      "static-closed",
+      "hover",
+      "toggle",
     );
     sidebar.classList.add(mode);
   }
@@ -62,15 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load Saved Settings
   // --------------------------
   function loadSettings() {
-    const layoutMode = localStorage.getItem('layout-mode') || 'normal';
-    const sidebarMode = localStorage.getItem('sidebar-mode') || 'default';
+    const layoutMode = localStorage.getItem("layout-mode") || "normal";
+    const sidebarMode = localStorage.getItem("sidebar-mode") || "default";
 
     applyLayoutMode(layoutMode);
     applySidebarMode(sidebarMode);
 
     // Sync dropdowns if on Settings page
-    const layoutSelect = document.getElementById('layout-mode');
-    const sidebarSelect = document.getElementById('sidebar-mode');
+    const layoutSelect = document.getElementById("layout-mode");
+    const sidebarSelect = document.getElementById("sidebar-mode");
 
     if (layoutSelect) layoutSelect.value = layoutMode;
     if (sidebarSelect) sidebarSelect.value = sidebarMode;
@@ -79,21 +80,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // --------------------------
   // Save + Apply on Change
   // --------------------------
-  document.addEventListener('change', (e) => {
-    if (e.target.id === 'layout-mode') {
+  document.addEventListener("change", (e) => {
+    if (e.target.id === "layout-mode") {
       const mode = e.target.value;
-      localStorage.setItem('layout-mode', mode);
+      localStorage.setItem("layout-mode", mode);
       applyLayoutMode(mode);
     }
 
-    if (e.target.id === 'sidebar-mode') {
+    if (e.target.id === "sidebar-mode") {
       const mode = e.target.value;
-      localStorage.setItem('sidebar-mode', mode);
+      localStorage.setItem("sidebar-mode", mode);
       applySidebarMode(mode);
 
-      document.dispatchEvent(new CustomEvent("sidebar-mode-changed", {
-      detail: { mode }
-      }));
+      document.dispatchEvent(
+        new CustomEvent("sidebar-mode-changed", {
+          detail: { mode },
+        }),
+      );
     }
   });
 
@@ -101,21 +104,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function applyFadeIns() {
-  const fadeEls = document.querySelectorAll('.fade');
+  const fadeEls = document.querySelectorAll(".fade");
 
   // Reset all fade elements
-  fadeEls.forEach(el => el.classList.remove('visible'));
+  fadeEls.forEach((el) => el.classList.remove("visible"));
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-         observer.unobserve(entry.target); // optional: stop observing once visible
-      }
-    });
-  }, { threshold: 0.15 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // optional: stop observing once visible
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
 
-  fadeEls.forEach(el => observer.observe(el));
+  fadeEls.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -138,3 +144,34 @@ document.addEventListener("page-title-changed", (e) => {
   const titleElement = document.getElementById("page-title");
   if (titleElement) titleElement.textContent = title;
 });
+
+// Navbar Width
+function getSidebarWidth() {
+  const sidebar = document.querySelector(".sidebar");
+  if (sidebar.classList.contains("collapsed")) {
+    return 64;
+  } else return 212;
+}
+
+function getLayoutWidth() {
+  const layout = document.querySelector(".layout");
+  if (layout.classList.contains("full")) {
+    return window.innerWidth;
+  }
+  return layout.getBoundingClientRect().width;
+}
+
+function navbarWidth() {
+  const layoutWidth = getLayoutWidth();
+  const sidebarWidth = getSidebarWidth();
+  return layoutWidth - sidebarWidth * 2;
+}
+
+window.updateNavWidth = function updateNavWidth() {
+  const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
+  const width = navbarWidth();
+  navbar.style.maxWidth = width + "px";
+};
+
+window.addEventListener("resize", updateNavWidth);

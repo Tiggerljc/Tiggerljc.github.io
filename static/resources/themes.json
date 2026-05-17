@@ -1,6 +1,6 @@
 {
   "crimson": {
-    "accent": "#DC143C",
+    "color": "#DC143C",
     "strong": "#B22222",
     "soft": "rgba(220,20,60,0.18)",
     "NavBg": "rgba(220,20,60,0.12)",
@@ -11,7 +11,7 @@
     "bg": "#0a0a0a"
   },
   "scarlet": {
-    "accent": "#FF2400",
+    "color": "#FF2400",
     "strong": "#CD5C5C",
     "soft": "rgba(255,36,0,0.18)",
     "NavBg": "rgba(255,36,0,0.12)",
@@ -22,7 +22,7 @@
     "bg": "#0a0a0a"
   },
   "vermilion": {
-    "accent": "#E34234",
+    "color": "#E34234",
     "strong": "#DC143C",
     "soft": "rgba(227,66,52,0.18)",
     "NavBg": "rgba(227,66,52,0.12)",
@@ -33,7 +33,7 @@
     "bg": "#0a0a0a"
   },
   "orange": {
-    "accent": "#ff6a1a",
+    "color": "#ff6a1a",
     "strong": "#ff4500",
     "soft": "rgba(255,69,0,0.18)",
     "NavBg": "rgba(255,106,26,0.18)",
@@ -44,7 +44,7 @@
     "bg": "#071014"
   },
   "coral": {
-    "accent": "#FF7F50",
+    "color": "#FF7F50",
     "strong": "#FF6347",
     "soft": "rgba(255,127,80,0.18)",
     "NavBg": "rgba(255,127,80,0.12)",
@@ -55,7 +55,7 @@
     "bg": "#0a0a0a"
   },
   "amber": {
-    "accent": "#FFBF00",
+    "color": "#FFBF00",
     "strong": "#FFA500",
     "soft": "rgba(255,191,0,0.18)",
     "NavBg": "rgba(255,191,0,0.12)",
@@ -66,7 +66,7 @@
     "bg": "#0a0a0a"
   },
   "gold": {
-    "accent": "#FFD700",
+    "color": "#FFD700",
     "strong": "#DAA520",
     "soft": "rgba(255,215,0,0.18)",
     "NavBg": "rgba(255,215,0,0.12)",
@@ -77,7 +77,7 @@
     "bg": "#0a0a0a"
   },
   "lemon": {
-    "accent": "#FFF700",
+    "color": "#FFF700",
     "strong": "#FFFF00",
     "soft": "rgba(255,247,0,0.18)",
     "NavBg": "rgba(255,247,0,0.12)",
@@ -88,7 +88,7 @@
     "bg": "#0a0a0a"
   },
   "mustard": {
-    "accent": "#FFDB58",
+    "color": "#FFDB58",
     "strong": "#F0E68C",
     "soft": "rgba(255,219,88,0.18)",
     "NavBg": "rgba(255,219,88,0.12)",
@@ -99,7 +99,7 @@
     "bg": "#0a0a0a"
   },
   "green": {
-    "accent": "#39ff14",
+    "color": "#39ff14",
     "strong": "#2ecc71",
     "soft": "rgba(125,255,106,0.18)",
     "NavBg": "rgba(57,255,20,0.18)",
@@ -110,7 +110,7 @@
     "bg": "#071014"
   },
   "lime": {
-    "accent": "#32CD32",
+    "color": "#32CD32",
     "strong": "#00FF00",
     "soft": "rgba(50,205,50,0.18)",
     "NavBg": "rgba(50,205,50,0.12)",
@@ -121,7 +121,7 @@
     "bg": "#0a0a0a"
   },
   "emerald": {
-    "accent": "#50C878",
+    "color": "#50C878",
     "strong": "#008000",
     "soft": "rgba(80,200,120,0.18)",
     "NavBg": "rgba(80,200,120,0.12)",
@@ -132,7 +132,7 @@
     "bg": "#0a0a0a"
   },
   "teal": {
-    "accent": "#008080",
+    "color": "#008080",
     "strong": "#008B8B",
     "soft": "rgba(0,128,128,0.18)",
     "NavBg": "rgba(0,128,128,0.12)",
@@ -143,7 +143,7 @@
     "bg": "#0a0a0a"
   },
   "olive": {
-    "accent": "#808000",
+    "color": "#808000",
     "strong": "#556B2F",
     "soft": "rgba(128,128,0,0.18)",
     "NavBg": "rgba(128,128,0,0.12)",
@@ -154,7 +154,7 @@
     "bg": "#0a0a0a"
   },
   "cyan": {
-    "accent": "#00FFFF",
+    "color": "#00FFFF",
     "strong": "#00CED1",
     "soft": "rgba(0,255,255,0.18)",
     "NavBg": "rgba(0,255,255,0.12)",
@@ -165,7 +165,7 @@
     "bg": "#0a0a0a"
   },
   "azure": {
-    "accent": "#007FFF",
+    "color": "#007FFF",
     "strong": "#4682B4",
     "soft": "rgba(0,127,255,0.18)",
     "NavBg": "rgba(0,127,255,0.12)",
@@ -176,7 +176,7 @@
     "bg": "#0a0a0a"
   },
   "turquoise": {
-    "accent": "#00f7ff",
+    "color": "#00f7ff",
     "strong": "#00d4e0",
     "soft": "rgba(0,247,255,0.18)",
     "NavBg": "rgba(0,247,255,0.18)",
@@ -187,7 +187,7 @@
     "bg": "#071014"
   },
   "sapphire": {
-    "accent": "#0F52BA",
+    "color": "#0F52BA",
     "strong": "#000080",
     "soft": "rgba(15,82,186,0.18)",
     "NavBg": "rgba(15,82,186,0.12)",
@@ -198,7 +198,7 @@
     "bg": "#0a0a0a"
   },
   "indigo": {
-    "accent": "#4B0082",
+    "color": "#4B0082",
     "strong": "#6A5ACD",
     "soft": "rgba(75,0,130,0.18)",
     "NavBg": "rgba(75,0,130,0.12)",
@@ -209,7 +209,7 @@
     "bg": "#0a0a0a"
   },
   "purple": {
-    "accent": "#c77dff",
+    "color": "#c77dff",
     "strong": "#9d4edd",
     "soft": "rgba(224,170,255,0.18)",
     "NavBg": "rgba(199,125,255,0.18)",
@@ -220,7 +220,7 @@
     "bg": "#071014"
   },
   "violet": {
-    "accent": "#8A2BE2",
+    "color": "#8A2BE2",
     "strong": "#9932CC",
     "soft": "rgba(138,43,226,0.18)",
     "NavBg": "rgba(138,43,226,0.12)",
@@ -231,7 +231,7 @@
     "bg": "#0a0a0a"
   },
   "lavender": {
-    "accent": "#E6E6FA",
+    "color": "#E6E6FA",
     "strong": "#DDA0DD",
     "soft": "rgba(230,230,250,0.18)",
     "NavBg": "rgba(230,230,250,0.12)",
@@ -242,7 +242,7 @@
     "bg": "#0a0a0a"
   },
   "magenta": {
-    "accent": "#FF00FF",
+    "color": "#FF00FF",
     "strong": "#DA70D6",
     "soft": "rgba(255,0,255,0.18)",
     "NavBg": "rgba(255,0,255,0.12)",
@@ -253,7 +253,7 @@
     "bg": "#0a0a0a"
   },
   "fuchsia": {
-    "accent": "#FF00FF",
+    "color": "#FF00FF",
     "strong": "#C71585",
     "soft": "rgba(255,0,255,0.18)",
     "NavBg": "rgba(255,0,255,0.12)",
@@ -264,7 +264,7 @@
     "bg": "#0a0a0a"
   },
   "rose": {
-    "accent": "#FF007F",
+    "color": "#FF007F",
     "strong": "#FF1493",
     "soft": "rgba(255,0,127,0.18)",
     "NavBg": "rgba(255,0,127,0.12)",
@@ -275,7 +275,7 @@
     "bg": "#0a0a0a"
   },
   "pink": {
-    "accent": "#FFC0CB",
+    "color": "#FFC0CB",
     "strong": "#FF69B4",
     "soft": "rgba(255,192,203,0.18)",
     "NavBg": "rgba(255,192,203,0.12)",
@@ -286,7 +286,7 @@
     "bg": "#0a0a0a"
   },
   "peach": {
-    "accent": "#FFDAB9",
+    "color": "#FFDAB9",
     "strong": "#F4A460",
     "soft": "rgba(255,218,185,0.18)",
     "NavBg": "rgba(255,218,185,0.12)",
@@ -297,7 +297,7 @@
     "bg": "#0a0a0a"
   },
   "apricot": {
-    "accent": "#FBCEB1",
+    "color": "#FBCEB1",
     "strong": "#FFA07A",
     "soft": "rgba(251,206,177,0.18)",
     "NavBg": "rgba(251,206,177,0.12)",

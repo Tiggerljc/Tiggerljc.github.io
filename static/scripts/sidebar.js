@@ -1,161 +1,141 @@
-const sidebar = document.querySelector('.sidebar');
-const toggle = document.querySelector('.sidebar-toggle');
-const layout = document.querySelector('.layout');
-const dim = document.querySelector('.sidebar-dim');
+const sidebar = document.querySelector(".sidebar");
+const toggle = document.querySelector(".sidebar-toggle");
 
 // Read sidebar mode
-let sidebarMode = localStorage.getItem('sidebar-mode') || 'default';
+let sidebarMode = localStorage.getItem("sidebar-mode") || "default";
 
-// Mode flags
+// Sidebar modes
 let isStaticOpen, isStaticClosed, isHoverOnly, isToggleOnly;
 
-// Hover intent timer
+// Hover timer
 let hoverTimer = null;
 
 // Tracks whether user explicitly collapsed via toggle
 let userCollapsed = false;
 
-function updateModeFlags(mode) {
+function updateSidebarMode(mode) {
   sidebarMode = mode;
-  isStaticOpen   = mode === 'static-open';
-  isStaticClosed = mode === 'static-closed';
-  isHoverOnly    = mode === 'hover';
-  isToggleOnly   = mode === 'toggle';
+  isStaticOpen = mode === "static-open";
+  isStaticClosed = mode === "static-closed";
+  isHoverOnly = mode === "hover";
+  isToggleOnly = mode === "toggle";
+
+  // Reset userCollapsed when switching to default mode
+  if (mode === "default") {
+    userCollapsed = false;
+  }
 
   applySidebarBehavior();
+  updateNavWidth();
 }
 
 function applySidebarBehavior() {
   // Reset
   toggle.style.display = "";
-  sidebar.classList.remove('collapsed');
-  layout.classList.remove('sidebar-expanded');
 
   // Always re-enable hover listeners (we may disable them later)
-  sidebar.addEventListener('mouseenter', onHoverEnter);
-  sidebar.addEventListener('mouseleave', onHoverLeave);
+  sidebar.addEventListener("mouseenter", onHoverEnter);
+  sidebar.addEventListener("mouseleave", onHoverLeave);
 
-  // DEFAULT MODE
-  if (sidebarMode === 'default') {
-    sidebar.classList.add('collapsed');
+  // DEFAULT MODE -- uses root function behavior, adds .collapsed to ensure initial state is collapsed
+  if (sidebarMode === "default") {
+    sidebar.classList.add("collapsed");
     return;
   }
 
   // STATIC OPEN
   if (isStaticOpen) {
-    sidebar.classList.remove('collapsed');
-    layout.classList.add('sidebar-expanded');
+    sidebar.classList.remove("collapsed");
     toggle.style.display = "none";
     return;
   }
 
   // STATIC CLOSED
   if (isStaticClosed) {
-    sidebar.classList.add('collapsed');
+    sidebar.classList.add("collapsed");
     toggle.style.display = "none";
     return;
   }
 
   // HOVER ONLY
   if (isHoverOnly) {
-    sidebar.classList.add('collapsed');
+    sidebar.classList.add("collapsed");
     toggle.style.display = "none";
     return;
   }
 
   // TOGGLE ONLY
   if (isToggleOnly) {
-    sidebar.classList.add('collapsed');
-    sidebar.removeEventListener('mouseenter', onHoverEnter);
-    sidebar.removeEventListener('mouseleave', onHoverLeave);
+    sidebar.classList.add("collapsed");
+    sidebar.removeEventListener("mouseenter", onHoverEnter);
+    sidebar.removeEventListener("mouseleave", onHoverLeave);
     return;
   }
 }
 
 function setExpanded(expanded) {
   if (expanded) {
-    sidebar.classList.remove('collapsed');
-    layout.classList.add('sidebar-expanded');
+    sidebar.classList.remove("collapsed");
     userCollapsed = false;
   } else {
-    sidebar.classList.add('collapsed');
-    layout.classList.remove('sidebar-expanded');
+    sidebar.classList.add("collapsed");
     userCollapsed = true;
   }
 }
 
 function autoCollapse() {
-  sidebar.classList.add('collapsed');
-  layout.classList.remove('sidebar-expanded');
-  // DO NOT set userCollapsed = true
+  sidebar.classList.add("collapsed");
 }
 
 // HOVER INTENT HANDLERS
 function onHoverEnter() {
   if (isStaticOpen || isStaticClosed || isToggleOnly) return;
-  if (window.innerWidth <= 880) return;
-
   clearTimeout(hoverTimer);
-
   if (!userCollapsed) {
     hoverTimer = setTimeout(() => {
-      setExpanded(true);   // <-- correct
+      setExpanded(true);
+      updateNavWidth();
     }, 250);
   }
 }
 
 function onHoverLeave() {
   if (isStaticOpen || isStaticClosed || isToggleOnly) return;
-  if (window.innerWidth <= 880) return;
-
   clearTimeout(hoverTimer);
-
   if (!userCollapsed) {
-    autoCollapse();   // <-- correct
+    autoCollapse();
+    updateNavWidth();
   }
 }
 
 // Toggle button
-toggle.addEventListener('click', () => {
+toggle.addEventListener("click", () => {
   if (isStaticOpen || isStaticClosed || isHoverOnly) return;
+  const willExpand = sidebar.classList.contains("collapsed");
+  setExpanded(willExpand);
+  updateNavWidth();
+});
 
-  const isMobile = window.innerWidth <= 880;
-
-  if (isMobile) {
-    const isOpen = sidebar.classList.toggle('drawer-open');
-    if (isOpen) sidebar.classList.remove('collapsed');
-    else sidebar.classList.add('collapsed');
+// SIDEBAR CONTENT LOADERS
+// Local Loader
+function loadLocal() {
+  const sidebarLocal = window.sidebarLocal;
+  if (!sidebarLocal) {
+    // Inject message saying no ToC on this page
     return;
   }
-
-  const willExpand = sidebar.classList.contains('collapsed');
-  setExpanded(willExpand); // this sets userCollapsed correctly
-});
-
-// Resize
-function handleResize() {
-  const isMobile = window.innerWidth <= 880;
-
-  if (isMobile) {
-    sidebar.classList.add('collapsed');
-    layout.classList.remove('sidebar-expanded');
-    sidebar.classList.remove('drawer-open');
-  } else {
-    sidebar.classList.remove('drawer-open');
-  }
+  const local = document.querySelector(".sidebar-local");
+  // Inject into local
 }
 
-dim.addEventListener('click', () => {
-  sidebar.classList.remove('drawer-open');
-  sidebar.classList.add('collapsed');
-});
+// Global Loader
 
 // Init
-updateModeFlags(sidebarMode);
-handleResize();
-window.addEventListener('resize', handleResize);
+updateSidebarMode(sidebarMode);
+updateNavWidth();
 
 // Listen for mode changes
 document.addEventListener("sidebar-mode-changed", (e) => {
-  updateModeFlags(e.detail.mode);
+  updateSidebarMode(e.detail.mode);
+  updateNavWidth();
 });
