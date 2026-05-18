@@ -7,4 +7,6 @@
 
 # Local development files
 app.py
+DEVLOG.md
 /static/resources/local
+Tigger.dev.code-workspace
