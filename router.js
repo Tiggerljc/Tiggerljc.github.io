@@ -1,74 +1,80 @@
 // router.js
 
+function injectPage(doc) {
+  const newContent = doc.querySelector("#content");
+  const meta = doc.querySelector("#page-meta");
+
+  if (!newContent) {
+    console.warn("Loaded page has no #content wrapper.");
+    return;
+  }
+
+  // Replace old content
+  const oldContent = document.getElementById("content");
+  oldContent.replaceWith(newContent);
+
+  // Update titlebar if metadata exists
+  if (meta) {
+    try {
+      const data = JSON.parse(meta.textContent);
+      document.dispatchEvent(
+        new CustomEvent("page-title-changed", { detail: data }),
+      );
+    } catch (e) {
+      console.warn("Invalid page-meta JSON", e);
+    }
+  }
+
+  // Scroll + fade in
+  smoothScrollToTop();
+  newContent.classList.add("fade", "visible");
+
+  // Notify other scripts
+  document.dispatchEvent(new Event("spa-page-loaded"));
+}
+
 async function loadPage(url) {
-  let content = document.getElementById('content');
+  let content = document.getElementById("content");
   if (!content) return;
 
   // Normalize URL
-  if (!url.startsWith('/')) url = '/' + url;
+  if (!url.startsWith("/")) url = "/" + url;
 
-  // Fade out
-  content.classList.add('fade');
+  // Fade out old content
+  content.classList.add("fade");
 
   try {
-    // Fetch page
+    // Fetch the requested page
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    
+
     const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const doc = new DOMParser().parseFromString(html, "text/html");
 
-    // Extract new content
-    const newContent = doc.querySelector('#content');
-    const meta = doc.querySelector('#page-meta');
-
-    setTimeout(() => {
-      if (!newContent) {
-        content.classList.remove('fade');
-        console.warn(`No #content found in ${url}`);
-        return;
-      }
-
-      // Re-query in case content changed
-      content = document.getElementById('content');
-      if (!content) return;
-
-      // Replace content
-      content.replaceWith(newContent);
-      
-      // Update titlebar
-      if (meta) {
-        try {
-          const data = JSON.parse(meta.textContent);
-          document.dispatchEvent(new CustomEvent("page-title-changed", { detail: data }));
-        } catch (e) {
-          console.warn('Invalid page-meta JSON', e);
-        }
-      }
-
-      // Scroll to top
-      smoothScrollToTop();
-
-      // Fade in
-      newContent.classList.add('fade', 'visible');
-
-      // Tell main.js that new content has loaded
-      document.dispatchEvent(new Event("spa-page-loaded"));
-    }, 250);
+    // Delay to allow fade-out animation
+    setTimeout(() => injectPage(doc), 250);
   } catch (err) {
     console.error(`Failed to load ${url}:`, err);
-    content = document.getElementById('content');
-    if (content) content.classList.remove('fade');
+
+    // Remove fade-out so we don't get stuck invisible
+    content.classList.remove("fade");
+
+    // Load the 404 fallback page
+    const res404 = await fetch("/pages/errors/404.html");
+    const html404 = await res404.text();
+    const doc404 = new DOMParser().parseFromString(html404, "text/html");
+
+    setTimeout(() => injectPage(doc404), 250);
   }
 }
 
 // Intercept link clicks
-document.addEventListener('click', (e) => {
-  const link = e.target.closest('a');
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
   if (!link || link.target === "_blank") return;
 
-  const url = link.getAttribute('href');
-  if (!url.startsWith('#/')) return;
+  const url = link.getAttribute("href");
+  if (!url.startsWith("#/")) return;
 
   e.preventDefault();
   // Remove focus from links to prevent focus styles from sticking
@@ -95,13 +101,13 @@ function smoothScrollToTop() {
 function handleRoute() {
   let hash = location.hash;
 
-  if (!hash || hash === '#') {
-    loadPage('/pages/home.html');
+  if (!hash || hash === "#") {
+    loadPage("/pages/home.html");
     return;
   }
 
   // Remove "#" or "#/"
-  const path = hash.startsWith('#/') ? hash.slice(2) : hash.slice(1);
+  const path = hash.startsWith("#/") ? hash.slice(2) : hash.slice(1);
 
   loadPage("/" + path);
 }
