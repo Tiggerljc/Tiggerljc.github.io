@@ -1,0 +1,254 @@
+<script id="page-meta" type="application/json">
+  {
+    "title": "Lyra Starter Game: Engine Content"
+  }
+</script>
+
+<div id="content" class="content">
+  <div class="content-primary">
+    <section>
+      <img
+        src="/static/img/banners/LyraStarterGame.jpg"
+        alt="Banner - Lyra Starter Game"
+        class="banner" />
+      <p class="image-credit">
+        Image credit Epic Games, Inc., Lyra Starter Game
+      </p>
+      <h2>Content</h2>
+      <p>
+        <a href="#/pages/Projects/UnrealEngine/LyraStarterGame.html">Lyra</a> is
+        a very modular project, which means that most of the game content is
+        loaded in plugins at runtime rather than put into a content folder.
+        However, it's core (as in, necessary for the game itself to run) assets
+        are stored in the main Content folder. This content is used to create
+        the frontend and stores the base character asset and it's respective
+        ability sets, as well as some UI components, audio assets, weapon
+        meshes, and Blueprints.
+      </p>
+      <p>
+        This page will give a high-level overview of all of the folders and
+        files in the Content folder, and the more important assets will get
+        their own seperate pages to explain them more in-depth.
+      </p>
+      <img
+        src="/pages/Projects/UnrealEngine/LyraStarterGame/img/LyraContentFolder.jpg.png"
+        alt="Lyra Content Folder"
+        style="margin-top: 20px" />
+      <!-- Files -->
+      <h3>Files</h3>
+      <div>
+        <h4>B_LyraGameInstance</h4>
+        <p>
+          <code>B_LyraGameInstance</code> is a subclass of
+          <code>ULyraGameInstance</code>. It inherits the functions from the
+          parent class, and has two audio components, MusicSystem and
+          Audio_LobbySelect (probably for the menu/lobby music). It's main
+          purpose is to expose the C++ GameInstance into the Editor so it can be
+          assigned in Project Settings.
+        </p>
+      </div>
+      <div>
+        <h4>B_LyraGameMode</h4>
+        <p>
+          <code>B_LyraGameMode</code> is a Blueprint extension of the C++ class
+          <code>ALyraGameMode</code>. This asset runs on the server side. It's
+          main responsibility is to expose the class defaults so they can be set
+          in Blueprint. These defaults include:
+        </p>
+        <ul>
+          <li>LyraGameSession</li>
+          <li>LyraGameState</li>
+          <li>LyraPlayerController</li>
+          <li>LyraPlayerState</li>
+          <li>LyraHUD</li>
+          <li>LyraCharacter</li>
+          <li>SpectatorPawn</li>
+          <li>LyraReplayPlayerController</li>
+          <li>ServerStatReplicator</li>
+        </ul>
+      </div>
+      <div>
+        <h4>DefaultGame_Label</h4>
+        <p>
+          <code>DefaultGame_Label</code> is a Primary Asset Label with the
+          parent <code>UPrimaryAssetLabel</code>. It allows you to group assets
+          for the asset manager and defines how those assets are cooked/loaded.
+        </p>
+      </div>
+      <div>
+        <p><b>DefaultGameData</b></p>
+        <p>
+          <code>DefaultGameData</code> is a Data Asset with the parent class
+          <code>LyraGameData</code>. It has three parameters that take in
+          Gameplay Effect assets. These abilities are used by default in Lyra
+          for damage, healing, and dynamic tag application. The assets are as
+          follows:
+        </p>
+        <ul>
+          <li>
+            <b>Damage Gameplay Effect (SetByCaller):</b>
+            GE_Damage_Basic_SetByCaller
+          </li>
+          <li>
+            <b>Heal Gameplay Effect (SetByCaller):</b> GE_Heal_SetByCaller
+          </li>
+          <li><b>Dynamic Tag Gameplay Effect:</b> GE_Dynamic Tag</li>
+        </ul>
+        <p>
+          The C++ UCLASS <code>ULyraGameData</code> associated with this asset
+          has three properties, which line up with the three parameters in the
+          Data Asset.
+        </p>
+      </div>
+      <!-- Folders -->
+      <h3>Folders</h3>
+      <!-- Audio -->
+      <div>
+        <p><b>Audio</b></p>
+        <p>
+          The Audio folder appears to hold all of the audio for the entire game.
+          This does not mean that you should store your audio files here; they
+          should go in your own content plugins. It has a bunch of folders for
+          different sound effects, audio mixes, etc. There's not too much to see
+          here, and I don't know much about audio in Unreal Engine anyways
+          <i>{guilty shrug}</i>.
+        </p>
+      </div>
+      <!-- Characters -->
+      <div>
+        <p><b>Characters</b></p>
+        <p>
+          The Characters folder holds the default character data for Lyra, the
+          third-person camera, and the meshes for the UE4 and UE5 mannequins.
+          This folder also contains the "simple pawn" used in the
+          <code>L_DefaultEditorOverview</code> map (the map open by default in a
+          fresh Lyra project), as well as the ability sets for the default
+          character class.
+        </p>
+        <p>
+          Also in this folder is the <code>Character_Default</code> Blueprint,
+          whose parent class is <code>ALyraCharacter</code>. This Blueprint
+          simply inherits the Lyra Character class and sets up the capsule
+          collision component for the character.
+        </p>
+        <p>
+          The Heroes subfolder contains the
+          <code>B_Hero_Default</code> Blueprint. It is a child of the
+          <code>Character_Default</code> Blueprint, and it's the base hero class
+          for Lyra. It contains a few Blueprint functions that handle team
+          coloring, ragdoll animations, and death state visuals.
+        </p>
+      </div>
+      <!-- ContextEffects -->
+      <div>
+        <p><b>ContextEffects</b></p>
+        <p>
+          This folder holds only three assets; <code>CFX_DefaultSkin</code>,
+          <code>DT_AnimEffectTags</code>, and <code>DT_SurfaceTypes</code>.
+          These three assets are for defining tag relationships relative to
+          different surfaces, and telling the Engine what effects to apply to
+          the character based on these tags. In this case, they are used to
+          define the different sounds produced by walking, landing, jumping, or
+          jogging on a specific surface—however, the system can be used for any
+          sound or visual effect (for example, Niagra spark particles drifting
+          off of the player when walking on a hot surface).
+        </p>
+        <p>
+          The only surfaces defined by default are <code>Default</code>,
+          <code>Character</code>, <code>Concrete</code>, and <code>Glass</code>.
+        </p>
+      </div>
+      <!-- Editor -->
+      <div>
+        <p><b>Editor</b></p>
+        <p>
+          This folder is completely empty in-editor; a quick glance in Explorer
+          shows that contains a single file (<code>CheckContent.svg</code>).
+          This file lives in Slate/Icons, meaning that is a Slate vector icon
+          used somewhere in the Editor... it appears to be for the content
+          validation button located at the top of the main Editor window.
+        </p>
+      </div>
+      <!-- Effects -->
+      <div>
+        <p><b>Effects</b></p>
+        <p>
+          The Effects folder is home to most of the particle systems as well as
+          some animation notifies and material functions. Everything from
+          launchpad particles to damage effects on the camera when hit to the
+          floating damage numbers when an attack lands.
+        </p>
+        <p>Note: the AnimationNotifies folder is marked for deprecation.</p>
+      </div>
+      <!-- Environments -->
+      <div>
+        <p><b>Environments</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Feedback -->
+      <div>
+        <p><b>Feedback</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- GameplayCueNotifies -->
+      <div>
+        <p><b>GameplayCueNotifies</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- GameplayEffects -->
+      <div>
+        <p><b>GameplayEffects</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Input -->
+      <div>
+        <p><b>Input</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Legal -->
+      <div>
+        <p><b>Legal</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Localization -->
+      <div>
+        <p><b>Localization</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- PhysicsMaterials -->
+      <div>
+        <p><b>PhysicsMaterials</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- System -->
+      <div>
+        <p><b>System</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Tools -->
+      <div>
+        <p><b>Tools</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- UI -->
+      <div>
+        <p><b>UI</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+      <!-- Weapons -->
+      <div>
+        <p><b>Weapons</b></p>
+        <p>Breakdown Placeholder</p>
+      </div>
+    </section>
+  </div>
+  <aside class="content-aside">
+    <!-- Featured Section -->
+    <section class="section featured">
+      <h2 class="aside-header">Featured Posts</h2>
+      <div>
+        <!-- Featured posts will go here, in a list of tiles -->
+      </div>
+    </section>
+  </aside>
+</div>
