@@ -128,7 +128,90 @@ function loadLocal() {
   // Inject into local
 }
 
-// Global Loader
+// GLOBAL LOADER
+// Get JSON file (returns a JS object)
+function getTree() {
+  return fetch("/static/data/breadcrumbs.json").then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  });
+  // .then((data) => console.log(data)) // Potentially get rid of
+  // .catch((error) => console.error("Failed to fetch data:", error)); // Potentially get rid of
+}
+// Get URL
+function getURL() {
+  const url = window.location.hash;
+  return url;
+}
+// Recursive search function
+function searchNode(node, targetHref) {
+  // Get base
+  if (node.href === targetHref) {
+    return [node];
+  }
+  // Loop through children
+  for (const key in node.children) {
+    const child = node.children[key];
+
+    // Recursively search child
+    const found = searchNode(child, targetHref);
+
+    // If found, prepend current node
+    if (found) {
+      return [node, ...found];
+    }
+  }
+  // Not found in subtree
+  return null;
+}
+// Render the breadcrumb list in the sidebar through DOM
+function renderBreadcrumbs(path) {
+  // Get global sidebar container
+  const globalBreadcrumbs = document.querySelector(".sidebar-global");
+  if (!globalBreadcrumbs || !path) return;
+  // Clear old breadcrumbs
+  globalBreadcrumbs.innerHTML = "";
+
+  const lastIndex = path.length - 1;
+
+  // Loop through path array and create DOM elements for each node
+  for (let i = 0; i < path.length; i++) {
+    const node = path[i];
+    // Links
+    if (i < lastIndex) {
+      const crumb = document.createElement("a");
+      crumb.href = node.href;
+      crumb.textContent = node.title;
+      globalBreadcrumbs.appendChild(crumb);
+
+      // Seperators
+      const sep = document.createElement("span");
+      sep.textContent = " > ";
+      globalBreadcrumbs.appendChild(sep);
+    } else {
+      // Keep last item from being a link
+      const currentPage = document.createElement("span");
+      currentPage.textContent = node.title;
+      currentPage.classList.add("current-page");
+      globalBreadcrumbs.appendChild(currentPage);
+    }
+  }
+}
+// Search JSON tree for current url and render breadcrumbs
+function updateBreadcrumbs(url) {
+  getTree().then((tree) => {
+    const path = searchNode(tree.home, url);
+    renderBreadcrumbs(path);
+    console.log(path);
+  });
+}
+// Get the current url and update breadcrumbs on SPA load
+document.addEventListener("spa-page-loaded", () => {
+  const url = getURL();
+  updateBreadcrumbs(url);
+});
 
 // Init
 updateSidebarMode(sidebarMode);

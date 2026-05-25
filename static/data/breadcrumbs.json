@@ -1,0 +1,229 @@
+{
+  "home": {
+    "title": "Home",
+    "href": "#/pages/home.html",
+    "children": {
+      "About": {
+        "title": "About",
+        "href": "#/pages/About.html",
+        "children": {}
+      },
+      "Music": {
+        "title": "Music",
+        "href": "#/pages/Music.html",
+        "children": {}
+      },
+      "Notes": {
+        "title": "Notes",
+        "href": "#/pages/Notes.html",
+        "children": {}
+      },
+      "Projects": {
+        "title": "Projects",
+        "href": "#/pages/Projects.html",
+        "children": {
+          "Blender": {
+            "title": "Blender",
+            "href": "#/pages/Projects/Blender.html",
+            "children": {}
+          },
+          "Coding": {
+            "title": "Coding",
+            "href": "#/pages/Projects/Coding.html",
+            "children": {}
+          },
+          "MOCs": {
+            "title": "MOCs",
+            "href": "#/pages/Projects/MOCs.html",
+            "children": {}
+          },
+          "School": {
+            "title": "School",
+            "href": "#/pages/Projects/School.html",
+            "children": {}
+          },
+          "UnrealEngine": {
+            "title": "Unreal Engine",
+            "href": "#/pages/Projects/UnrealEngine.html",
+            "children": {
+              "LyraStarterGame": {
+                "title": "Lyra Starter Game",
+                "href": "#/pages/Projects/UnrealEngine/LyraStarterGame.html",
+                "children": {
+                  "Content": {
+                    "title": "Content",
+                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Content.html",
+                    "children": {}
+                  },
+                  "LyraEditor": {
+                    "title": "Lyra Editor",
+                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/LyraEditor.html",
+                    "children": {}
+                  },
+                  "LyraGame": {
+                    "title": "Lyra Game",
+                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/LyraGame.html",
+                    "children": {}
+                  },
+                  "Plugins": {
+                    "title": "Plugins",
+                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins.html",
+                    "children": {
+                      "GameFeaturePlugins": {
+                        "title": "Game Feature Plugins",
+                        "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
+                        "children": {
+                          "ShooterCore": {
+                            "title": "Shooter Core",
+                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
+                            "children": {}
+                          },
+                          "ShooterExplorer": {
+                            "title": "Shooter Explorer",
+                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
+                            "children": {}
+                          },
+                          "ShooterMaps": {
+                            "title": "Shooter Maps",
+                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
+                            "children": {}
+                          },
+                          "ShooterTests": {
+                            "title": "Shooter Tests",
+                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
+                            "children": {}
+                          },
+                          "TopDownArena": {
+                            "title": "Top Down Arena",
+                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
+                            "children": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Violin": {
+            "title": "Violin",
+            "href": "#/pages/Projects/Violin.html",
+            "children": {}
+          }
+        }
+      },
+      "Settings": {
+        "title": "Settings",
+        "href": "#/pages/Settings.html",
+        "children": {}
+      },
+      "MOCs": {
+        "title": "MOCs",
+        "href": null,
+        "children": {
+          "moc-1": {
+            "title": "Moc 1",
+            "href": "#/pages/MOCs/moc-1.html",
+            "children": {}
+          },
+          "moc-10": {
+            "title": "Moc 10",
+            "href": "#/pages/MOCs/moc-10.html",
+            "children": {}
+          },
+          "moc-11": {
+            "title": "Moc 11",
+            "href": "#/pages/MOCs/moc-11.html",
+            "children": {}
+          },
+          "moc-12": {
+            "title": "Moc 12",
+            "href": "#/pages/MOCs/moc-12.html",
+            "children": {}
+          },
+          "moc-13": {
+            "title": "Moc 13",
+            "href": "#/pages/MOCs/moc-13.html",
+            "children": {}
+          },
+          "moc-14": {
+            "title": "Moc 14",
+            "href": "#/pages/MOCs/moc-14.html",
+            "children": {}
+          },
+          "moc-15": {
+            "title": "Moc 15",
+            "href": "#/pages/MOCs/moc-15.html",
+            "children": {}
+          },
+          "moc-16": {
+            "title": "Moc 16",
+            "href": "#/pages/MOCs/moc-16.html",
+            "children": {}
+          },
+          "moc-17": {
+            "title": "Moc 17",
+            "href": "#/pages/MOCs/moc-17.html",
+            "children": {}
+          },
+          "moc-18": {
+            "title": "Moc 18",
+            "href": "#/pages/MOCs/moc-18.html",
+            "children": {}
+          },
+          "moc-19": {
+            "title": "Moc 19",
+            "href": "#/pages/MOCs/moc-19.html",
+            "children": {}
+          },
+          "moc-2": {
+            "title": "Moc 2",
+            "href": "#/pages/MOCs/moc-2.html",
+            "children": {}
+          },
+          "moc-20": {
+            "title": "Moc 20",
+            "href": "#/pages/MOCs/moc-20.html",
+            "children": {}
+          },
+          "moc-3": {
+            "title": "Moc 3",
+            "href": "#/pages/MOCs/moc-3.html",
+            "children": {}
+          },
+          "moc-4": {
+            "title": "Moc 4",
+            "href": "#/pages/MOCs/moc-4.html",
+            "children": {}
+          },
+          "moc-5": {
+            "title": "Moc 5",
+            "href": "#/pages/MOCs/moc-5.html",
+            "children": {}
+          },
+          "moc-6": {
+            "title": "Moc 6",
+            "href": "#/pages/MOCs/moc-6.html",
+            "children": {}
+          },
+          "moc-7": {
+            "title": "Moc 7",
+            "href": "#/pages/MOCs/moc-7.html",
+            "children": {}
+          },
+          "moc-8": {
+            "title": "Moc 8",
+            "href": "#/pages/MOCs/moc-8.html",
+            "children": {}
+          },
+          "moc-9": {
+            "title": "Moc 9",
+            "href": "#/pages/MOCs/moc-9.html",
+            "children": {}
+          }
+        }
+      }
+    }
+  }
+}

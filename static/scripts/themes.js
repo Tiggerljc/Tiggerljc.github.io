@@ -1,6 +1,6 @@
 let themes = {};
 
-const themesReady = fetch("/static/resources/themes.json")
+const themesReady = fetch("/static/data/themes.json")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to load themes.json: ${response.status}`);
