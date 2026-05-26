@@ -116,29 +116,17 @@ toggle.addEventListener("click", () => {
   updateNavWidth();
 });
 
-// SIDEBAR CONTENT LOADERS
-// Local Loader
-function loadLocal() {
-  const sidebarLocal = window.sidebarLocal;
-  if (!sidebarLocal) {
-    // Inject message saying no ToC on this page
-    return;
-  }
-  const local = document.querySelector(".sidebar-local");
-  // Inject into local
-}
-
-// GLOBAL LOADER
+// =============
+//  BREADCRUMBS
+// =============
 // Get JSON file (returns a JS object)
-function getTree() {
+async function getTree() {
   return fetch("/static/data/breadcrumbs.json").then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     return response.json();
   });
-  // .then((data) => console.log(data)) // Potentially get rid of
-  // .catch((error) => console.error("Failed to fetch data:", error)); // Potentially get rid of
 }
 // Get URL
 function getURL() {
@@ -169,34 +157,42 @@ function searchNode(node, targetHref) {
 // Render the breadcrumb list in the sidebar through DOM
 function renderBreadcrumbs(path) {
   // Get global sidebar container
-  const globalBreadcrumbs = document.querySelector(".sidebar-global");
-  if (!globalBreadcrumbs || !path) return;
+  const breadcrumbs = document.querySelector(".breadcrumbs");
+  if (!breadcrumbs || !path) return;
   // Clear old breadcrumbs
-  globalBreadcrumbs.innerHTML = "";
+  breadcrumbs.innerHTML = "";
 
   const lastIndex = path.length - 1;
 
   // Loop through path array and create DOM elements for each node
   for (let i = 0; i < path.length; i++) {
-    const node = path[i];
-    // Links
-    if (i < lastIndex) {
-      const crumb = document.createElement("a");
-      crumb.href = node.href;
-      crumb.textContent = node.title;
-      globalBreadcrumbs.appendChild(crumb);
+    const crumb = document.createElement("div");
+    crumb.classList.add("crumb");
+    crumb.style.setProperty("--depth", `${i * 12}px`);
 
-      // Seperators
-      const sep = document.createElement("span");
-      sep.textContent = " > ";
-      globalBreadcrumbs.appendChild(sep);
+    const node = path[i];
+    if (i < lastIndex) {
+      // Links
+      const link = document.createElement("a");
+      link.href = node.href;
+      link.textContent = node.title;
+      crumb.appendChild(link);
+
+      // Arrows
+      const arrow = document.createElement("span");
+      arrow.classList.add("arrow");
+      arrow.textContent = ">";
+      crumb.appendChild(arrow);
     } else {
       // Keep last item from being a link
       const currentPage = document.createElement("span");
-      currentPage.textContent = node.title;
       currentPage.classList.add("current-page");
-      globalBreadcrumbs.appendChild(currentPage);
+      currentPage.textContent = node.title;
+
+      crumb.appendChild(currentPage);
     }
+    // Append crumbs into container
+    breadcrumbs.appendChild(crumb);
   }
 }
 // Search JSON tree for current url and render breadcrumbs
@@ -204,7 +200,20 @@ function updateBreadcrumbs(url) {
   getTree().then((tree) => {
     const path = searchNode(tree.home, url);
     renderBreadcrumbs(path);
-    console.log(path);
+
+    // Get collapsed heigth and set it as container height
+    const breadcrumbs = document.querySelector(".breadcrumbs");
+    if (sidebar.classList.contains("collapsed")) {
+      requestAnimationFrame(() => {
+        if (!sidebar || !breadcrumbs) return;
+
+        breadcrumbs.style.removeProperty("--height");
+        const height = breadcrumbs.scrollHeight;
+        breadcrumbs.style.setProperty("--height", `${height}px`);
+      });
+    } else {
+      breadcrumbs.style.removeProperty("--height");
+    }
   });
 }
 // Get the current url and update breadcrumbs on SPA load
@@ -213,7 +222,18 @@ document.addEventListener("spa-page-loaded", () => {
   updateBreadcrumbs(url);
 });
 
-// Init
+// Toggle button
+// document.querySelector(".crumb-toggle").addEventListener("click", () => {
+//   const bc = document.querySelector(".breadcrumbs");
+//   bc.classList.toggle("collapsed");
+
+//   const btn = document.querySelector(".crumb-toggle");
+//   btn.textContent = bc.classList.contains("collapsed") ? ">" : "v";
+// });
+
+// ======
+//  INIT
+// ======
 updateSidebarMode(sidebarMode);
 updateNavWidth();
 
