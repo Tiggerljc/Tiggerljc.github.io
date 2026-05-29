@@ -149,7 +149,7 @@ document.addEventListener("page-title-changed", (e) => {
 function getSidebarWidth() {
   const sidebar = document.querySelector(".sidebar");
   if (sidebar.classList.contains("collapsed")) {
-    return 64;
+    return 72;
   } else return 212;
 }
 

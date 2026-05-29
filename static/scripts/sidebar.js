@@ -231,6 +231,117 @@ document.addEventListener("spa-page-loaded", () => {
 //   btn.textContent = bc.classList.contains("collapsed") ? ">" : "v";
 // });
 
+// =====
+//  ToC
+// =====
+function getHeadings() {
+  // Content container
+  const content = document.querySelector(".content");
+  if (!content) return;
+
+  // Headings
+  const headings = content.querySelectorAll("h2, h3, h4");
+
+  const info = [...headings].map((h) => ({
+    element: h,
+    level: parseInt(h.tagName.substring(1)),
+    id: h.id,
+    title: h.textContent.trim(),
+  }));
+
+  return info;
+}
+
+function injectToC() {
+  // Sidebar element
+  const ToC = document.getElementById("ToC");
+  // Headings
+  const headings = getHeadings();
+
+  // Clear previous ToC before creating new elements
+  ToC.innerHTML = "";
+
+  // Create a "Scroll to Top" element before the header index loop runs
+  // Container & link
+  const top = document.createElement("a");
+  top.href = "?scroll=top";
+
+  top.addEventListener("click", (e) => {
+    e.preventDefault();
+    const el = document.getElementById("titlebar");
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  });
+  // Image
+  const icon = document.createElement("i");
+  icon.classList.add("fas", "fa-arrow-up");
+  // Text
+  const title = document.createElement("span");
+  title.innerHTML = "Back to Top";
+  title.classList.add("label");
+  // Append
+  top.appendChild(icon);
+  top.appendChild(title);
+  ToC.appendChild(top);
+
+  for (let h = 0; h < headings.length; h++) {
+    const cursor = headings[h];
+
+    // ToC Items
+    const item = document.createElement("a");
+
+    // Ensure ID exists; if not, create it from title
+    if (!cursor.id) {
+      const id = cursor.title.toLowerCase().replace(/\s+/g, "-");
+      cursor.id = id;
+      cursor.element.id = id;
+    }
+
+    // Create link
+    item.href = `?scroll=${cursor.id}`;
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const el = document.getElementById(cursor.id);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    });
+
+    // Create images
+
+    // Custom SVGs
+    // const icon = document.createElement("img");
+    // icon.src = `/static/img/sidebar/h${cursor.level}.svg`;
+    // icon.classList.add("icon");
+
+    // Google Icons
+    const icon = document.createElement("span");
+    icon.classList.add("material-symbols-rounded");
+    icon.innerHTML = "short_text";
+
+    // Create title
+    const title = document.createElement("span");
+    title.innerHTML = cursor.title;
+    title.classList.add("label");
+
+    // Append Content
+    item.appendChild(icon);
+    item.appendChild(title);
+    ToC.appendChild(item);
+  }
+}
+
+document.addEventListener("spa-page-loaded", () => {
+  injectToC();
+});
+
 // ======
 //  INIT
 // ======
