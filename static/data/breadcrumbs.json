@@ -8,14 +8,14 @@
         "href": "#/pages/About.html",
         "children": {}
       },
-      "Music": {
-        "title": "Music",
-        "href": "#/pages/Music.html",
+      "Blogs": {
+        "title": "Blogs",
+        "href": "#/pages/Blogs.html",
         "children": {}
       },
-      "Notes": {
-        "title": "Notes",
-        "href": "#/pages/Notes.html",
+      "Docs": {
+        "title": "Docs",
+        "href": "#/pages/Docs.html",
         "children": {}
       },
       "Hobbies": {
@@ -37,7 +37,12 @@
             "href": "#/pages/Hobbies/MOCs.html",
             "children": {}
           },
-          "School": {
+          "Music": {
+            "title": "Music",
+            "href": "#/pages/Hobbies/Music.html",
+            "children": {}
+          },
+          "School-2": {
             "title": "School",
             "href": "#/pages/Hobbies/School.html",
             "children": {}
@@ -112,6 +117,16 @@
             "children": {}
           }
         }
+      },
+      "Notes": {
+        "title": "Notes",
+        "href": "#/pages/Notes.html",
+        "children": {}
+      },
+      "School": {
+        "title": "School",
+        "href": "#/pages/School.html",
+        "children": {}
       },
       "Settings": {
         "title": "Settings",
