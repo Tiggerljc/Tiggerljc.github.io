@@ -18,84 +18,84 @@
         "href": "#/pages/Notes.html",
         "children": {}
       },
-      "Projects": {
-        "title": "Projects",
-        "href": "#/pages/Projects.html",
+      "Hobbies": {
+        "title": "Hobbies",
+        "href": "#/pages/Hobbies.html",
         "children": {
           "Blender": {
             "title": "Blender",
-            "href": "#/pages/Projects/Blender.html",
+            "href": "#/pages/Hobbies/Blender.html",
             "children": {}
           },
           "Coding": {
             "title": "Coding",
-            "href": "#/pages/Projects/Coding.html",
+            "href": "#/pages/Hobbies/Coding.html",
             "children": {}
           },
           "MOCs": {
             "title": "MOCs",
-            "href": "#/pages/Projects/MOCs.html",
+            "href": "#/pages/Hobbies/MOCs.html",
             "children": {}
           },
           "School": {
             "title": "School",
-            "href": "#/pages/Projects/School.html",
+            "href": "#/pages/Hobbies/School.html",
             "children": {}
           },
           "UnrealEngine": {
             "title": "Unreal Engine",
-            "href": "#/pages/Projects/UnrealEngine.html",
+            "href": "#/pages/Hobbies/UnrealEngine.html",
             "children": {
               "LyraStarterGame": {
                 "title": "Lyra Starter Game",
-                "href": "#/pages/Projects/UnrealEngine/LyraStarterGame.html",
+                "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame.html",
                 "children": {
                   "Content": {
                     "title": "Content",
-                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Content.html",
+                    "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Content.html",
                     "children": {}
                   },
                   "LyraEditor": {
                     "title": "Lyra Editor",
-                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/LyraEditor.html",
+                    "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/LyraEditor.html",
                     "children": {}
                   },
                   "LyraGame": {
                     "title": "Lyra Game",
-                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/LyraGame.html",
+                    "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/LyraGame.html",
                     "children": {}
                   },
                   "Plugins": {
                     "title": "Plugins",
-                    "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins.html",
+                    "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins.html",
                     "children": {
                       "GameFeaturePlugins": {
                         "title": "Game Feature Plugins",
-                        "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
+                        "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
                         "children": {
                           "ShooterCore": {
                             "title": "Shooter Core",
-                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
+                            "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
                             "children": {}
                           },
                           "ShooterExplorer": {
                             "title": "Shooter Explorer",
-                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
+                            "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
                             "children": {}
                           },
                           "ShooterMaps": {
                             "title": "Shooter Maps",
-                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
+                            "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
                             "children": {}
                           },
                           "ShooterTests": {
                             "title": "Shooter Tests",
-                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
+                            "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
                             "children": {}
                           },
                           "TopDownArena": {
                             "title": "Top Down Arena",
-                            "href": "#/pages/Projects/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
+                            "href": "#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
                             "children": {}
                           }
                         }
@@ -108,7 +108,7 @@
           },
           "Violin": {
             "title": "Violin",
-            "href": "#/pages/Projects/Violin.html",
+            "href": "#/pages/Hobbies/Violin.html",
             "children": {}
           }
         }

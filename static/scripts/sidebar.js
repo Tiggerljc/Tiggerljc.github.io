@@ -255,27 +255,21 @@ function getHeadings() {
 function injectToC() {
   // Sidebar element
   const ToC = document.getElementById("ToC");
+  if (!ToC) return;
+
   // Headings
   const headings = getHeadings();
 
   // Clear previous ToC before creating new elements
   ToC.innerHTML = "";
 
+  // Get current page without queries so hrefs don't cascade queries
+  const currentPage = getURL().split("?")[0];
+
   // Create a "Scroll to Top" element before the header index loop runs
   // Container & link
   const top = document.createElement("a");
-  top.href = "?scroll=top";
-
-  top.addEventListener("click", (e) => {
-    e.preventDefault();
-    const el = document.getElementById("titlebar");
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.scrollY - 100;
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-  });
+  top.href = currentPage + "?scroll=top";
   // Image
   const icon = document.createElement("i");
   icon.classList.add("fas", "fa-arrow-up");
@@ -302,17 +296,7 @@ function injectToC() {
     }
 
     // Create link
-    item.href = `?scroll=${cursor.id}`;
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      const el = document.getElementById(cursor.id);
-      if (!el) return;
-      const y = el.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    });
+    item.href = currentPage + "?scroll=" + cursor.id;
 
     // Create images
 
@@ -336,10 +320,64 @@ function injectToC() {
     item.appendChild(title);
     ToC.appendChild(item);
   }
+
+  if (!ToC.dataset.tocClickBound) {
+    ToC.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (!a) return;
+      e.preventDefault();
+      const href = a.getAttribute("href");
+      const params = new URLSearchParams(href.split("?")[1] || "");
+      const id = params.get("scroll");
+      if (!id) return;
+      pendingScrollTarget = id;
+      location.hash = href;
+      scrollToTarget(id);
+    });
+    ToC.dataset.tocClickBound = "true";
+  }
+
+  if (pendingScrollTarget) {
+    const fallbackTarget = decodeURIComponent(pendingScrollTarget);
+    if (document.getElementById(fallbackTarget)) {
+      scrollToTarget(pendingScrollTarget);
+      pendingScrollTarget = null;
+    }
+  }
 }
 
+// Scroll logic
+function scrollToTarget(target) {
+  let id = decodeURIComponent(target);
+  const el = document.getElementById(id);
+  if (!el) return;
+  const yOffset = el.getBoundingClientRect().top + window.scrollY - 100;
+  window.scrollTo({
+    top: yOffset,
+    behavior: "smooth",
+  });
+}
+
+// ToC listeners
 document.addEventListener("spa-page-loaded", () => {
   injectToC();
+
+  if (pendingScrollTarget) {
+    scrollToTarget(pendingScrollTarget);
+    console.log("spa-page-loaded " + pendingScrollTarget);
+    pendingScrollTarget = null;
+  }
+});
+
+document.addEventListener("scroll-updated", (e) => {
+  const scrollTarget = e.detail;
+  console.log(
+    "scroll-updated | pendingScrollTarget= " +
+      pendingScrollTarget +
+      " scrollTarget= " +
+      scrollTarget,
+  );
+  scrollToTarget(scrollTarget);
 });
 
 // ======

@@ -1,6 +1,6 @@
 // router.js
 
-function injectPage(doc) {
+function injectPage(doc, skipSmoothScroll = false) {
   const newContent = doc.querySelector("#content");
   const meta = doc.querySelector("#page-meta");
 
@@ -26,14 +26,19 @@ function injectPage(doc) {
   }
 
   // Scroll + fade in
-  smoothScrollToTop();
+  // Ensure scroll query before load; if there is, skip, else run scroll function
+  if (!skipSmoothScroll) {
+    smoothScrollToTop();
+  } else {
+    window.scrollTo({ top: 0 });
+  }
   newContent.classList.add("fade", "visible");
 
   // Notify other scripts
   document.dispatchEvent(new Event("spa-page-loaded"));
 }
 
-async function loadPage(url) {
+async function loadPage(url, skipSmoothScroll = false) {
   let content = document.getElementById("content");
   if (!content) return;
 
@@ -52,7 +57,7 @@ async function loadPage(url) {
     const doc = new DOMParser().parseFromString(html, "text/html");
 
     // Delay to allow fade-out animation
-    setTimeout(() => injectPage(doc), 250);
+    setTimeout(() => injectPage(doc, skipSmoothScroll), 250);
   } catch (err) {
     console.error(`Failed to load ${url}:`, err);
 
@@ -98,18 +103,54 @@ function smoothScrollToTop() {
   requestAnimationFrame(animate);
 }
 
+// Route caches
+let routeCache = null;
+let pendingScrollTarget = null;
+
 function handleRoute() {
-  let hash = location.hash;
+  let hash = location.hash || "";
 
   if (!hash || hash === "#") {
+    pendingScrollTarget = null;
     loadPage("/pages/home.html");
     return;
   }
 
-  // Remove "#" or "#/"
-  const path = hash.startsWith("#/") ? hash.slice(2) : hash.slice(1);
+  // Split hash route and query
+  let route, query;
+  if (hash.includes("?")) {
+    [route, query] = hash.split("?");
+  } else {
+    route = hash;
+    query = "";
+  }
 
-  loadPage("/" + path);
+  // Check if hash contains query params
+  const params = new URLSearchParams(query);
+
+  // Check for scroll query
+  const scrollTarget = params.get("scroll");
+
+  // Normalize path
+  const path = route.startsWith("#/") ? route.slice(2) : route.slice(1);
+
+  // Store scroll target
+  pendingScrollTarget = scrollTarget;
+
+  // If the route is the same as the current page, don't load page
+  if (route !== routeCache) {
+    routeCache = route;
+    pendingScrollTarget = scrollTarget;
+    loadPage("/" + path, !!scrollTarget);
+    return;
+  }
+
+  //Update Scroll
+  document.dispatchEvent(
+    new CustomEvent("scroll-updated", { detail: scrollTarget }),
+  );
+
+  console.log("handleRoute() " + pendingScrollTarget);
 }
 
 document.addEventListener("DOMContentLoaded", handleRoute);

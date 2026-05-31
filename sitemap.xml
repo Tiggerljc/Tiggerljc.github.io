@@ -2,16 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tiggerljc.github.io/</loc></url>
   <url><loc>https://tiggerljc.github.io/#/pages/home.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Music.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Blogs.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Docs.html</loc></url>
   <url><loc>https://tiggerljc.github.io/#/pages/Notes.html</loc></url>
   <url><loc>https://tiggerljc.github.io/#/pages/About.html</loc></url>
   <url><loc>https://tiggerljc.github.io/#/pages/Settings.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/MOCs.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/Coding.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/Blender.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/UnrealEngine.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/UnrealEngine/LyraStarterGame.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/Violin.html</loc></url>
-  <url><loc>https://tiggerljc.github.io/#/pages/Projects/School.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/MOCs.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/Coding.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/Blender.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/UnrealEngine.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/UnrealEngine/LyraStarterGame.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/Violin.html</loc></url>
+  <url><loc>https://tiggerljc.github.io/#/pages/Hobbies/School.html</loc></url>
 </urlset>
