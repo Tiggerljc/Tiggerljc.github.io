@@ -1,4 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <text x="50%" y="60%" font-family="Times New Roman"
- font-weight="600" font-size="24" dominant-baseline="middle" text-anchor="middle" fill="#555">T</text>
+  <defs>
+    <mask id="cutout" maskUnits="userSpaceOnUse">
+      <rect x="1" y="5" width="23" height="15" rx="2" fill="white"/>
+      <text x="50%" y="59%"
+            font-family="Times New Roman"
+            font-weight="525"
+            font-size="18"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            fill="black">T</text>
+    </mask>
+  </defs>
+
+  <rect x="1" y="5" width="22" height="14" rx="2"
+        fill="currentColor"
+        mask="url(#cutout)" />
 </svg>

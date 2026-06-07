@@ -111,8 +111,7 @@ function handleRoute() {
   let hash = location.hash || "";
 
   if (!hash || hash === "#") {
-    pendingScrollTarget = null;
-    loadPage("/pages/home.html");
+    location.hash = "/pages/home.html";
     return;
   }
 

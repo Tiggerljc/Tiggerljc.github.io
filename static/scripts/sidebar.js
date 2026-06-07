@@ -130,7 +130,8 @@ async function getTree() {
 }
 // Get URL
 function getURL() {
-  const url = window.location.hash;
+  const url = window.location.hash.split("?")[0];
+  console.log(url);
   return url;
 }
 // Recursive search function
@@ -156,11 +157,25 @@ function searchNode(node, targetHref) {
 }
 // Render the breadcrumb list in the sidebar through DOM
 function renderBreadcrumbs(path) {
-  // Get global sidebar container
+  // Get global breadcrumb container
   const breadcrumbs = document.querySelector(".breadcrumbs");
-  if (!breadcrumbs || !path) return;
+
   // Clear old breadcrumbs
   breadcrumbs.innerHTML = "";
+
+  // If there is no path returned, assume you are on the homepage and return home
+  // with a link to #/home.html
+  if (!breadcrumbs || !path) {
+    const crumb = document.createElement("div");
+    crumb.classList.add("crumb");
+    crumb.style.setProperty("--depth", "12px");
+    const home = document.createElement("a");
+    home.href = "#/pages/home.html";
+    home.innerHTML = "<b>Home</b>";
+    crumb.appendChild(home);
+    breadcrumbs.appendChild(crumb);
+    return;
+  }
 
   const lastIndex = path.length - 1;
 
@@ -270,9 +285,11 @@ function injectToC() {
   // Container & link
   const top = document.createElement("a");
   top.href = currentPage + "?scroll=top";
+  top.classList.add("top");
   // Image
-  const icon = document.createElement("i");
-  icon.classList.add("fas", "fa-arrow-up");
+  const icon = document.createElement("span");
+  icon.classList.add("material-symbols-rounded", "icon");
+  icon.innerHTML = "arrow_upward";
   // Text
   const title = document.createElement("span");
   title.innerHTML = "Back to Top";
@@ -282,9 +299,13 @@ function injectToC() {
   top.appendChild(title);
   ToC.appendChild(top);
 
+  const tocItems = document.createElement("div");
+  if (!tocItems) return;
+
   for (let h = 0; h < headings.length; h++) {
     const cursor = headings[h];
 
+    if (cursor.title === "Featured Posts") continue;
     // ToC Items
     const item = document.createElement("a");
 
@@ -299,16 +320,20 @@ function injectToC() {
     item.href = currentPage + "?scroll=" + cursor.id;
 
     // Create images
-
-    // Custom SVGs
-    // const icon = document.createElement("img");
-    // icon.src = `/static/img/sidebar/h${cursor.level}.svg`;
-    // icon.classList.add("icon");
-
-    // Google Icons
-    const icon = document.createElement("span");
-    icon.classList.add("material-symbols-rounded");
-    icon.innerHTML = "short_text";
+    let icon;
+    if (cursor.level === 2) {
+      icon = document.createElement("span");
+      icon.alt = "h2";
+      icon.classList.add("icon", "mask", "h2");
+    } else if (cursor.level === 3) {
+      icon = document.createElement("span");
+      icon.alt = "h3";
+      icon.classList.add("icon", "mask", "h3");
+    } else {
+      icon = document.createElement("span");
+      icon.classList.add("material-symbols-rounded", "icon");
+      icon.textContent = "short_text";
+    }
 
     // Create title
     const title = document.createElement("span");
@@ -318,8 +343,9 @@ function injectToC() {
     // Append Content
     item.appendChild(icon);
     item.appendChild(title);
-    ToC.appendChild(item);
+    tocItems.appendChild(item);
   }
+  ToC.appendChild(tocItems);
 
   if (!ToC.dataset.tocClickBound) {
     ToC.addEventListener("click", (e) => {
@@ -333,6 +359,7 @@ function injectToC() {
       pendingScrollTarget = id;
       location.hash = href;
       scrollToTarget(id);
+      console.log("Render | Scrolled to target: " + id);
     });
     ToC.dataset.tocClickBound = "true";
   }
@@ -346,7 +373,57 @@ function injectToC() {
   }
 }
 
-// Scroll logic
+let activeLink = null;
+let scrollObserver = null;
+
+function initObserver() {
+  const headings = document.querySelectorAll("h2, h3, h4");
+  const links = document.querySelectorAll("#ToC a");
+  const linkMap = new Map();
+
+  links.forEach((link) => {
+    const id = new URLSearchParams(link.hash.split("?")[1]).get("scroll");
+    if (id) linkMap.set(id, link);
+  });
+
+  function setActiveLink(id) {
+    if (!id) return;
+    const link = linkMap.get(id);
+    if (!link || link === activeLink) return;
+
+    if (activeLink) {
+      activeLink.classList.remove("active");
+    }
+
+    link.classList.add("active");
+    activeLink = link;
+  }
+
+  function onIntersect(entries) {
+    entries.forEach((entry) => {
+      if (!entry.target.id) return;
+      if (entry.isIntersecting) {
+        setActiveLink(entry.target.id);
+      }
+    });
+  }
+
+  if (scrollObserver) scrollObserver.disconnect();
+  scrollObserver = new IntersectionObserver(onIntersect, {
+    root: null,
+    rootMargin: `-101px 0px ${-(window.innerHeight - 100)}px 0px`,
+    threshold: 0,
+  });
+  headings.forEach((heading) => scrollObserver.observe(heading));
+
+  console.log("linkMap", linkMap);
+  console.log(
+    "link hashes",
+    [...links].map((link) => link.hash),
+  );
+}
+
+// Scroll listener (runs on URL updates)
 function scrollToTarget(target) {
   let id = decodeURIComponent(target);
   const el = document.getElementById(id);
@@ -356,11 +433,13 @@ function scrollToTarget(target) {
     top: yOffset,
     behavior: "smooth",
   });
+  console.log("Scrolled to target: " + el);
 }
 
 // ToC listeners
 document.addEventListener("spa-page-loaded", () => {
   injectToC();
+  initObserver();
 
   if (pendingScrollTarget) {
     scrollToTarget(pendingScrollTarget);

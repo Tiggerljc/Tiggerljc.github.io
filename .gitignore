@@ -14,3 +14,5 @@ Tigger.dev.code-workspace
 /.venv
 font-preview.html
 /.vscode
+/.github
+/.git
