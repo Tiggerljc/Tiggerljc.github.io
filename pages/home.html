@@ -5,108 +5,122 @@
     "title": "Home"
   }
 </script>
-<script>
-  {
-    window.sidebarLocal = [
-      { label: "Go to top", target: "top", level: "top" },
-      { label: "Hero", target: "hero", level: "h1" },
-      { label: "Projects", target: "projects", level: "h1" },
-      { label: "I made this website!", target: "sub-1", level: "h2" },
-      { label: "MOC Designer", target: "sub-2", level: "h2" },
-      { label: "Developer", target: "sub-3", level: "h2" },
-      { label: "Violinist", target: "sub-4", level: "h2" },
-    ];
-  }
-</script>
 
 <div id="content" class="content full">
-  <!-- Hero Section -->
-  <section id="hero" class="section hero fade">
-    <div class="header-img filler-img"></div>
-    <div>
-      <h2>Hi, I'm Tigger</h2>
+  <!-- <canvas class="reactive-glow"></canvas> -->
+
+  <!-- Hero -->
+  <section id="hero" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">Hi, I'm Tigger</h2>
       <p>
-        This is where I share all of the things I work on--MOCs, Blender
-        renders, Unreal Engine projects, coding, violin progress, and everything
-        else. I use this website to compile all of my miscellanious projects,
-        ideas, and scraps of info into one place so that I can return to them
-        later (and hopefully help someone else out in the process).
+        Welcome to my website.<br />This is where I showcase my projects and
+        document what I learn along the way, so that I can retain all the
+        important information—and perhaps help you discover something, too.
+      </p>
+      <div class="cta">
+        <a
+          class="btn"
+          onclick="
+            const el = document.getElementById('Hobbies');
+            const y = el.getBoundingClientRect().top + window.scrollY - 200;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          ">
+          Start Exploring
+          <i
+            class="fas fa-chevron-down"
+            style="size: 16px; padding-left: 4px"></i>
+        </a>
+        <a href="#/pages/home.html" class="btn glass">View Recent Projects</a>
+      </div>
+    </div>
+    <img
+      src="/static/img/backgroundDefault.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
+  </section>
+
+  <!-- Hobbies -->
+  <section id="Hobbies" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">Hobbies</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+        animi aperiam cumque voluptatibus cupiditate at error praesentium
+        laudantium quisquam aliquid!
+      </p>
+      <div class="cta right">
+        <a class="btn glass">Recent Projects</a>
+        <a href="home.html" class="btn">Start Exploring</a>
+      </div>
+    </div>
+    <img
+      src="/static/img/background/Lorem-code.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
+  </section>
+
+  <!-- Blogs -->
+  <section id="hero" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">Blogs</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+        animi aperiam cumque voluptatibus cupiditate at error praesentium
+        laudantium quisquam aliquid!
       </p>
     </div>
-    <div class="header-img filler-img"></div>
+    <img
+      src="/static/img/background/Lorem-code.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
   </section>
 
-  <!-- Fade Sections -->
-  <section id="projects" class="section alt">
-    <div class="sub-section fade">
-      <div class="col-left">
-        <div class="theme-img filler-img"></div>
-      </div>
-      <div class="col-right">
-        <h2>I Made this Website!</h2>
-        <p>
-          This website is currently under development. It is used to showcase
-          all of my passions and projects, in one unified place.
-        </p>
-        <a class="btn btn-default liquid-glass" href="#/pages/Hobbies.html"
-          >Projects</a
-        >
-      </div>
+  <!-- Docs -->
+  <section id="hero" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">Documentation</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+        animi aperiam cumque voluptatibus cupiditate at error praesentium
+        laudantium quisquam aliquid!
+      </p>
     </div>
-
-    <div class="sub-section fade">
-      <div class="col-left">
-        <div class="theme-img filler-img"></div>
-      </div>
-      <div class="col-right">
-        <h2>MOC Designer</h2>
-        <p>
-          I have a bunch of MOCs that I have built over the years, and I am in
-          the process of documenting them all on this website.
-        </p>
-        <a class="btn btn-default" href="#/pages/Projects/MOCs.html"
-          >Browse MOCs</a
-        >
-      </div>
-    </div>
-
-    <div class="sub-section fade">
-      <div class="col-left">
-        <div class="theme-img filler-img"></div>
-      </div>
-      <div class="col-right">
-        <h2>Developer</h2>
-        <p>
-          I am a developer who enjoys building cool things and sharing my
-          knowledge with others.
-        </p>
-        <a class="button liquid-glass" href="#/pages/Projects/Coding.html"
-          >Browse Code</a
-        >
-      </div>
-    </div>
-
-    <div class="sub-section fade">
-      <div class="col-left">
-        <div class="theme-img filler-img"></div>
-      </div>
-      <div class="col-right">
-        <h2>Violinist</h2>
-        <p>
-          I am a violinist who enjoys classical music and orchestral
-          performance. I seek to one day perform in a major orchestra, and am
-          always looking to better my playing skills.
-        </p>
-        <a class="button" href="#/pages/Music.html">Music</a>
-      </div>
-    </div>
+    <img
+      src="/static/img/background/Lorem-code.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
   </section>
 
-  <!-- Horizontal Tiles -->
-  <section class="section recent">
-    <h2>Recent</h2>
-    <div>
-      <!-- Recent projects, blogs, etc. will go here -->
+  <!-- Notes -->
+  <section id="hero" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">Notes</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+        animi aperiam cumque voluptatibus cupiditate at error praesentium
+        laudantium quisquam aliquid!
+      </p>
     </div>
+    <img
+      src="/static/img/background/Lorem-code.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
+  </section>
+
+  <!-- School -->
+  <section id="hero" class="fade alt-row">
+    <div class="alt-content">
+      <h2 class="alt-title">School</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+        animi aperiam cumque voluptatibus cupiditate at error praesentium
+        laudantium quisquam aliquid!
+      </p>
+    </div>
+    <img
+      src="/static/img/background/Lorem-code.jpg"
+      alt="Lorem Code"
+      class="no-wrap media" />
   </section>
 </div>

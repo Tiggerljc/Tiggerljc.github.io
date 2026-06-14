@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSettings();
 });
 
+// Fade page
 function applyFadeIns() {
   const fadeEls = document.querySelectorAll(".fade");
 
@@ -124,26 +125,46 @@ function applyFadeIns() {
   fadeEls.forEach((el) => observer.observe(el));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  applyFadeIns();
-});
+// Wrap images procedurally
+function wrapImages(selector = "img") {
+  document.querySelectorAll(selector).forEach((img) => {
+    // Check if image is supposed to be wrapped
+    if (img.classList.contains("no-wrap")) return;
 
-// Listen for SPA navigation
-document.addEventListener("spa-page-loaded", () => {
-  applyFadeIns();
-  const saved = localStorage.getItem("site-theme");
-  if (saved && themes[saved]) {
-    updateFillerImages(themes[saved]);
-  }
-});
+    // Handle wrapper already exists
+    if (img.closest(".img-wrapper")) return;
 
-// Update the page title dynamically
-document.addEventListener("page-title-changed", (e) => {
-  const title = e.detail.title || "Tigger.dev";
-  document.title = `${title} - Tigger.dev`;
-  const titleElement = document.getElementById("page-title");
-  if (titleElement) titleElement.textContent = title;
-});
+    // Create wrapper
+    const imgWrapper = document.createElement("div");
+    imgWrapper.className = "img-wrapper";
+
+    // Handle wrapper modes at runtime
+    if (img.classList.contains("banner")) imgWrapper.classList.add("banner");
+
+    // Insert image into wrapper
+    img.parentNode.insertBefore(imgWrapper, img);
+    imgWrapper.appendChild(img);
+
+    // Get natural width and height of image and compute correct height based off of them
+    function updateWrapperHeight() {
+      const naturalWidth = img.naturalWidth;
+      const naturalHeight = img.naturalHeight;
+      if (!naturalWidth || !naturalHeight) return;
+
+      const width = imgWrapper.clientWidth;
+      imgWrapper.style.height = `${(naturalHeight / naturalWidth) * width}px`;
+    }
+
+    // Run image computation; if image doesn't yet exist, wait till it does
+    if (img.complete) {
+      updateWrapperHeight();
+    } else {
+      img.addEventListener("load", updateWrapperHeight);
+    }
+
+    window.addEventListener("resize", updateWrapperHeight);
+  });
+}
 
 // Navbar Width
 function getSidebarWidth() {
@@ -173,5 +194,27 @@ window.updateNavWidth = function updateNavWidth() {
   const width = navbarWidth();
   navbar.style.maxWidth = width + "px";
 };
+
+// Listeners
+document.addEventListener("DOMContentLoaded", () => {
+  applyFadeIns();
+  wrapImages();
+});
+
+document.addEventListener("spa-page-loaded", () => {
+  applyFadeIns();
+  const saved = localStorage.getItem("site-theme");
+  if (saved && themes[saved]) {
+    updateFillerImages(themes[saved]);
+  }
+  wrapImages();
+});
+
+document.addEventListener("page-title-changed", (e) => {
+  const title = e.detail.title || "Tigger.dev";
+  document.title = `${title} - Tigger.dev`;
+  const titleElement = document.getElementById("page-title");
+  if (titleElement) titleElement.textContent = title;
+});
 
 window.addEventListener("resize", updateNavWidth);

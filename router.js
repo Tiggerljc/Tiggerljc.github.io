@@ -32,7 +32,7 @@ function injectPage(doc, skipSmoothScroll = false) {
   } else {
     window.scrollTo({ top: 0 });
   }
-  newContent.classList.add("fade", "visible");
+  // newContent.classList.add("fade", "visible");
 
   // Notify other scripts
   document.dispatchEvent(new Event("spa-page-loaded"));
@@ -46,7 +46,7 @@ async function loadPage(url, skipSmoothScroll = false) {
   if (!url.startsWith("/")) url = "/" + url;
 
   // Fade out old content
-  content.classList.add("fade");
+  // content.classList.add("fade");
 
   try {
     // Fetch the requested page
