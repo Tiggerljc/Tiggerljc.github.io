@@ -129,7 +129,7 @@ function applyFadeIns() {
 function wrapImages(selector = "img") {
   document.querySelectorAll(selector).forEach((img) => {
     // Check if image is supposed to be wrapped
-    if (img.classList.contains("no-wrap")) return;
+    if (img.classList.contains("nowrap")) return;
 
     // Handle wrapper already exists
     if (img.closest(".img-wrapper")) return;
@@ -140,6 +140,8 @@ function wrapImages(selector = "img") {
 
     // Handle wrapper modes at runtime
     if (img.classList.contains("banner")) imgWrapper.classList.add("banner");
+    if (img.classList.contains("card-media"))
+      imgWrapper.classList.add("card-media");
 
     // Insert image into wrapper
     img.parentNode.insertBefore(imgWrapper, img);

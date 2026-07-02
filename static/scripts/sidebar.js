@@ -305,7 +305,7 @@ function injectToC() {
   for (let h = 0; h < headings.length; h++) {
     const cursor = headings[h];
 
-    if (cursor.title === "Featured Posts") continue;
+    if (cursor.title.startsWith("Featured")) continue;
     // ToC Items
     const item = document.createElement("a");
 
