@@ -142,6 +142,8 @@ function wrapImages(selector = "img") {
     if (img.classList.contains("banner")) imgWrapper.classList.add("banner");
     if (img.classList.contains("card-media"))
       imgWrapper.classList.add("card-media");
+    if (img.classList.contains("no-aspect"))
+      imgWrapper.classList.add("no-aspect");
 
     // Insert image into wrapper
     img.parentNode.insertBefore(imgWrapper, img);
@@ -152,6 +154,11 @@ function wrapImages(selector = "img") {
       const naturalWidth = img.naturalWidth;
       const naturalHeight = img.naturalHeight;
       if (!naturalWidth || !naturalHeight) return;
+
+      if (imgWrapper.classList.contains("no-aspect")) {
+        imgWrapper.style.height = "";
+        return;
+      }
 
       const width = imgWrapper.clientWidth;
       imgWrapper.style.height = `${(naturalHeight / naturalWidth) * width}px`;

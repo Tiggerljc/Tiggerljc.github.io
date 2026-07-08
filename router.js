@@ -1,63 +1,180 @@
 // router.js
 
-function injectPage(doc, skipSmoothScroll = false) {
-  const newContent = doc.querySelector("#content");
+let activeSectionScript = null;
+let activeSectionName = null;
+let activeRequestId = 0;
+
+function unloadSectionScript() {
+  if (!activeSectionScript) return;
+
+  document.dispatchEvent(new Event("section-script-destroy"));
+  activeSectionScript.remove();
+  activeSectionScript = null;
+  activeSectionName = null;
+}
+
+function loadSectionScript(sectionName, onReady) {
+  const scriptMap = {
+    blogs: "/static/scripts/blogs.js",
+    docs: "/static/scripts/docs.js",
+    notes: "/static/scripts/notes.js",
+  };
+
+  const src = scriptMap[sectionName];
+  if (!src) {
+    onReady?.();
+    return;
+  }
+
+  if (activeSectionName === sectionName && activeSectionScript) {
+    onReady?.();
+    return;
+  }
+
+  unloadSectionScript();
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.defer = true;
+  script.addEventListener("load", () => {
+    activeSectionScript = script;
+    activeSectionName = sectionName;
+    onReady?.();
+  });
+  script.addEventListener("error", () => {
+    console.error(`Failed to load section script: ${src}`);
+    onReady?.();
+  });
+
+  document.body.appendChild(script);
+}
+
+function syncPageMeta(doc) {
   const meta = doc.querySelector("#page-meta");
+  if (!meta) return;
+
+  try {
+    const data = JSON.parse(meta.textContent);
+    document.dispatchEvent(
+      new CustomEvent("page-title-changed", { detail: data }),
+    );
+  } catch (e) {
+    console.warn("Invalid page-meta JSON", e);
+  }
+}
+
+function injectPage(doc, skipSmoothScroll = false, metaDoc = doc) {
+  const newContent = doc.querySelector("#content");
 
   if (!newContent) {
     console.warn("Loaded page has no #content wrapper.");
     return;
   }
 
-  // Replace old content
   const oldContent = document.getElementById("content");
   oldContent.replaceWith(newContent);
 
-  // Update titlebar if metadata exists
-  if (meta) {
-    try {
-      const data = JSON.parse(meta.textContent);
-      document.dispatchEvent(
-        new CustomEvent("page-title-changed", { detail: data }),
-      );
-    } catch (e) {
-      console.warn("Invalid page-meta JSON", e);
-    }
-  }
+  syncPageMeta(metaDoc);
 
-  // Scroll + fade in
-  // Ensure scroll query before load; if there is, skip, else run scroll function
   if (!skipSmoothScroll) {
     smoothScrollToTop();
   } else {
     window.scrollTo({ top: 0 });
   }
-  // newContent.classList.add("fade", "visible");
 
   // Notify other scripts
   document.dispatchEvent(new Event("spa-page-loaded"));
+}
+
+function getSectionInfo(url) {
+  const normalized = (url || "").replace(/^\/+/, "");
+
+  if (/^pages\/blogs(?:\/|\.|$)/i.test(normalized)) {
+    return { name: "blogs", shellUrl: "/pages/Blogs.html" };
+  }
+
+  if (/^pages\/docs(?:\/|\.|$)/i.test(normalized)) {
+    return { name: "docs", shellUrl: "/pages/Docs.html" };
+  }
+
+  if (/^pages\/notes(?:\/|\.|$)/i.test(normalized)) {
+    return { name: "notes", shellUrl: "/pages/Notes.html" };
+  }
+
+  return null;
+}
+
+function handleSectionScript(url, onReady) {
+  const section = getSectionInfo(url);
+  if (!section) {
+    unloadSectionScript();
+    onReady?.();
+    return;
+  }
+
+  loadSectionScript(section.name, onReady);
 }
 
 async function loadPage(url, skipSmoothScroll = false) {
   let content = document.getElementById("content");
   if (!content) return;
 
-  // Normalize URL
   if (!url.startsWith("/")) url = "/" + url;
 
-  // Fade out old content
-  // content.classList.add("fade");
+  const requestId = ++activeRequestId;
 
   try {
-    // Fetch the requested page
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
+    const normalizedPath = url.replace(/^\/+/, "");
+    const section = getSectionInfo(url);
+    const isSubPartial = /^(pages\/(blogs|docs|notes)\/)/i.test(normalizedPath);
+    const isSectionRoute = !!section;
 
-    // Delay to allow fade-out animation
-    setTimeout(() => injectPage(doc, skipSmoothScroll), 250);
+    if (requestId !== activeRequestId) return;
+
+    if (isSectionRoute) {
+      handleSectionScript(url, async () => {
+        if (requestId !== activeRequestId) return;
+
+        if (isSubPartial) {
+          const shellUrl = section.shellUrl;
+          const shellRes = await fetch(shellUrl);
+          if (!shellRes.ok) throw new Error(`HTTP ${shellRes.status}`);
+
+          const shellHtml = await shellRes.text();
+          const shellDoc = new DOMParser().parseFromString(
+            shellHtml,
+            "text/html",
+          );
+
+          if (requestId !== activeRequestId) return;
+
+          injectPage(shellDoc, skipSmoothScroll, doc);
+
+          document.dispatchEvent(
+            new CustomEvent("sub-partial-load", {
+              detail: { doc, html, url, skipSmoothScroll },
+            }),
+          );
+        } else {
+          setTimeout(() => injectPage(doc, skipSmoothScroll, doc), 250);
+        }
+
+        document.dispatchEvent(
+          new CustomEvent("section-script-ready", {
+            detail: { doc, html, url, skipSmoothScroll, isSubPartial },
+          }),
+        );
+      });
+      return;
+    }
+
+    unloadSectionScript();
+    setTimeout(() => injectPage(doc, skipSmoothScroll, doc), 250);
   } catch (err) {
     console.error(`Failed to load ${url}:`, err);
 
@@ -111,7 +228,8 @@ function handleRoute() {
   let hash = location.hash || "";
 
   if (!hash || hash === "#") {
-    location.hash = "/pages/home.html";
+    pendingScrollTarget = null;
+    loadPage("/pages/home.html");
     return;
   }
 
@@ -148,8 +266,6 @@ function handleRoute() {
   document.dispatchEvent(
     new CustomEvent("scroll-updated", { detail: scrollTarget }),
   );
-
-  console.log("handleRoute() " + pendingScrollTarget);
 }
 
 document.addEventListener("DOMContentLoaded", handleRoute);

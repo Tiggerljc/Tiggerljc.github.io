@@ -131,7 +131,6 @@ async function getTree() {
 // Get URL
 function getURL() {
   const url = window.location.hash.split("?")[0];
-  console.log(url);
   return url;
 }
 // Recursive search function
@@ -305,7 +304,12 @@ function injectToC() {
   for (let h = 0; h < headings.length; h++) {
     const cursor = headings[h];
 
-    if (cursor.title.startsWith("Featured")) continue;
+    if (
+      cursor.title.startsWith("Featured") ||
+      cursor.title.startsWith("Related")
+    ) {
+      continue;
+    }
     // ToC Items
     const item = document.createElement("a");
 
@@ -359,7 +363,6 @@ function injectToC() {
       pendingScrollTarget = id;
       location.hash = href;
       scrollToTarget(id);
-      console.log("Render | Scrolled to target: " + id);
     });
     ToC.dataset.tocClickBound = "true";
   }
@@ -415,12 +418,6 @@ function initObserver() {
     threshold: 0,
   });
   headings.forEach((heading) => scrollObserver.observe(heading));
-
-  console.log("linkMap", linkMap);
-  console.log(
-    "link hashes",
-    [...links].map((link) => link.hash),
-  );
 }
 
 // Scroll listener (runs on URL updates)
@@ -433,7 +430,6 @@ function scrollToTarget(target) {
     top: yOffset,
     behavior: "smooth",
   });
-  console.log("Scrolled to target: " + el);
 }
 
 // ToC listeners
@@ -443,19 +439,12 @@ document.addEventListener("spa-page-loaded", () => {
 
   if (pendingScrollTarget) {
     scrollToTarget(pendingScrollTarget);
-    console.log("spa-page-loaded " + pendingScrollTarget);
     pendingScrollTarget = null;
   }
 });
 
 document.addEventListener("scroll-updated", (e) => {
   const scrollTarget = e.detail;
-  console.log(
-    "scroll-updated | pendingScrollTarget= " +
-      pendingScrollTarget +
-      " scrollTarget= " +
-      scrollTarget,
-  );
   scrollToTarget(scrollTarget);
 });
 
