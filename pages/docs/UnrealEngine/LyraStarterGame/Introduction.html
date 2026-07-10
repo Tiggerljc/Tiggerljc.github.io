@@ -1,0 +1,104 @@
+<script id="page-meta" type="application/json">
+  {
+    "title": "Introduction to Lyra"
+  }
+</script>
+
+<div class="content-primary">
+  <!-- Hero -->
+  <section>
+    <img
+      src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+      alt="Banner - Lyra Starter Game"
+      class="banner"
+      width="1920"
+      height="335" />
+    <p class="image-credit">Image credit Epic Games, Inc., Lyra Starter Game</p>
+    <p>
+      The Lyra Starter Game is Epic's recommended standard for multiplayer
+      development; as such, understanding the makeup of the project--and, more
+      importantly, the framework it rests on--is crucial to working effectively
+      with Lyra. This page will give an overview of the Lyra framework and the
+      concepts necessary to work with it.
+    </p>
+  </section>
+  <section>
+    <h2>The Basics</h2>
+    <h3>Modular Gameplay</h3>
+    <p>
+      Lyra is built as a modular framework composed of Game Feature Plugins
+      (GFPs). These plugins house most of Lyra's gameplay content and systems.
+      Very little is stored in the main Content folder; everything else is
+      stored in GFPs and loaded dynamically at runtime.
+    </p>
+    <p>The default Lyra plugins include:</p>
+    <ul class="indent-list">
+      <li>ShooterCore</li>
+      <li>ShooterExplorer</li>
+      <li>ShooterMaps</li>
+      <li>ShooterTests</li>
+      <li>TopDownArena</li>
+    </ul>
+    <p>
+      This modular architecture allows for a clean separation of gameplay
+      systems and enables flexible game modes and content loading, meaning that
+      only the necessary content is available at runtime.
+    </p>
+    <h3>Gameplay Ability System</h3>
+    <p>
+      Lyra makes use of the Gameplay Ability System (GAS) for player actions.
+      Any action that the player character carries out--for example, running,
+      jumping, and dashing--is controlled by a Gameplay Ability. These abilities
+      are modular and can be granted or removed from the player at runtime
+      through Ability Sets.
+    </p>
+    <p>
+      Input is handled using Input Actions, which are mapped to abilities using
+      Input Mapping Contexts (IMCs).
+    </p>
+    <p>
+      Another key part of Lyra's ability system is the use of Gameplay Tags.
+      These tags govern ability relationships, activation and deactivation, when
+      abilities can or cannot happen, what abilities block other abilities,
+      player health and damage, and more.
+    </p>
+    <h3>Experiences</h3>
+    <p>
+      Lyra uses Gameplay Experiences to create game modes. These Experiences
+      define which Game Features to enable, what pawn to use, and what abilities
+      to grant that pawn. Lyra takes this a step further by creating the
+      <code>LyraUserFacingExperienceDefinition</code>, which takes in an
+      Experience Definition and assigns it a map, title/subtitle, description,
+      and logo, as well as a loading screen widget.
+    </p>
+    <p>
+      The <code>LyraUserFacingExperienceDefinition</code> is used in the
+      <code>L_DefaultEditorOverview</code> map when constructing
+      <code>B_ExperienceList3D</code>. This asset loads the Experience
+      Definitions as widgets, and creates a platform for the player to walk
+      onto. This platform loads a Gameplay Experience, including its associated
+      map and rulesets. This example could be taken to assemble a full lobby
+      screen with many different game modes.
+    </p>
+  </section>
+  <section>
+    <h2>How to Work With Lyra</h2>
+    <p>
+      Some smart thing about being modular and not modifying the base code....
+    </p>
+  </section>
+  <div class="cta cta-footer">
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame/Content.html"
+      class="btn cta-prev">
+      <i class="fas fa-chevron-left"></i>
+      <span>Previous Page</span>
+    </a>
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame/Plugins.html"
+      class="btn cta-next">
+      <span>Next Page</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
