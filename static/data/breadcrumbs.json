@@ -15,67 +15,67 @@
       },
       "Docs": {
         "title": "Docs",
-        "href": "#/pages/Docs.html",
+        "href": "#/pages/docs.html",
         "children": {
           "UnrealEngine": {
             "title": "Unreal Engine",
-            "href": "#/pages/Docs/UnrealEngine.html",
+            "href": "#/pages/docs/UnrealEngine.html",
             "children": {
               "LyraStarterGame": {
                 "title": "Lyra Starter Game",
-                "href": "#/pages/Docs/UnrealEngine/LyraStarterGame.html",
+                "href": "#/pages/docs/UnrealEngine/LyraStarterGame.html",
                 "children": {
                   "Content": {
                     "title": "Content",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Content.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Content.html",
                     "children": {}
                   },
                   "Introduction": {
                     "title": "Introduction",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Introduction.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Introduction.html",
                     "children": {}
                   },
                   "LyraEditor": {
                     "title": "Lyra Editor",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/LyraEditor.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/LyraEditor.html",
                     "children": {}
                   },
                   "LyraGame": {
                     "title": "Lyra Game",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/LyraGame.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/LyraGame.html",
                     "children": {}
                   },
                   "Plugins": {
                     "title": "Plugins",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins.html",
                     "children": {
                       "GameFeaturePlugins": {
                         "title": "Game Feature Plugins",
-                        "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
+                        "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
                         "children": {
                           "ShooterCore": {
                             "title": "Shooter Core",
-                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
+                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
                             "children": {}
                           },
                           "ShooterExplorer": {
                             "title": "Shooter Explorer",
-                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
+                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
                             "children": {}
                           },
                           "ShooterMaps": {
                             "title": "Shooter Maps",
-                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
+                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
                             "children": {}
                           },
                           "ShooterTests": {
                             "title": "Shooter Tests",
-                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
+                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
                             "children": {}
                           },
                           "TopDownArena": {
                             "title": "Top Down Arena",
-                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
+                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
                             "children": {}
                           }
                         }

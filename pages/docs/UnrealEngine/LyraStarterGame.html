@@ -9,7 +9,7 @@
     <!-- Hero -->
     <section>
       <img
-        src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+        src="/pages/docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
         alt="Banner - Lyra Starter Game"
         class="banner"
         width="1920"
@@ -46,9 +46,9 @@
       <div class="horizontal-grid">
         <a
           class="horizontal-tile"
-          href="#/pages/Docs/UnrealEngine/LyraStarterGame/Introduction.html">
+          href="#/pages/docs/UnrealEngine/LyraStarterGame/Introduction.html">
           <img
-            src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+            src="/pages/docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
             alt="img"
             class="no-aspect" />
           <div>
@@ -56,164 +56,22 @@
             <p>A brief overview of the Lyra Starter Game and its structure</p>
           </div>
         </a>
-      </div>
-    </section>
-    <!-- Core Principles -->
-    <section>
-      <h2 id="Core Principles">Core Principles</h2>
-      <p>
-        When working with Lyra, it is best to adhere to some core principles.
-        Doing so can save you a lot of frustration in the long run. Wherever
-        possible, <b>always extend code instead of modifying it.</b> First and
-        foremost, if Epic ever updates Lyra, it makes it much easier to merge
-        your code with the updated code. This also makes your code more modular,
-        which is the entire goal of Lyra.
-      </p>
-      <p>
-        Additionally, content should be housed in
         <a
-          href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html"
-          >Game Feature Plugins (GFPs).</a
-        >
-        This aids in modularizing your code and keeps it from interfering with
-        Lyra's core content. Also, it is the system Lyra itself uses to create
-        its own content, and you should always prefer using Lyra's systems over
-        creating your own.
-      </p>
-    </section>
-    <!-- Getting Started with Lyra -->
-    <section>
-      <h2 id="Getting Started">Getting Started with Lyra</h2>
-      <p>
-        <b>Prerequisites:</b> Please refer to the
-        <a
-          href="https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine?application_version=5.5"
-          >Epic documentation</a
-        >
-        to become familiar with the basics of Lyra. This breakdown will be more
-        of a more low-level in-depth examination, so you will likely need to
-        know some of the basics before reading this.
-      </p>
-
-      <div>
-        <h3>Basic File Structure</h3>
-        <p>
-          Lyra's content is divided into three main groups; the Content folder,
-          core C++, and plugins.
-        </p>
-        <p>
-          The Content folder houses defaults for the game framework (general
-          global Blueprints and Data Assets, etc.); this is not where game
-          content should go.
-        </p>
-        <ul class="indent-list">
-          <li>
-            <a href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Content.html"
-              >Content (Engine Content folder)</a
-            >
-          </li>
-        </ul>
-
-        <p>
-          The core C++ content includes LyraEditor and LyraGame. LyraEditor is
-          mostly for Editor- and PIE-related setup, and LyraGame is the C++ side
-          of the game framework. It is very important to understand LyraGame as
-          most content is dependent upon it.
-        </p>
-        <ul class="indent-list">
-          <li>C++ Classes</li>
-          <ul>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/LyraEditor.html"
-                >LyraEditor</a
-              >
-            </li>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/LyraGame.html"
-                >LyraGame</a
-              >
-            </li>
-          </ul>
-        </ul>
-
-        <p>
-          <a
-            href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html"
-            >Game Feature Plugins</a
-          >
-          house all of Lyra's actual game content; the experiences, the maps,
-          etc. are in GFPs. The main one is ShooterCore, which holds the assets
-          and definition for most of the actual game modes.
-        </p>
-        <ul class="indent-list">
-          <li>
-            <a
-              href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html"
-              >Game Feature plugins</a
-            >
-          </li>
-          <ul>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html"
-                >ShooterCore (Core game plugin)</a
-              >
-            </li>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html"
-                >Shooter Explorer</a
-              >
-            </li>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html"
-                >Shooter Maps</a
-              >
-            </li>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html"
-                >Shooter Tests</a
-              >
-            </li>
-            <li>
-              <a
-                href="#/pages/Hobbies/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html"
-                >Top Down Arena</a
-              >
-            </li>
-          </ul>
-        </ul>
+          class="horizontal-tile"
+          href="#/pages/docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html">
+          <img
+            src="/pages/docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+            alt="img"
+            class="no-aspect" />
+          <div>
+            <h4>Map of Lyra</h4>
+            <p>
+              A list of Lyra's main folders, plugins and dependencies, with
+              detailed explanations for each
+            </p>
+          </div>
+        </a>
       </div>
-      <div>
-        <h3>Core Frameworks</h3>
-        <p>
-          The Lyra Starter Game is built off of multiple modular asset plugins,
-          such as Game Feature Plugins<!-- Link -->
-          and the Gameplay Ability System.<!-- Link -->
-          These serve to componentize the project and ensure that everything is
-          only loaded when it needs to be.
-        </p>
-        <ul class="indent-list">
-          <li><a href="">Game Feature Plugins</a></li>
-          <ul>
-            <li><a href="">Modular Gameplay</a></li>
-            <li><a href="">Game Features</a></li>
-          </ul>
-          <li><a href="">Gameplay Ability System</a></li>
-        </ul>
-      </div>
-    </section>
-    <!-- Key Lyra Assets -->
-    <section>
-      <h2 id="Key Lyra Assets">Key Lyra Assets</h2>
-      <p>
-        (Coming soon...)
-        <!-- B_Hero_ShooterMannequin, Weapons, Spawn, etc. -->
-      </p>
     </section>
     <section>
       <h2 id="Thank You!">Thank You!</h2>

@@ -8,7 +8,7 @@
   <!-- Hero -->
   <section>
     <img
-      src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+      src="/pages/docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
       alt="Banner - Lyra Starter Game"
       class="banner"
       width="1920"
@@ -16,8 +16,8 @@
     <p class="image-credit">Image credit Epic Games, Inc., Lyra Starter Game</p>
     <p>
       The Lyra Starter Game is Epic's recommended standard for multiplayer
-      development; as such, understanding the makeup of the project--and, more
-      importantly, the framework it rests on--is crucial to working effectively
+      development; as such, understanding the makeup of the project—and, more
+      importantly, the framework it rests on—is crucial to working effectively
       with Lyra. This page will give an overview of the Lyra framework and the
       concepts necessary to work with it.
     </p>
@@ -32,7 +32,7 @@
       stored in GFPs and loaded dynamically at runtime.
     </p>
     <p>The default Lyra plugins include:</p>
-    <ul class="indent-list">
+    <ul class="ul-tree">
       <li>ShooterCore</li>
       <li>ShooterExplorer</li>
       <li>ShooterMaps</li>
@@ -47,8 +47,8 @@
     <h3>Gameplay Ability System</h3>
     <p>
       Lyra makes use of the Gameplay Ability System (GAS) for player actions.
-      Any action that the player character carries out--for example, running,
-      jumping, and dashing--is controlled by a Gameplay Ability. These abilities
+      Any action that the player character carries out—for example, running,
+      jumping, and dashing—is controlled by a Gameplay Ability. These abilities
       are modular and can be granted or removed from the player at runtime
       through Ability Sets.
     </p>
@@ -84,20 +84,46 @@
   <section>
     <h2>How to Work With Lyra</h2>
     <p>
-      Some smart thing about being modular and not modifying the base code....
+      Lyra is intentionally designed as a modular framework. Instead of
+      inserting gameplay systems directly into the Content folder, Epic used
+      Game Feature Plugins to encapsulate the project. This keeps the project
+      very modular and lightweight and allows for the easy activation,
+      deactivation, or restructuring of features without affecting the rest of
+      the game.
+    </p>
+    <p>
+      In Epic's own words, "<i
+        >The Content folder only contains generic assets and the main lobby.</i
+      >" Therefore, it is recommended that you create your own GFPs for your
+      game content. This provides two major benefits. First, it prevents
+      accidental changes to Lyra's code, which can be difficult and
+      time-consuming to debug, and you might break other systems in the process.
+      Second, it makes migration significantly easier if Epic updates Lyra. It
+      also makes it easier to migrate your content to another framework should
+      you choose to do so.
+    </p>
+    <p>
+      In practice, this means treating Lyra as a framework and building your
+      game as a network of independent layers on top of it. If you must modify
+      Lyra code, it is better to duplicate files first and modify the duplicates
+      rather than the original. As for your own content, almost all of your
+      assets should go in plugins—only truly global assets such as the main
+      lobby or shared UI belong in the Content folder. A detailed walkthrough of
+      how to create your own GFP and connect it to Lyra's systems is available
+      in this blog tutorial: <a href="">Some link at some point</a>.
     </p>
   </section>
   <div class="cta cta-footer">
     <a
-      href="#/pages/docs/UnrealEngine/LyraStarterGame/Content.html"
+      href="#/pages/docs/UnrealEngine/LyraStarterGame.html"
       class="btn cta-prev">
       <i class="fas fa-chevron-left"></i>
-      <span>Previous Page</span>
+      <span>Lyra Starter Game</span>
     </a>
     <a
-      href="#/pages/docs/UnrealEngine/LyraStarterGame/Plugins.html"
+      href="#/pages/docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html"
       class="btn cta-next">
-      <span>Next Page</span>
+      <span>Map of Lyra</span>
       <i class="fas fa-chevron-right"></i>
     </a>
   </div>

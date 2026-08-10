@@ -1,259 +1,562 @@
 <script id="page-meta" type="application/json">
   {
-    "title": "Lyra Starter Game: Engine Content"
+    "title": "Lyra Content Folder"
   }
 </script>
 
-<div id="content" class="content">
-  <div class="content-primary">
-    <section>
-      <img
-        src="/static/img/banners/LyraStarterGame.jpg"
-        alt="Lyra Starter Game"
-        class="banner"
-        width="1920"
-        height="335"
-        loading="eager" />
-      <p class="image-credit">
-        Image credit Epic Games, Inc. - Lyra Starter Game
-      </p>
-      <h2>Content</h2>
+<div class="content-primary">
+  <!-- Hero -->
+  <section>
+    <img
+      src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+      alt="Banner - Lyra Starter Game"
+      class="banner"
+      width="1920"
+      height="335" />
+    <p class="image-credit">Image credit Epic Games, Inc., Lyra Starter Game</p>
+    <p>
+      The <b>Content folder</b> is houses Lyra's core content, including the
+      main lobby, shared UI, and the basic pawn classes. It has 17 subfolders
+      and four files in its root. Of those, only twelve folders are used for
+      gameplay content; the remaining folders are Editor tools, localization
+      files, or legal files. The folder's files and subfolders are categorized
+      and outlined below:
+    </p>
+  </section>
+  <section>
+    <!-- Content Folder -->
+    <h3>Gameplay Content</h3>
+    <!-- Files -->
+    <h4>Files</h4>
+    <details>
+      <summary>B_LyraGameInstance</summary>
       <p>
-        <a href="#/pages/Hobbies/UnrealEngine/LyraStarterGame.html">Lyra</a> is
-        a very modular project, which means that most of the game content is
-        loaded in plugins at runtime rather than put into a content folder.
-        However, it's core (as in, necessary for the game itself to run) assets
-        are stored in the main Content folder. This content is used to create
-        the frontend and stores the base character asset and it's respective
-        ability sets, as well as some UI components, audio assets, weapon
-        meshes, and Blueprints.
+        <code>B_LyraGameInstance</code> is a Blueprint subclass of
+        <code>ULyraGameInstance</code>. It exposes the UObject to the Editor and
+        adds two variables called <code>MusicSystem</code> and
+        <code>Audio_LobbySelect</code>, which are both Audio components.
+      </p>
+    </details>
+    <details>
+      <summary>B_LyraGameMode</summary>
+      <p>
+        <code>B_LyraGameMode</code> is a data-only Blueprint subclass of
+        <code>ALyraGameMode</code>, a subclass of <code>AModularGameMode</code>,
+        which is in turn a subclass of <code>AGameMode</code>. This Blueprint is
+        not actually used in Lyra; all of the settings are the defaults from the
+        C++ classes. The Blueprint is used as an in-editor interface for
+        developers to quickly change settings without having to modify and
+        recompile C++.
+      </p>
+    </details>
+    <details>
+      <summary>DefaultGame_Label</summary>
+      <p>
+        <code>DefaultGame_Label</code> is a Data Asset derived from
+        <code>UPrimaryAssetLabel</code>. This Data Asset is used for labeling
+        assets for the cooker to bundle. Any assets that are listed in the Data
+        Asset will get the label "DefaultGame_Label" and will be bundled
+        together in a package under that name. This asset can be reused to
+        manage bundles when cooking your project.
+      </p>
+    </details>
+    <details>
+      <summary>DefaultGameData</summary>
+      <p>
+        <code>DefaultGameData</code> is a Data Asset derived from
+        <code>ULyraGameData</code>. This asset sets Gameplay Effects that deal
+        with damage, healing and dynamic tags.
+      </p>
+    </details>
+    <!-- Folders -->
+    <h4>Folders</h4>
+    <details>
+      <summary>Audio</summary>
+      <p>
+        The <code>Audio</code> folder houses all of Lyra's sound assets,
+        including sound effects, lobby music, mixes, etc. It has 11 subfolders
+        and one file in its root. Rather than spread the audio files throughout
+        Lyra's various plugins, Epic put all of them in the Content folder.
+      </p>
+      <p>The contents of this folder are outlined below:</p>
+      <ul class="ul-tree">
+        <li>
+          <b>Attenuation Presets</b> - Sound Attenuation files that handle
+          falloff and occlusion
+        </li>
+        <li>
+          <b>Blueprints</b> - music components, a wind system, weapon audio
+          macros and a general audio helper function
+        </li>
+        <li>
+          <b>Classes</b> - Sound Classes which group sounds and allows control
+          over the group's volume, pitch, and modulation at runtime before
+          routing into a submix; Lyra exposes them in the user Audio settings
+        </li>
+        <li>
+          <b>Concurrency</b> - Sound Concurrency files that limit the number of
+          instances a sound can have and determines how to get rid of overflow
+        </li>
+        <li>
+          <b>Effects</b> - Submix Effects that modify groups of sounds
+          (submixes); presets include:
+          <ul>
+            <li>
+              <b>SubmixEffectConvolutionReverbPreset</b> - convolution reverb
+              using an impulse response
+            </li>
+            <li>
+              <b>SubmixEffectDynamicsProcessorPreset</b> - dynamics control
+            </li>
+            <li>
+              <b>SubmixEffectFilterPreset</b> - high pass/low pass filters
+            </li>
+            <li>
+              <b>SubmixEffectTapDelayPreset</b> - multi-tap delay/echo per tap
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Impulses</b> - Impulse Response (IR) files and their associated
+          audio files, used to create realistic reverb in audio. In Lyra these
+          were combined with the
+          <code>SubmixEffectConvolutionReverbPreset</code> Submix Effect preset
+          to generate reverb by convolving the IR with game audio
+        </li>
+        <li>
+          <b>MetaSounds</b> - MetaSound Source and Patch files, which
+          procedurally generate sound effects or music at runtime. This does
+          come with an overhead CPU cost, but it can also reduce memory usage
+          since it is procedural (smaller footprint, and one file can create a
+          lot of variations). This folder notably holds the main lobby music as
+          well as the sounds for many interactable objects such as jump pads,
+          weapon pads, and portals
+        </li>
+        <li>
+          <b>Modulation</b> - Control Buses, Control Bus Mixes, and Parameter
+          Patches, which work together to control sound modulation based on a
+          float channel at runtime
+        </li>
+        <li>
+          <b>Sounds</b> - Sound files for a large portion of Lyra's gameplay;
+          this folder has both regular sound files (Sound Waves) and MetaSounds
+        </li>
+        <li>
+          <b>SoundWaves</b> - This folder only houses Sound Wave files; it has
+          three folders called Foley (footstep assets), SFX, and Weapons
+        </li>
+        <li>
+          <b>Submixes</b> - Sound Submixes that apply the final effects to each
+          Sound Class (via Submix Effects) before routing the sounds into a
+          master submix for output
+        </li>
+        <li>
+          <b>DYN_LowMultibandDynamics</b> - A Submix Effect handling multiband
+          compression; it uses the preset
+          <code>SubmixEffectMultibandCompressorPreset</code>
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>Characters</summary>
+      <p>
+        The <code>Characters</code> folder holds the base pawn classes for Lyra,
+        as well as the SimpleHeroPawn used in the
+        <code>L_DefaultEditorOverview</code> map and the UE4/UE5 Mannequin
+        meshes. It has three subfolders and one file in its root.
+      </p>
+      <p>The contents of this folder are outlined below:</p>
+      <ul class="ul-tree">
+        <li>
+          <b>Cameras</b>
+          <p>
+            The Cameras folder holds the assets for two camera types:
+            ThirdPerson and ThirdPersonDeath. Each type of camera has two
+            assets, a Camera Mode and an Offset Curve. Both camera types are
+            very similar.
+          </p>
+          <p>
+            Both Camera Modes are data-only Blueprint subclasses of
+            <code>ULyraCameraMode_ThirdPerson</code>. These assets are the base
+            of a camera mode and determine both how the camera should act and
+            where it should be positioned relative to the player pawn. The
+            Blueprints have settings for camera collision, transition blending,
+            field of view, and offset curves, which are determined by the Offset
+            Curve assets.
+          </p>
+          <p>
+            The Offset Curves are Vector Curve assets which are used to offset
+            the camera from the player.
+          </p>
+        </li>
+        <li>
+          <b>Cosmetics</b>
+          <p>
+            The Cosmetics folder has six Blueprints and one material. Four of
+            the Blueprints are used to link the meshes and tags together.
+            <code>B_CharacterSelection</code> and
+            <code>B_PickRandomCharacter</code> have logic to choose whether the
+            player gets the Manny or Quinn mesh;
+            <code>B_PickRandomCharacter</code> chooses based on a random seed
+            whereas <code>B_CharacterSelection</code> gets the number of active
+            players and returns a value to determine the mesh.
+          </p>
+          <p>
+            <code>M_TeamColorBasic</code> is a material that assigns a base
+            color called TeamColor (defaults to a bright yellow) and creates a
+            glow around the player that matches launch pad colors. It uses
+            Material Functions to create the launch edge glow as well as to
+            determine the effect's kill edge (cutoff), masked opacity, and
+            custom UV data, which is unused.
+          </p>
+        </li>
+        <li>
+          <b>Heroes</b>
+          <p>
+            The Heroes folder holds the majority of the assets for Lyra's base
+            hero pawn class. It also contains the UE4/UE5 mannequin meshes and
+            animation sets, the base ability set for Lyra's default pawn, pawn
+            data assets, and the assets that make up the
+            <code>SimpleHeroPawn</code>, which is used in
+            <code>L_DefaultEditorOverview</code>.
+          </p>
+          <h4>B_Hero_Default</h4>
+          <p>
+            <code>B_Hero_Default</code> is Lyra's basic hero class. It inherits
+            from the <code>Character_Default</code> Blueprint. This Blueprint
+            has functions for death handling, including a ragdoll animation
+            sequence and the destruction of related actors (like the nameplate).
+          </p>
+          <h4>SimpleHeroPawn</h4>
+          <p>
+            <code>B_SimpleHeroPawn</code> is a pawn Blueprint inheriting from
+            <code>B_Hero_Default</code>. It holds no extra functions and is
+            simply a construction script. M_SimpleHeroPawn is the material used
+            for the simple pawn character, and it has an interesting material
+            graph which generates a solid chromium texture.
+            <code>B_SimpleHeroPawn</code> is attached to the
+            <code>SimplePawnData</code> Data Asset, which gives it the third
+            person camera class as well as a basic movement set
+            (walk/jump/crouch).
+          </p>
+        </li>
+        <li>
+          <b>Character_Default</b>
+          <p>
+            <code>Character_Default</code> is a Blueprint subclass of
+            <code>ALyraCharacter</code>. It is responsible for sending events to
+            pawn components. All of the logic resides in the parent class. This
+            is the base class that pawn components should be built off of.
+          </p>
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>ContextEffects</summary>
+      <p>
+        TThe <code>ContextEffects</code> folder contains three assets that use
+        gameplay tags to determine the sounds produced when a player walks or
+        lands on a particular surface. This system could also be used for other
+        things such as Niagara effects (e.g. trailing particles on a specific
+        surface). The surface types defined in the Data Tables are
+        <code>Default</code>, <code>Player</code>, <code>Concrete</code>, and
+        <code>Glass</code>.
+      </p>
+    </details>
+    <details>
+      <summary>Effects</summary>
+      <p>
+        The <code>Effects</code> folder contains Lyra's visual effects systems;
+        particles, UI cards, and all of the supporting textures and materials.
+        It has 13 subfolders.
+      </p>
+      <p>The contents of this folder are outlined below:</p>
+      <ul class="ul-tree">
+        <li>
+          <b>AnimationNotifies</b> - Two Anim Notify assets,
+          <code>AN_FootPlant_Left</code> and <code>Anim_FootPlant_Right</code>.
+          The left foot asset is marked for deprecation within the Blueprint
+          graph while its right foot counterpart is data-only, suggesting it may
+          already be deprecated; these notifies were used to signal a system
+          (likely ContextEffects) when a character's foot hit the ground
+        </li>
+        <li>
+          <b>Blueprints</b> - Blueprints for footstep particles, weapon impact
+          decals, muzzle flash, and damage number particles
+        </li>
+        <li>
+          <b>Camera</b> - Player damage screen particle systems and textures
+        </li>
+        <li><b>Curves</b> - Color Curves and a curve atlas for pyro effects</li>
+        <li>
+          <b>DataChannels</b> - A Niagara Data Channel for weapon impact decals;
+          this asset tracks the position of projectiles and what surface they
+          hit
+        </li>
+        <li>
+          <b>EffectTypes</b> - Niagara Effect Types used for effect spawning
+          rules and scalability per effect type; can prevent certain effects
+          from spawning on low-end hardware or limit the number of instances an
+          effect can have
+        </li>
+        <li>
+          <b>MaterialFunctions</b> - Assorted Material Functions used throughout
+          Lyra
+        </li>
+        <li>
+          <b>Materials</b> - Materials, flipbooks, and meshes used for various
+          effects in Lyra including damage numbers, grenade explosions,
+          launchpad effects, and portals
+        </li>
+        <li>
+          <b>Meshes</b> - Random Static Meshes used in Niagara particle effects
+          including the bullet shells for the weapons and some rubble
+        </li>
+        <li>
+          <b>NiagaraModules</b> - Niagara Module Scripts that cover a variety of
+          effects; these scripts largely handle particle and decal spawn logic
+        </li>
+        <li>
+          <b>Particles</b> - Niagara Particle Systems and Emitters; folders
+          include Environmental, Explosion, Footsteps, Impacts, Item, Lighting,
+          and Weapons
+        </li>
+        <li>
+          <b>Physics</b> - A few assets that make up
+          <code>B_ShatterSphere</code>, which is supposed to break apart using
+          Chaos Physics, but appears unfinished, and an example physics field
+          asset
+        </li>
+        <li>
+          <b>Textures</b> - Image Texture assets used in many of the materials
+          in the Materials folder; this folder only houses independent textures,
+          as asset-specific textures are housed with the asset
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>Environments</summary>
+      <p>
+        The <code>Environments</code> folder has very little gameplay content.
+        It has one file and two subfolders in its root.
+        <code>B_LoadRandomLobbyBackground</code> is used in
+        <code>L_LyraFrontEnd</code> to create a loading screen while
+        initializing the main lobby. The Materials folder holds a couple of grid
+        textures used in level prototyping. The Gameplay folder holds Blueprints
+        for gameplay effect pads, which are used in test levels for healing and
+        damage testing, and an <code>InstantHeal</code> ability set.
+      </p>
+    </details>
+    <details>
+      <summary>Feedback</summary>
+      <p>
+        The <code>Feedback</code> folder has two subfolders:
+        <code>CameraShakes</code> and <code>Haptics</code>.
+      </p>
+      <ul class="ul-tree">
+        <li>
+          <b>CameraShakes</b> contains Legacy Camera Shake Blueprints that
+          define the movement of the camera when the player takes damage, is
+          healed, or fires a weapon
+        </li>
+        <li>
+          <b>Haptics</b> contains Force Feedback Effects which control gamepad
+          vibration; there are haptics for when the player takes damage, is
+          healed, or their weapon fires, and a
+          <code>Weapon_Fire_Auto</code> folder that has Float curves along with
+          the Force Feedback Effect
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>GameplayCueNotifies</summary>
+      <p>
+        The <code>GameplayCueNotifies</code> folder contains Gameplay Cue
+        Notifies, which run a Blueprint script (or, if no script is created, it
+        activates whatever is set in the Blueprint settings such as sounds and
+        Niagara effects) when a specific Gameplay Tag is active. Lyra uses three
+        kinds: <code>GameplayCueNotify_Burst</code>,
+        <code>GameplayCueNotify_BurstLatent</code>, and
+        <code>GameplayCueNotify_Looping</code>.
+      </p>
+      <ul class="ul-tree">
+        <li>
+          <b>GameplayCueNotify_Burst</b> runs immediately after activation
+        </li>
+        <li>
+          <b>GameplayCueNotify_BurstLatent</b> begins running on activation and
+          can run async scripts before terminating
+        </li>
+        <li>
+          <b>GameplayCueNotify_Looping</b> exposes four events:
+          <code>On Application</code>, <code>On Looping Start</code>,
+          <code>On Recurring</code>, and <code>On Removal</code>; this allows
+          for processes that run constantly or in a loop until the Gameplay Tag
+          is removed
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>GameplayEffects</summary>
+      <p>
+        The <code>GameplayEffects</code> folder contains Gameplay Effect
+        Blueprints which are data-only assets that grant Gameplay Tags to
+        players. They can be assigned through Ability Sets or granted
+        dynamically at runtime.
+      </p>
+    </details>
+    <details>
+      <summary>Input</summary>
+      <p>
+        The <code>Input</code> folder houses the input data for both
+        <code>B_Hero_Default</code> and <code>SimpleHeroPawn</code>. It contains
+        Input Actions (IAs) that determine how an ability is activated (i.e. via
+        button pressed or held down), an Input Mapping Context which collects
+        all of the IAs into one place and allows you to assign which button or
+        input each is tied to, and Input Data assets that collect IAs and
+        determine which tags are activated by each.
       </p>
       <p>
-        This page will give a high-level overview of all of the folders and
-        files in the Content folder, and the more important assets will get
-        their own seperate pages to explain them more in-depth.
+        There is also a <code>Lyra Aim Sensitivity Data</code> Asset called
+        <code>GamepadAimSensitivity_Normal</code>, which creates a sensitivity
+        preset for a range of values. These presets can be found in the
+        controller sensitivity settings inside the game UI.
       </p>
-      <img
-        src="/pages/Hobbies/UnrealEngine/LyraStarterGame/img/LyraContentFolder.jpg"
-        alt="Lyra Content Folder"
-        width="1123"
-        height="363"
-        loading="eager" />
-      <!-- Files -->
-      <h3>Files</h3>
-      <div>
-        <h4>B_LyraGameInstance</h4>
-        <p>
-          <code>B_LyraGameInstance</code> is a subclass of
-          <code>ULyraGameInstance</code>. It inherits the functions from the
-          parent class, and has two audio components, MusicSystem and
-          Audio_LobbySelect (probably for the menu/lobby music). It's main
-          purpose is to expose the C++ GameInstance into the Editor so it can be
-          assigned in Project Settings.
-        </p>
-      </div>
-      <div>
-        <h4>B_LyraGameMode</h4>
-        <p>
-          <code>B_LyraGameMode</code> is a Blueprint extension of the C++ class
-          <code>ALyraGameMode</code>. This asset runs on the server side. It's
-          main responsibility is to expose the class defaults so they can be set
-          in Blueprint. These defaults include:
-        </p>
-        <ul>
-          <li>LyraGameSession</li>
-          <li>LyraGameState</li>
-          <li>LyraPlayerController</li>
-          <li>LyraPlayerState</li>
-          <li>LyraHUD</li>
-          <li>LyraCharacter</li>
-          <li>SpectatorPawn</li>
-          <li>LyraReplayPlayerController</li>
-          <li>ServerStatReplicator</li>
-        </ul>
-      </div>
-      <div>
-        <h4>DefaultGame_Label</h4>
-        <p>
-          <code>DefaultGame_Label</code> is a Primary Asset Label with the
-          parent <code>UPrimaryAssetLabel</code>. It allows you to group assets
-          for the asset manager and defines how those assets are cooked/loaded.
-        </p>
-      </div>
-      <div>
-        <h4>DefaultGameData</h4>
-        <p>
-          <code>DefaultGameData</code> is a Data Asset with the parent class
-          <code>LyraGameData</code>. It has three parameters that take in
-          Gameplay Effect assets. These abilities are used by default in Lyra
-          for damage, healing, and dynamic tag application. The assets are as
-          follows:
-        </p>
-        <ul>
-          <li>
-            <b>Damage Gameplay Effect (SetByCaller):</b>
-            GE_Damage_Basic_SetByCaller
-          </li>
-          <li>
-            <b>Heal Gameplay Effect (SetByCaller):</b> GE_Heal_SetByCaller
-          </li>
-          <li><b>Dynamic Tag Gameplay Effect:</b> GE_Dynamic Tag</li>
-        </ul>
-        <p>
-          The C++ UCLASS <code>ULyraGameData</code> associated with this asset
-          has three properties, which line up with the three parameters in the
-          Data Asset.
-        </p>
-      </div>
-      <!-- Folders -->
-      <h3>Folders</h3>
-      <!-- Audio -->
-      <div>
-        <h4>Audio</h4>
-        <p>
-          The Audio folder appears to hold all of the audio for the entire game.
-          This does not mean that you should store your audio files here; they
-          should go in your own content plugins. It has a bunch of folders for
-          different sound effects, audio mixes, etc. There's not too much to see
-          here, and I don't know much about audio in Unreal Engine anyways
-          <i>{guilty shrug}</i>.
-        </p>
-      </div>
-      <!-- Characters -->
-      <div>
-        <h4>Characters</h4>
-        <p>
-          The Characters folder holds the default character data for Lyra, the
-          third-person camera, and the meshes for the UE4 and UE5 mannequins.
-          This folder also contains the "simple pawn" used in the
-          <code>L_DefaultEditorOverview</code> map (the map open by default in a
-          fresh Lyra project), as well as the ability sets for the default
-          character class.
-        </p>
-        <p>
-          Also in this folder is the <code>Character_Default</code> Blueprint,
-          whose parent class is <code>ALyraCharacter</code>. This Blueprint
-          simply inherits the Lyra Character class and sets up the capsule
-          collision component for the character.
-        </p>
-        <p>
-          The Heroes subfolder contains the
-          <code>B_Hero_Default</code> Blueprint. It is a child of the
-          <code>Character_Default</code> Blueprint, and it's the base hero class
-          for Lyra. It contains a few Blueprint functions that handle team
-          coloring, ragdoll animations, and death state visuals.
-        </p>
-      </div>
-      <!-- ContextEffects -->
-      <div>
-        <h4>ContextEffects</h4>
-        <p>
-          This folder holds only three assets; <code>CFX_DefaultSkin</code>,
-          <code>DT_AnimEffectTags</code>, and <code>DT_SurfaceTypes</code>.
-          These three assets are for defining tag relationships relative to
-          different surfaces, and telling the Engine what effects to apply to
-          the character based on these tags. In this case, they are used to
-          define the different sounds produced by walking, landing, jumping, or
-          jogging on a specific surface—however, the system can be used for any
-          sound or visual effect (for example, Niagra spark particles drifting
-          off of the player when walking on a hot surface).
-        </p>
-        <p>
-          The only surfaces defined by default are <code>Default</code>,
-          <code>Character</code>, <code>Concrete</code>, and <code>Glass</code>.
-        </p>
-      </div>
-      <!-- Editor -->
-      <div>
-        <h4>Editor</h4>
-        <p>
-          This folder is completely empty in-editor; a quick glance in Explorer
-          shows that contains a single file (<code>CheckContent.svg</code>).
-          This file lives in Slate/Icons, meaning that is a Slate vector icon
-          used somewhere in the Editor... it appears to be for the content
-          validation button located at the top of the main Editor window.
-        </p>
-      </div>
-      <!-- Effects -->
-      <div>
-        <h4>Effects</h4>
-        <p>
-          The Effects folder is home to most of the particle systems as well as
-          some animation notifies and material functions. Everything from
-          launchpad particles to damage effects on the camera when hit to the
-          floating damage numbers when an attack lands.
-        </p>
-        <p>Note: the AnimationNotifies folder is marked for deprecation.</p>
-      </div>
-      <!-- Environments -->
-      <div>
-        <h4>Environments</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Feedback -->
-      <div>
-        <h4>Feedback</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- GameplayCueNotifies -->
-      <div>
-        <h4>GameplayCueNotifies</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- GameplayEffects -->
-      <div>
-        <h4>GameplayEffects</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Input -->
-      <div>
-        <h4>Input</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Legal -->
-      <div>
-        <h4>Legal</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Localization -->
-      <div>
-        <h4>Localization</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- PhysicsMaterials -->
-      <div>
-        <h4>PhysicsMaterials</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- System -->
-      <div>
-        <h4>System</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Tools -->
-      <div>
-        <h4>Tools</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- UI -->
-      <div>
-        <h4>UI</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-      <!-- Weapons -->
-      <div>
-        <h4>Weapons</h4>
-        <p>Breakdown Placeholder</p>
-      </div>
-    </section>
+    </details>
+    <details>
+      <summary>System</summary>
+      <p>
+        The <code>System</code> folder holds much of Lyra's default and frontend
+        data. It has one file and five subfolders in its root.
+      </p>
+      <ul class="ul-tree">
+        <li>
+          <b>TransitionMap</b> is the map used to transition between different
+          levels during loading
+        </li>
+        <li>
+          <b>DefaultEditorMap</b> holds <code>L_DefaultEditorOverview</code>,
+          which is set as the default startup map in a fresh Lyra project, as
+          well as the Blueprints that assemble the level teleporters in this
+          map; <code>B_ExperienceList3d</code> gets a list of
+          <code>LyraUserFacingExperienceDefinition</code> assets and creates an
+          array of <code>B_TeleportToUserFacingExperience</code> for the user to
+          interact with
+        </li>
+        <li>
+          <b>Experiences</b> holds <code>B_LyraDefaultExperience</code>, which
+          is a Lyra Experience Definition used in
+          <code>L_DefaultEditorOverview</code> to spawn
+          <code>SimpleHeroPawn</code> as the default pawn and create the UI
+          widgets used in that level
+        </li>
+        <li>
+          <b>FrontEnd</b> contains the <code>L_LyraFrontEnd</code> map, as well
+          as its associated experience and a material used in the level
+        </li>
+        <li>
+          <b>Playlists</b> has two
+          <code>LyraUserFacingExperienceDefinition</code> assets for
+          <code>L_DefaultEditorOverview</code> and <code>L_LyraFrontEnd</code>
+        </li>
+        <li>
+          <b>Teams</b> holds four <code>Lyra Team Display Asset</code>s, which
+          provide the colorations for Blue, Green, Red, and Yellow teams
+        </li>
+      </ul>
+    </details>
+    <details>
+      <summary>UI</summary>
+      <p>
+        The <code>UI</code> folder holds all of Lyra's UI. Everything from the
+        frontend to loading screens to the settings menu, as well as the
+        gameplay UI for both remote and touchscreen devices, is stored here.
+        Most of the files are Widget Blueprints; however, a few other assets are
+        used for storing data and fonts.
+      </p>
+    </details>
+    <details>
+      <summary>Weapons</summary>
+      <p>
+        The <code>Weapons</code> folder contains the static meshes, textures,
+        and materials for items such as the Grenade, Healthpack, and all three
+        ranged weapons, as well as some other miscellaneous assets. This folder
+        is more of an "items" folder than a "weapons" folder.
+      </p>
+      <p>
+        A key asset in this folder is <code>B_Weapon</code>, which has logic for
+        dynamic team color switching, weapon firing, fake projectiles, weapon
+        impact, weapon switching, and weapon decals/effects. This Blueprint
+        covers all of the gun types in Lyra, and acts as a base for any ranged
+        weapon.
+      </p>
+    </details>
+    <!-- Editor Tools/Content -->
+    <h3>Editor Tools/Content</h3>
+    <details>
+      <summary>Editor</summary>
+      <p>
+        This folder holds a single image under Editor/Slate/Icons called
+        <code>CheckContent.svg</code>. It is used for the content validation
+        button at the top of the main Editor window.
+      </p>
+    </details>
+    <details>
+      <summary>Legal</summary>
+      <p>
+        Lyra's <code>Legal</code> folder contains an OFL (Open Font License)
+        <code>.txt</code> file.
+      </p>
+    </details>
+    <details>
+      <summary>Localization</summary>
+      <p>
+        The <code>Localization</code> folder holds localization files for
+        changing Editor and game localizations.
+      </p>
+    </details>
+    <details>
+      <summary>PhysicsMaterials</summary>
+      <p>
+        The <code>PhysicsMaterials</code> folder holds three Physics Materials
+        for Character, Concrete, and Glass, which correspond to the Lyra Context
+        Effects.
+      </p>
+    </details>
+    <details>
+      <summary>Tools</summary>
+      <p>
+        The <code>Tools</code> folder contains Editor tools for level design.
+        Lyra uses <b>Dynamic Mesh Actors</b>, which are Blueprints that can be
+        shaped in-editor using labeled handles on the mesh. Dragging these
+        handles around will change certain aspects of the mesh. These Dynamic
+        Meshes are ideal for level blockouts and greyboxing.
+      </p>
+      <p>
+        Dynamic Meshes can be baked into Static Meshes for playtesting and final
+        builds. Baking converts the mesh into an optimized, non-editable asset,
+        which increases runtime performance. If a designer needs to further edit
+        the mesh, the asset can be converted back into a Dynamic Mesh.
+      </p>
+    </details>
+  </section>
+  <section>
+    <img
+      src="pages/Docs/UnrealEngine/LyraStarterGame/img/LyraContentFolder.jpg"
+      alt="Lyra Content Folder" />
+  </section>
+  <div class="cta cta-footer">
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame.html"
+      class="btn cta-prev">
+      <i class="fas fa-chevron-left"></i>
+      <span>Previous Page</span>
+    </a>
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame/File-Structure.html"
+      class="btn cta-next">
+      <span>Next Page</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
   </div>
-  <aside class="content-aside">
-    <!-- Featured Section -->
-    <section class="section featured">
-      <h2 class="aside-header">Featured Posts</h2>
-      <div>
-        <!-- Featured posts will go here, in a list of tiles -->
-      </div>
-    </section>
-  </aside>
 </div>

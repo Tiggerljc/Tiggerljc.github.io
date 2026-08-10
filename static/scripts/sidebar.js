@@ -254,7 +254,7 @@ function getHeadings() {
   if (!content) return;
 
   // Headings
-  const headings = content.querySelectorAll("h2, h3, h4");
+  const headings = content.querySelectorAll("h2, h3, h4, summary");
 
   const info = [...headings].map((h) => ({
     element: h,
@@ -380,7 +380,7 @@ let activeLink = null;
 let scrollObserver = null;
 
 function initObserver() {
-  const headings = document.querySelectorAll("h2, h3, h4");
+  const headings = document.querySelectorAll("h2, h3, h4, summary");
   const links = document.querySelectorAll("#ToC a");
   const linkMap = new Map();
 
