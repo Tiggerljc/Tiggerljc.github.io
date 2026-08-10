@@ -1,0 +1,130 @@
+<script id="page-meta" type="application/json">
+  {
+    "title": "Introduction to Lyra"
+  }
+</script>
+
+<div class="content-primary">
+  <!-- Hero -->
+  <section>
+    <img
+      src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+      alt="Banner - Lyra Starter Game"
+      class="banner"
+      width="1920"
+      height="335" />
+    <p class="image-credit">Image credit Epic Games, Inc., Lyra Starter Game</p>
+    <p>
+      The Lyra Starter Game is Epic's recommended standard for multiplayer
+      development; as such, understanding the makeup of the project—and, more
+      importantly, the framework it rests on—is crucial to working effectively
+      with Lyra. This page will give an overview of the Lyra framework and the
+      concepts necessary to work with it.
+    </p>
+  </section>
+  <section>
+    <h2>The Basics</h2>
+    <h3>Modular Gameplay</h3>
+    <p>
+      Lyra is built as a modular framework composed of Game Feature Plugins
+      (GFPs). These plugins house most of Lyra's gameplay content and systems.
+      Very little is stored in the main Content folder; everything else is
+      stored in GFPs and loaded dynamically at runtime.
+    </p>
+    <p>The default Lyra plugins include:</p>
+    <ul class="ul-tree">
+      <li>ShooterCore</li>
+      <li>ShooterExplorer</li>
+      <li>ShooterMaps</li>
+      <li>ShooterTests</li>
+      <li>TopDownArena</li>
+    </ul>
+    <p>
+      This modular architecture allows for a clean separation of gameplay
+      systems and enables flexible game modes and content loading, meaning that
+      only the necessary content is available at runtime.
+    </p>
+    <h3>Gameplay Ability System</h3>
+    <p>
+      Lyra makes use of the Gameplay Ability System (GAS) for player actions.
+      Any action that the player character carries out—for example, running,
+      jumping, and dashing—is controlled by a Gameplay Ability. These abilities
+      are modular and can be granted or removed from the player at runtime
+      through Ability Sets.
+    </p>
+    <p>
+      Input is handled using Input Actions, which are mapped to abilities using
+      Input Mapping Contexts (IMCs).
+    </p>
+    <p>
+      Another key part of Lyra's ability system is the use of Gameplay Tags.
+      These tags govern ability relationships, activation and deactivation, when
+      abilities can or cannot happen, what abilities block other abilities,
+      player health and damage, and more.
+    </p>
+    <h3>Experiences</h3>
+    <p>
+      Lyra uses Gameplay Experiences to create game modes. These Experiences
+      define which Game Features to enable, what pawn to use, and what abilities
+      to grant that pawn. Lyra takes this a step further by creating the
+      <code>LyraUserFacingExperienceDefinition</code>, which takes in an
+      Experience Definition and assigns it a map, title/subtitle, description,
+      and logo, as well as a loading screen widget.
+    </p>
+    <p>
+      The <code>LyraUserFacingExperienceDefinition</code> is used in the
+      <code>L_DefaultEditorOverview</code> map when constructing
+      <code>B_ExperienceList3D</code>. This asset loads the Experience
+      Definitions as widgets, and creates a platform for the player to walk
+      onto. This platform loads a Gameplay Experience, including its associated
+      map and rulesets. This example could be taken to assemble a full lobby
+      screen with many different game modes.
+    </p>
+  </section>
+  <section>
+    <h2>How to Work With Lyra</h2>
+    <p>
+      Lyra is intentionally designed as a modular framework. Instead of
+      inserting gameplay systems directly into the Content folder, Epic used
+      Game Feature Plugins to encapsulate the project. This keeps the project
+      very modular and lightweight and allows for the easy activation,
+      deactivation, or restructuring of features without affecting the rest of
+      the game.
+    </p>
+    <p>
+      In Epic's own words, "<i
+        >The Content folder only contains generic assets and the main lobby.</i
+      >" Therefore, it is recommended that you create your own GFPs for your
+      game content. This provides two major benefits. First, it prevents
+      accidental changes to Lyra's code, which can be difficult and
+      time-consuming to debug, and you might break other systems in the process.
+      Second, it makes migration significantly easier if Epic updates Lyra. It
+      also makes it easier to migrate your content to another framework should
+      you choose to do so.
+    </p>
+    <p>
+      In practice, this means treating Lyra as a framework and building your
+      game as a network of independent layers on top of it. If you must modify
+      Lyra code, it is better to duplicate files first and modify the duplicates
+      rather than the original. As for your own content, almost all of your
+      assets should go in plugins—only truly global assets such as the main
+      lobby or shared UI belong in the Content folder. A detailed walkthrough of
+      how to create your own GFP and connect it to Lyra's systems is available
+      in this blog tutorial: <a href="">Some link at some point</a>.
+    </p>
+  </section>
+  <div class="cta cta-footer">
+    <a
+      href="#/pages/Docs/UnrealEngine/LyraStarterGame.html"
+      class="btn cta-prev">
+      <i class="fas fa-chevron-left"></i>
+      <span>Lyra Starter Game</span>
+    </a>
+    <a
+      href="#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html"
+      class="btn cta-next">
+      <span>Map of Lyra</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
