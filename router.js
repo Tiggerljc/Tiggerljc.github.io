@@ -94,7 +94,7 @@ function getSectionInfo(url) {
   }
 
   if (/^pages\/docs(?:\/|\.|$)/i.test(normalized)) {
-    return { name: "docs", shellUrl: "/pages/Docs.html" };
+    return { name: "docs", shellUrl: "/pages/docs.html" };
   }
 
   if (/^pages\/notes(?:\/|\.|$)/i.test(normalized)) {

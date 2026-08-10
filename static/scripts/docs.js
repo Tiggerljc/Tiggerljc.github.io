@@ -44,4 +44,4 @@ window.__sectionCleanup = cleanupDocsSection;
 console.log("docs.js loaded!");
 document.addEventListener("section-script-ready", initDocsSection);
 document.addEventListener("sub-partial-load", loadDocsContent);
-document.addEventListener("section-script-destroy", cleanupDocsSection);
+document.addEventListener("section-script-destroy", cleanupdocsSection);

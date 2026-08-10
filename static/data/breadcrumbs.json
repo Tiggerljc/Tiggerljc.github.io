@@ -13,36 +13,36 @@
         "href": "#/pages/Blogs.html",
         "children": {}
       },
-      "Docs": {
-        "title": "Docs",
-        "href": "#/pages/Docs.html",
+      "docs": {
+        "title": "docs",
+        "href": "#/pages/docs.html",
         "children": {
           "UnrealEngine": {
             "title": "Unreal Engine",
-            "href": "#/pages/Docs/UnrealEngine.html",
+            "href": "#/pages/docs/UnrealEngine.html",
             "children": {
               "LyraStarterGame": {
                 "title": "Lyra Starter Game",
-                "href": "#/pages/Docs/UnrealEngine/LyraStarterGame.html",
+                "href": "#/pages/docs/UnrealEngine/LyraStarterGame.html",
                 "children": {
                   "Content": {
                     "title": "Content",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Content.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Content.html",
                     "children": {}
                   },
                   "Introduction": {
                     "title": "Introduction",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Introduction.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Introduction.html",
                     "children": {}
                   },
                   "Map-of-Lyra": {
                     "title": "Map Of Lyra",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html",
                     "children": {}
                   },
                   "lyra-template": {
                     "title": "Lyra Template",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/lyra-template.html",
+                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/lyra-template.html",
                     "children": {}
                   }
                 }
