@@ -15,72 +15,35 @@
       },
       "Docs": {
         "title": "Docs",
-        "href": "#/pages/docs.html",
+        "href": "#/pages/Docs.html",
         "children": {
           "UnrealEngine": {
             "title": "Unreal Engine",
-            "href": "#/pages/docs/UnrealEngine.html",
+            "href": "#/pages/Docs/UnrealEngine.html",
             "children": {
               "LyraStarterGame": {
                 "title": "Lyra Starter Game",
-                "href": "#/pages/docs/UnrealEngine/LyraStarterGame.html",
+                "href": "#/pages/Docs/UnrealEngine/LyraStarterGame.html",
                 "children": {
                   "Content": {
                     "title": "Content",
-                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Content.html",
+                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Content.html",
                     "children": {}
                   },
                   "Introduction": {
                     "title": "Introduction",
-                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Introduction.html",
+                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Introduction.html",
                     "children": {}
                   },
-                  "LyraEditor": {
-                    "title": "Lyra Editor",
-                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/LyraEditor.html",
+                  "Map-of-Lyra": {
+                    "title": "Map Of Lyra",
+                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html",
                     "children": {}
                   },
-                  "LyraGame": {
-                    "title": "Lyra Game",
-                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/LyraGame.html",
+                  "lyra-template": {
+                    "title": "Lyra Template",
+                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/lyra-template.html",
                     "children": {}
-                  },
-                  "Plugins": {
-                    "title": "Plugins",
-                    "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins.html",
-                    "children": {
-                      "GameFeaturePlugins": {
-                        "title": "Game Feature Plugins",
-                        "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins.html",
-                        "children": {
-                          "ShooterCore": {
-                            "title": "Shooter Core",
-                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterCore.html",
-                            "children": {}
-                          },
-                          "ShooterExplorer": {
-                            "title": "Shooter Explorer",
-                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterExplorer.html",
-                            "children": {}
-                          },
-                          "ShooterMaps": {
-                            "title": "Shooter Maps",
-                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterMaps.html",
-                            "children": {}
-                          },
-                          "ShooterTests": {
-                            "title": "Shooter Tests",
-                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/ShooterTests.html",
-                            "children": {}
-                          },
-                          "TopDownArena": {
-                            "title": "Top Down Arena",
-                            "href": "#/pages/docs/UnrealEngine/LyraStarterGame/Plugins/GameFeaturePlugins/TopDownArena.html",
-                            "children": {}
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
