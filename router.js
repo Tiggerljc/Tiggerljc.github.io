@@ -16,7 +16,7 @@ function unloadSectionScript() {
 function loadSectionScript(sectionName, onReady) {
   const scriptMap = {
     blogs: "/static/scripts/blogs.js",
-    docs: "/static/scripts/docs.js",
+    Docs: "/static/scripts/Docs.js",
     notes: "/static/scripts/notes.js",
   };
 
@@ -93,8 +93,8 @@ function getSectionInfo(url) {
     return { name: "blogs", shellUrl: "/pages/Blogs.html" };
   }
 
-  if (/^pages\/docs(?:\/|\.|$)/i.test(normalized)) {
-    return { name: "docs", shellUrl: "/pages/docs.html" };
+  if (/^pages\/Docs(?:\/|\.|$)/i.test(normalized)) {
+    return { name: "Docs", shellUrl: "/pages/Docs.html" };
   }
 
   if (/^pages\/notes(?:\/|\.|$)/i.test(normalized)) {
@@ -131,7 +131,7 @@ async function loadPage(url, skipSmoothScroll = false) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const normalizedPath = url.replace(/^\/+/, "");
     const section = getSectionInfo(url);
-    const isSubPartial = /^(pages\/(blogs|docs|notes)\/)/i.test(normalizedPath);
+    const isSubPartial = /^(pages\/(blogs|Docs|notes)\/)/i.test(normalizedPath);
     const isSectionRoute = !!section;
 
     if (requestId !== activeRequestId) return;

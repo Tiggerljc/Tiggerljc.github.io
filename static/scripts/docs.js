@@ -8,7 +8,7 @@ function initDocsSection() {
   const currentPrimary = getPrimaryContent(document.querySelector("#content"));
   if (!currentPrimary) return;
 
-  console.log("docs section initialized");
+  console.log("Docs section initialized");
 }
 
 function loadDocsContent(event) {
@@ -41,7 +41,7 @@ function cleanupDocsSection() {
 }
 
 window.__sectionCleanup = cleanupDocsSection;
-console.log("docs.js loaded!");
+console.log("Docs.js loaded!");
 document.addEventListener("section-script-ready", initDocsSection);
 document.addEventListener("sub-partial-load", loadDocsContent);
-document.addEventListener("section-script-destroy", cleanupdocsSection);
+document.addEventListener("section-script-destroy", cleanupDocsSection);
