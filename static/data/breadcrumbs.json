@@ -25,11 +25,6 @@
                 "title": "Lyra Starter Game",
                 "href": "#/pages/Docs/UnrealEngine/LyraStarterGame.html",
                 "children": {
-                  "Content": {
-                    "title": "Content",
-                    "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Content.html",
-                    "children": {}
-                  },
                   "Introduction": {
                     "title": "Introduction",
                     "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Introduction.html",
@@ -38,7 +33,24 @@
                   "Map-of-Lyra": {
                     "title": "Map Of Lyra",
                     "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra.html",
-                    "children": {}
+                    "children": {
+                      "Content": {
+                        "title": "Content",
+                        "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra/Content.html",
+                        "children": {}
+                      },
+                      "Plugins": {
+                        "title": "Plugins",
+                        "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra/Plugins.html",
+                        "children": {
+                          "ShooterCore": {
+                            "title": "Shooter Core",
+                            "href": "#/pages/Docs/UnrealEngine/LyraStarterGame/Map-of-Lyra/Plugins/ShooterCore.html",
+                            "children": {}
+                          }
+                        }
+                      }
+                    }
                   },
                   "lyra-template": {
                     "title": "Lyra Template",
@@ -100,7 +112,13 @@
       "School": {
         "title": "School",
         "href": "#/pages/School.html",
-        "children": {}
+        "children": {
+          "English": {
+            "title": "English",
+            "href": "#/pages/School/English.html",
+            "children": {}
+          }
+        }
       },
       "Settings": {
         "title": "Settings",
