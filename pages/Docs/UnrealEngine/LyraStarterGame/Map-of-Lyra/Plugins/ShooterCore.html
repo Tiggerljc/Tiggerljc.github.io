@@ -1,0 +1,390 @@
+<script id="page-meta" type="application/json">
+  {
+    "title": "Shooter Core Plugin"
+  }
+</script>
+
+<div class="content-primary">
+  <!-- Hero -->
+  <section>
+    <img
+      src="/pages/Docs/UnrealEngine/LyraStarterGame/img/LyraStarterGame.jpg"
+      alt="Banner - Lyra Starter Game"
+      class="banner no-aspect"
+      width="1920"
+      height="335" />
+    <p class="image-credit">Image credit Epic Games, Inc., Lyra Starter Game</p>
+    <p>
+      The ShooterCore plugin is Lyra's primary gameplay content plugin. It
+      contains the assets for Lyra's core gameplay features, including the
+      ShooterHero and its ability sets, the Elimination and Control Point game
+      modes, the Blueprint classes for all player weapons, and the assets for
+      bot behavior/construction.
+    </p>
+
+    <p>
+      This folder is very dense and its contents are spread out across 18
+      subfolders. Therefore, this breakdown will cover an overview of each of
+      these subfolders and go more in-depth on important files and folders.
+    </p>
+    <!-- Accolades -->
+    <details>
+      <summary><b>Accolades</b></summary>
+      <p>
+        The <code>Accolades</code> folder contains seven assets used for award
+        messaging. <code>AccoladeDataRegistry</code> is a
+        <b>Data Registry</b> asset that manages metadata for elimination streaks
+        and multi-eliminations. This registry sources its information from
+        <code>DT_BasicShooterAccolades</code>, a <b>Data Table</b> that defines
+        individual achievements and associates them to with
+        <b>Gameplay Tags</b> and <b>MetaSound</b> assets.
+      </p>
+      <p>
+        <code>EAS_BasicShooterAccolades</code> is a
+        <b>Lyra Experience Action Set</b> that applies several
+        <b>Gameplay Message Processors</b> to the client. These processors
+        listen for Gameplay Tags and send Gameplay Messages which the UI picks
+        up to display achievements. They include <code>B_AccoladeRelay</code>,
+        which is a generic handler that ensures messages are broadcast to the
+        UI; <code>B_ElimChainProcessor</code>, which tracks "Chains" (multiple
+        consecutive eliminations); <code>B_EliminationFeedRelay</code>, which
+        processes eliminations into "Elimination Feed", the kill messages seen
+        on the left of the UI; and <code>B_ElimStreakProcessor</code>, which
+        tracks "Streaks" (multiple eliminations within the same life).
+      </p>
+    </details>
+
+    <!-- Blueprint -->
+    <details>
+      <summary><b>Blueprint</b></summary>
+      <p>
+        The <code>Blueprint</code> folder holds <b>Blueprint Actors</b> for
+        Lyra's weapon spawners and launchpads, as well as a few others.
+      </p>
+      <p>
+        <code>B_WeaponSpawner</code> and <code>B_AbilitySpawner</code> are both
+        subclasses of <code>ALyraWeaponSpawner</code>.
+        <code>B_WeaponSpawner</code> spawns a specific weapon and delivers it to
+        a player, unless they already have the weapon, in which case it refills
+        the player's ammo reserves. <code>B_AbilitySpawner</code> is an effect
+        pad, which can be used to give the player <b>Gameplay Effects</b>. It is
+        configured by default to grant <code>GE_InstantHeal_Part</code>, which
+        heals 25% of the player's health, and is used in
+        <code>L_Expanse</code> for both small and large (50%) health drops.
+        <br />
+        Both of these spawners can be configured in the details panel; you can
+        adjust the light and item spawn position, and input a
+        <code>LyraWeaponPickupData</code> asset which tracks default spawn
+        cooldown, pickup sound, and pickup mesh. In addition to this,
+        <code>B_WeaponSpawner</code> allows you to specify whether the pickup
+        provides extra ammo, and <code>B_AbilitySpawner</code> allows you to
+        input a <b>Gameplay Effect</b> to apply to the player.
+      </p>
+      <p>
+        <code>B_GrantAbilityPad_ApplyGE</code>,
+        <code>B_GrantInventory_Pad</code>, and
+        <code>B_GrantInventoryPad_WithMesh</code> are primitive versions of the
+        weapon and ability spawners, which contain all of the information needed
+        instead of referencing other assets to obtain that information.
+        <code>B_GrantAbilityPad_ApplyGE</code> grants
+        <code>GE_InstantHeal_Big</code>, which restores 50% of the player's
+        health. <code>B_GrantInventoryPad_WithMesh</code> is a fully set-up
+        asset inheriting from <code>B_GrantInventory_Pad</code> which gives the
+        player a rifle.
+      </p>
+      <p>
+        The launcher assets <code>B_Launcher_Push</code> and
+        <code>B_Launcher_Up</code> both inherit from <code>B_Launcher</code>,
+        which is a base launcher class that handles material setup, player VFX,
+        and overlap events. The code for the Overlap function is blank in the
+        main Blueprint, and is overridden in the child actors <b>_UP</b> and
+        <b>_Push</b>. This code is used for the launch physics.
+      </p>
+      <p>
+        <code>B_PerTestSpawner</code> and <code>B_PerfTestActor</code> are used
+        in <code>L_ShooterPerf</code> as a performance test.
+        <code>B_PerfTestSpawner</code> spawns a stack of
+        <code>B_PerfTestActors</code>, which each have a simple Blueprint script
+        to imitate the performance cost of having a lot of actors in the scene.
+      </p>
+      <p>
+        <code>B_ControlPointVolume</code>
+      </p>
+      <p>
+        <code>B_Teleport</code>
+      </p>
+    </details>
+
+    <!-- Bot -->
+    <details>
+      <summary><b>Bot</b></summary>
+      <p>
+        The <code>Bot</code> folder holds the Blueprint Classes, Behavior Trees,
+        and Environment Queries that make up Lyra's robotic combatants. The
+        folder contains five assets and three subfolders in its root. <br />
+        <code>B_AI_Controller_LyraShooter</code> manages the high-level state
+        and decision-making logic for the bots, while
+        <code>B_AI_Controller_LyraShooter_Passive</code> is an empty graph
+        version for non-reactive AI. <br />
+        <code>B_ShooterBotSpawner</code> is a data-only Blueprint which
+        specifies bot counts and name pools. The variant
+        <code>B_ShooterBotSpawner_Perf</code> is used in the
+        <code>L_ShooterPerf</code> map and defines spawn conditions for 20 bots.
+        <br />
+        <code>EQS_Tester</code> is a pawn class for testing the Environmental
+        Query System.
+      </p>
+      <p>
+        The <code>BT</code> (Behavior Tree) folder houses
+        <code>BT_Lyra_Shooter_Bot</code>. The tree defines two main branches,
+        which filter logic based on whether the bot has ammo. If it does not, it
+        will clear its focus and find a weapon. If the bot does have ammo, it
+        will look for an active enemy. If it does not find one, it will reload
+        and search for either a weapon or an enemy and move towards it. <br />
+        This folder also contains the BT's Blackboard
+        (<code>BB_Lyra_Shooter_Bot</code>) used for storing info on ammo
+        reserves and enemy position, and a Behavior Tree Decorator that
+        determines if a cheat is disabling the bot's ability to fire. <br />
+        Rather than handling low-level logic directly, the tree, delegates
+        events to the Gameplay Ability System (GAS), Services, and Decorators.
+      </p>
+      <p>
+        The <code>EQS</code> folder contains Environmental Query assets. These
+        queries help the bots find enemies, control points, and weapon pickups.
+        The folder also holds <b>EnvQueryContext</b> files, which define
+        reference points for certain actors, and a <b>Generator</b> that creates
+        grid points for evaluation by the Behavior Tree.
+      </p>
+      <p>
+        The <code>Services</code> folder holds <b>Behavior Tree Services</b>,
+        which run code at a defined tick interval. These assets help perform
+        tasks such as checking ammo levels, setting focus, and shooting. Unlike
+        <b>Decorators</b>, which act as conditional gates in a Behavior Tree,
+        <b>Services</b> perform continuous background updates as long as their
+        branch of the tree is active.
+      </p>
+    </details>
+
+    <!-- Camera -->
+    <details>
+      <summary><b>Camera</b></summary>
+      <p>
+        The <code>Camera</code> folder houses the <b>ThirdPersonADS</b> Camera
+        Mode. In <b>Lyra</b>, <code>Camera Modes</code> consist of two parts:
+        <b>LyraCameraMode</b> and an associated <b>Vector Curve</b>. The
+        <b>LyraCameraMode</b> defines properties such as Field of View (FoV),
+        camera collision, and offset blending.
+      </p>
+      <p>
+        <b>Vector Curve</b> is used to precisely control the camera's offset
+        from the player. It provides curve data for the X, Y, and Z axes, and is
+        referenced by the <b>LyraCameraMode</b>. This maintains modularity and
+        allows a dedicated graph to edit camera curves.
+      </p>
+    </details>
+
+    <!-- ControlPoint -->
+    <details>
+      <summary><b>ControlPoint</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Effects -->
+    <details>
+      <summary><b>Effects</b></summary>
+      <p>
+        The <code>Effects</code> folder is divided into three primary
+        subfolders: <code>Environmental</code>, <code>Material</code>, and
+        <code>Mesh</code>.
+      </p>
+      <p>
+        The <code>Environmental</code> folder contains two
+        <b>Niagara Systems</b>. <code>NS_CapturePoint</code> is an effect used
+        above capture points, providing a visual outline.
+        <code>NS_CapturePointCounter</code> functions as the progress wheel for
+        capture points.
+      </p>
+      <p>
+        The <code>Material</code> folder holds <b>Materials</b> and
+        <b>Material Instances</b> for various effects, including those for jump
+        pads/launchers. The <code>Mesh</code> folder contains the
+        <b>Static Mesh</b> used by <code>NS_CapturePoint</code> as the control
+        point's corner boundary.
+      </p>
+    </details>
+
+    <!-- Elimination -->
+    <details>
+      <summary><b>Elimination</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Experiences -->
+    <details>
+      <summary><b>Experiences</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Game -->
+    <details>
+      <summary><b>Game</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- GameplayCues -->
+    <details>
+      <summary><b>GameplayCues</b></summary>
+      <p>
+        The <code>GameplayCues</code> folder contains
+        <b>Gameplay Cue Notifies</b>, which listen for Gameplay Tags and
+        activate audio or effects at a specific location. This folder uses three
+        class types to manage the lifecycle of Gameplay Cues:
+      </p>
+      <ul class="ul-tree">
+        <li>
+          <b>GameplayCueNotify_Burst</b>: Executes immediately upon activation.
+          Optimized for instantaneous, one-shot events that do not require
+          ongoing logic.
+        </li>
+        <li>
+          <b>GameplayCueNotify_BurstLatent</b>: Begins execution on activation
+          and supports <b>async scripts</b> and latent actions. It persists
+          until the logic has finished, making it ideal for effects requiring a
+          fixed duration.
+        </li>
+        <li>
+          <b>GameplayCueNotify_Looping</b>: Allows persistent effects through
+          four lifecycle events: <code>On Application</code>,
+          <code>On Looping Start</code>, <code>On Recurring</code>, and
+          <code>On Removal</code>. These effects will remain active until the
+          triggering Gameplay Tag is removed or the player is eliminated.
+        </li>
+      </ul>
+      <p>
+        Also in this folder are two <b>Blueprint Widgets</b>:
+        <code>W_MatchDecided_Message</code> for post-match results, and
+        <code>W_WaitingForPlayers_Message</code> which shows team selection and
+        a "WAITING FOR ADDITIONAL PLAYERS" message.
+      </p>
+    </details>
+
+    <!-- Input -->
+    <details>
+      <summary><b>Input</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Item -->
+    <details>
+      <summary><b>Item</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Items -->
+    <details>
+      <summary><b>Items</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Maps -->
+    <details>
+      <summary><b>Maps</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- System -->
+    <details>
+      <summary><b>System</b></summary>
+      <p>
+        The <code>System</code> folder contains two subfolders: <b>Audio</b> and
+        <b>Playlists</b>. <br />
+        The <b>Audio</b> folder houses <code>WeaponAudioFunctions</code>, a
+        <b>Blueprint Function Library</b> containing various functions for
+        weapon sound logic. This library contains many functions for
+        <b>Spatial</b> audio such as "whiz-bys" for projectiles passing in close
+        proximity to the player.<br />
+        The <b>Playlists</b> folder contains two
+        <code>LyraUserFacingExperienceDefinition</code> used for map and Game
+        Mode discovery in <code>L_DefaultEditorOverview</code>. They define UI
+        metadata and loading params for <code>L_ShooterGym</code> and
+        <code>L_ShooterPerf</code>.
+      </p>
+    </details>
+
+    <!-- UserInterface -->
+    <details>
+      <summary><b>UserInterface</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+
+    <!-- Weapon -->
+    <details>
+      <summary><b>Weapon</b></summary>
+      <p>
+        The <code>Weapon</code> folder holds <code>B_Grenade</code>, an
+        <b>Actor Blueprint</b> that defines the projectile's runtime behavior.
+        It handles player collision and explosion timers, as well as physical
+        velocity and rotation.
+      </p>
+      <p>
+        In addition, the Blueprint has a teleportation script; before going
+        through a portal, the script conserves the grenade's velocity and
+        temporarily deactivates its
+        <b>Projectile Movement Component</b>. Upon exiting the destination
+        portal, it calculates a new directional velocity by multiplying the exit
+        portal's <b>Forward Vector</b> by the conserved velocity (with a
+        dampening multiplier). This ensures a seamless teleportation.
+      </p>
+    </details>
+
+    <!-- Weapons -->
+    <details>
+      <summary><b>Weapons</b></summary>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </details>
+  </section>
+  <div class="cta cta-footer">
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame.html"
+      class="btn cta-prev">
+      <i class="fas fa-chevron-left"></i>
+      <span>Previous Page</span>
+    </a>
+    <a
+      href="#/pages/docs/UnrealEngine/LyraStarterGame/File-Structure.html"
+      class="btn cta-next">
+      <span>Next Page</span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+  </div>
+</div>

@@ -16,7 +16,7 @@ function unloadSectionScript() {
 function loadSectionScript(sectionName, onReady) {
   const scriptMap = {
     blogs: "/static/scripts/blogs.js",
-    Docs: "/static/scripts/Docs.js",
+    Docs: "/static/scripts/docs.js",
     notes: "/static/scripts/notes.js",
   };
 
